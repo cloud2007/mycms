@@ -4,7 +4,7 @@ return array(
         'host' => 'localhost',
         'user' => 'root',
         'pwd' => '',
-        'dbname'=>'zhaosheng',
+        'dbname'=>'mycms',
         'charset'=>'utf8',
     ),
 )
