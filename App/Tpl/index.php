@@ -1,55 +1,169 @@
-<div id="main">
-	<table border="0" cellpadding="0" cellspacing="0" class="mtable1">
-		<tr class="table_title">
-			<td>姓名</td>
-			<td>地区</td>
-			<td>是否已联系</td>
-			<td>所有人</td>
-			<td>原所有人</td>
-			<td>录入时间</td>
-			<td>操作</td>
-		</tr>
-		<?php foreach($datalist as $v){?>
-		<tr class="table_main">
-			<td><a class="st1" href="javascript:;" onclick="jQuery('#c_<?php echo $v->id;?>').toggle();" title="点击查看"><?php echo $v->uname;?></a> </td>
-			<td><?php echo Config::item('Area.area1.'.$v->area1).Config::item('Area.area2_'.$v->area1.'.'.$v->area2);?></td>
-			<td><span style="color:Green;"><?php echo $v->getstatus();?></span></td>
-			<td><?php echo $v->getaddname();?></td>
-			<td><?php echo $v->getoldname();?></td>
-			<td><?php echo $v->creattime();?></td>
-			<td><a class="st2 inline" href="/home/ajax_tixing/<?php echo $v->id;?>">提醒我</a> | <a class="st1 inline" href="/home/ajax_beizhu/<?php echo $v->id;?>">备注</a> | <a class="st1" href="/home/zhuanyi/<?php echo $v->id;?>">转移</a></td>
-		</tr>
-		<tr class="table_con">
-			<td colspan="6"><span>【<?php echo $v->getschool();?>】</span> <a href="javascript:;" onclick="jQuery('#b_<?php echo $v->id;?>').toggle();" title="点击查看" style="color:#777777;">▼查看备注</a></td>
-		</tr>
-		<tr id="b_<?php echo $v->id;?>" style="display:none">
-			<td colspan="7" class="table_freedback">
-				<?php foreach($v -> getbeizhu() as $value){?>
-				<li>【<?php echo $value->creattime();?>】<b><?php echo $v->getaddname();?></b>：<?php echo $value->msg;?></li>
-				<?php }?>
-			</td>
-		</tr>
-		<tr	id="c_<?php echo $v->id;?>" style="display:none">
-			<td colspan="7" class="table_info">
-			<b>联系电话：</b><?php echo $v->tel;?>    <b>性别：</b><?php echo $v->sex==1?'男':'女';?><br>
-			<b>地址：</b><?php echo $v->addr;?><br>
-			<b>报名人数：</b><?php echo $v->num;?> 人<br>
-			<b>联系结果备注：</b><span style="color:Red;"><?php echo $v->content;?></span><br>
-			<b>招生老师：</b><?php echo $v->teacher;?><br>
-			<b>留言：</b><?php echo $v->content;?>
-			</td>
-		</tr>
-		<?php }?>
-		<tr class="table_con">
-			<td colspan="7" align="center"><?php echo $pagerData['linkhtml'];?></td>
-		</tr>
-	</table>
-</div>
-<script>
-$(document).ready(function(){$(".inline").colorbox({});});
-</script>
-<div style='display:none'>
-	<div id='inline_content' style='padding:10px; background:#fff;'>
-	<input type="text" value="" id="inline_id" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Mycms Index</title>
+<link type="text/css" href="/Static/style/frame.css" rel="stylesheet" />
+<script type="text/javascript" src="/Static/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/Static/js/frame.js"></script>
+<style type="text/css">
+#skinlist {
+    display: block;
+    height: 11px;
+	margin-top: 10px;
+    overflow: hidden;
+    width: 86px;
+}
+#skin div {
+    float: left;
+}
+#skin li {
+    cursor: pointer;
+    float: left;
+    height: 11px;
+    width: 14px;
+}
+#def div, #s1 div, #s2 div, #s3 div, #s4 div{
+    background-image: url("images/skinbutton.png");
+    background-repeat: no-repeat;
+}
+#s1 div {
+    background-position: 0 0px;
+}
+#s2 div {
+    background-position: 0 -11px;
+}
+#s3 div {
+    background-position: 0 -22px;
+}
+#s4 div {
+    background-position: 0 -33px;
+}
+#s1 div.sel {
+    background: url("images/skinbutton.png") no-repeat scroll -14px top transparent;
+}
+#s2 div.sel {
+    background: url("images/skinbutton.png") no-repeat scroll -14px -11px transparent;
+}
+#s3 div.sel {
+    background: url("images/skinbutton.png") no-repeat scroll -14px -22px transparent;
+}
+#s4 div.sel {
+    background: url("images/skinbutton.png") no-repeat scroll -14px -33px transparent;
+}
+</style>
+</head>
+<body class="showmenu">
+<div class="head">
+	<div class="top">
+		<div class="top_logo"> <img src="images/admin_top_logo.gif" width="200" height="37" alt="Logo" title="Welcome use DedeCms" id="topdedelogo" /> </div>
+		<div class="top_link">
+			<ul>
+				<li class="welcome">您好：admin ，欢迎使用DedeCMS！</li>
+				<li><a href="index_menu.php" target="menu">主菜单</a></li>
+				<li><a href="#" onclick="JumpFrame('catalog_menu.php','public_guide.php');">内容发布</a></li>
+				<li><a href="#" onclick="JumpFrame('index_menu.php','content_list.php');">内容维护</a></li>
+				<li><a href="#" onclick="JumpFrame('index_menu.php','index_body.php');">系统主页</a></li>
+				<li><a href="../index.php?upcache=1" target="_blank">网站主页</a></li>
+				<li><a href="../member" target="_blank">会员中心</a></li>
+				<li><a href="exit.php" target="_top">注销</a></li>
+			</ul>
+			<div class="quick"> <a href="#" class="ac_qucikmenu" id="ac_qucikmenu">快捷方式</a> <a href="#" class="ac_qucikadd" id="ac_qucikadd">
+				<!--ADD-->
+				</a> </div>
+		</div>
+	</div>
+	<div class="topnav">
+		<div class="menuact"> <a href="#" id="togglemenu">隐藏菜单</a> <a href="#" id="allmenu">功能地图</a> </div>
+		<div id="skin">
+			<div>
+				<ul id="skinlist">
+					<li id="s1">
+						<div class="sel"><img alt="织梦绿" src="images/blank.gif"></div>
+					</li>
+					<li id="s2">
+						<div><img alt="淡蓝" src="images/blank.gif"></div>
+					</li>
+					<li id="s3">
+						<div><img alt="咖啡" src="images/blank.gif"></div>
+					</li>
+					<li id="s4">
+						<div><img alt="水墨" src="images/blank.gif"></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="nav" id="nav"> </div>
+		<div class="sysmsg">
+			<h3>滚动消息:</h3>
+			<div class="scroll">
+				<form action="action_search.php" target="main" method="post">
+					<input name="keyword" type="text" value="功能搜索" onfocus="if(this.value=='功能搜索'){this.value='';}"  onblur="if(this.value==''){this.value='功能搜索';}" class="allsearch" style="width:150px;"/>
+					<input name="" type="submit" value="搜索" class="np"/>
+					<a href='http://bbs.dedecms.com' target='_blank'>官方论坛</a> <a href='http://help.dedecms.com' target='_blank'>在线帮助</a>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
+<div class="left">
+	<div class="menu" id="menu">
+		<iframe src="/menu" id="menufra" name="menu" frameborder="0"></iframe>
+	</div>
+</div>
+<div class="right">
+	<div class="main">
+		<iframe id="main" name="main" frameborder="0" src="index_body.html"></iframe>
+	</div>
+	<!--<div id="help"><span id="content"><a href="#">栏目管理操作使用说明</a></span></div>-->
+</div>
+<div class="qucikmenu" id="qucikmenu">
+	<ul>
+		<li><a href='content_list.php' target='main'>文档列表</a></li>
+		<li><a href='feedback_main.php' target='main'>评论管理</a></li>
+		<li><a href='public_guide.php' target='main'>内容发布</a></li>
+		<li><a href='catalog_main.php' target='main'>栏目管理</a></li>
+		<li><a href='sys_info.php' target='main'>修改参数</a></li>
+	</ul>
+</div>
+<script language="javascript">
+function JumpFrame(url1, url2){
+    jQuery('#menufra').get(0).src = url1;
+    jQuery('#main').get(0).src = url2;
+}
+(function($)
+{
+ 	$("#skinlist>li").click(function()
+	 {
+		 var adminskin = $(this).index() + 1;
+		 var csshref = "images/style"+adminskin+"/style.css";
+		 $("#skinlist>li").each(function(){$(this).children('div').attr('class', '')});
+		 $("#topdedelogo").attr('src', 'images/style'+adminskin+'/admin_top_logo.gif')
+		 $('link').each(function()
+		 {
+			 if($(this).attr('href').match(/style.css$/))
+			 {
+				 $(this).attr('href',csshref);
+			 }
+		 });
+		 $(this).children('div').attr('class', 'sel');
+		 $(window.frames["menu"].document).find("link").each(function()
+		 {
+			 if($(this).attr('href').match(/style.css$/))
+			 {
+				 $(this).attr('href',csshref);
+			 }
+		 });
+		 $(window.frames["main"].document).find("link").each(function()
+		 {
+			 if($(this).attr('href').match(/style.css$/))
+			 {
+				 $(this).attr('href',csshref);
+			 }
+		 });
+		 $.get('index_body.php?dopost=setskin&cskin='+adminskin);
+	 });
+})(jQuery);
+</script>
+</body>
+</html>

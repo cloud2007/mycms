@@ -7,7 +7,7 @@
  * @create:2010-11-13
  * @modify:2014-01-03
  */
-class Controller {
+class Action {
 
     public $user = array();
 

@@ -19,8 +19,6 @@ class Home extends Controller {
         $footer = new View('footer');
         $view = new View('index');
 
-
-
         $view->renderHtml($header . $view . $footer);
     }
 
