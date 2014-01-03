@@ -9,3 +9,8 @@
 </head>
 
 <body>
+<h1 style="margin:50px 0 0 0; font-size:18px; text-align:center">Welcome Use TcitCms!</h1>
+<div class="clearH"></div>
+<hr />
+</body>
+</html>

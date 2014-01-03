@@ -1,19 +1,10 @@
 <!--
-
 function showHide(objname)
 {
-	//只对主菜单设置cookie
 	var obj = document.getElementById(objname);
 	var objsun = document.getElementById('sun'+objname);
-	if(objname.indexOf('_1')<0 || objname.indexOf('_10')>0)
-	{
-		if(obj.style.display == 'block' || obj.style.display =='')
-			obj.style.display = 'none';
-		else
-			obj.style.display = 'block';
-		return true;
-	}
-  //正常设置cookie
+	
+  	//设置cookie
 	var ckstr = getCookie('menuitems');
 	var ckstrs = null;
 	var okstr ='';
@@ -21,6 +12,7 @@ function showHide(objname)
 	if(ckstr==null) ckstr = '';
 	ckstrs = ckstr.split(',');
 	objname = objname.replace('items','');
+
 	if(obj.style.display == 'block' || obj.style.display =='')
 	{
 		obj.style.display = 'none';
@@ -74,31 +66,30 @@ function setCookie(c_name,value,expiredays)
 	exdate.setDate(exdate.getDate() + expiredays);
 	document.cookie = c_name + "=" +escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()); //使设置的有效时间正确。增加toGMTString()
 }
+
 //检查以前用户展开的菜单项
-var totalitem = 12;
+var totalitem = 5;//最多展开五个选项卡
 function CheckOpenMenu()
 {
-	//setCookie('menuitems','');
+
 	var ckstr = getCookie('menuitems');
 	var curitem = '';
 	var curobj = null;
 	
-	//cross_obj = document.getElementById("staticbuttons");
-	//setInterval("initializeIT()",20);
-	
-	if(ckstr==null)
+	if(ckstr==null || ckstr=='')
 	{
-		ckstr='1_1,2_1,3_1';
+		ckstr='0';
 		setCookie('menuitems',ckstr,7);
 	}
 	ckstr = ','+ckstr+',';
 	for(i=0;i<totalitem;i++)
 	{
-		curitem = i+'_'+curopenItem;
-		curobj = document.getElementById('items'+curitem);
-		if(ckstr.indexOf(curitem) > 0 && curobj != null)
+		curobj = document.getElementById('items'+i);
+		sunobj = document.getElementById('sunitems'+i);
+		if(ckstr.indexOf(i) > 0 && curobj != null)
 		{
 			curobj.style.display = 'block';
+			sunobj.className = 'bitem';
 		}
 		else
 		{
@@ -106,38 +97,4 @@ function CheckOpenMenu()
 		}
 	}
 }
-
-var curitem = 1;
-function ShowMainMenu(n)
-{
-	var curLink = $DE('link'+curitem);
-	var targetLink = $DE('link'+n);
-	var curCt = $DE('ct'+curitem);
-	var targetCt = $DE('ct'+n);
-	if(curitem==n) return false;
-	if(targetCt.innerHTML!='')
-	{
-		curCt.style.display = 'none';
-		targetCt.style.display = 'block';
-		curLink.className = 'mm';
-		targetLink.className = 'mmac';
-		curitem = n;
-	}
-	else
-	{
-		var myajax = new DedeAjax(targetCt);
-		myajax.SendGet2("index_menu_load.php?openitem="+n);
-		if(targetCt.innerHTML!='')
-		{
-			curCt.style.display = 'none';
-			targetCt.style.display = 'block';
-			curLink.className = 'mm';
-			targetLink.className = 'mmac';
-			curitem = n;
-		}
-		DedeXHTTP = null;
-	}
-	// bindClick();
-}
-
 -->

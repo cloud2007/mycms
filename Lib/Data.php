@@ -420,7 +420,8 @@ class Data {
         return $objs;
     }
 
-    /*     * ********************
+    /**
+     *
      * $obj = new class();
      * $result = $obj->loads(
      *    array(
@@ -430,7 +431,6 @@ class Data {
      *    )
      * );
      * ******************** */
-
     public function loads($keys) {
         if (count($keys) == 0)
             return array();
@@ -455,6 +455,10 @@ class Data {
             $this->clean();
         }
         return array_filter($keys);
+    }
+
+    public function dateConvert($style, $timestamp) {
+        return date($style, $timestamp);
     }
 
 }

@@ -21,5 +21,7 @@ define('LIB_PATH', realpath(BASEDIR . '../Lib') . DIRECTORY_SEPARATOR);
 define('STATIC_PATH', realpath(BASEDIR . '../Static') . DIRECTORY_SEPARATOR);
 define('UPLOADS_PATH', realpath(BASEDIR . '../Uploads') . DIRECTORY_SEPARATOR);
 define('APP_PATH', realpath(BASEDIR . '../App') . DIRECTORY_SEPARATOR);
-define('ADMIN_PATH', realpath(BASEDIR . '../Admin') . DIRECTORY_SEPARATOR);
+define('ADMIN_PATH', realpath(BASEDIR . '../Cms') . DIRECTORY_SEPARATOR);
+
+define('TABLE_PREFIX', 'tcit');
 ?>

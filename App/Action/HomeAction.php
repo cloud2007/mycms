@@ -10,13 +10,17 @@
 class HomeAction extends Action {
 
     function __construct() {
-
+        parent::__construct();
     }
 
     function index($id = NULL) {
-
+        echo 'index';
         $view = new View('index');
+        $view->renderHtml($view);
+    }
 
+    function welcome() {
+        $view = new View('welcome');
         $view->renderHtml($view);
     }
 

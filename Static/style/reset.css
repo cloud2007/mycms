@@ -12,7 +12,7 @@ li{list-style:outside;list-style:none;}
 .clear{ clear:both; height:0px; overflow:hidden}
 .clearh{ clear:both; height:5px; overflow:hidden}
 .clearH{ clear:both; height:10px; overflow:hidden}
-input,img,textarea{vertical-align:middle; outline:none;}
+input, textarea, select {font-family: inherit;font-size: inherit;font-weight: inherit;vertical-align:middle;}
 
 /*form验证 样式*/
 .Validform_checktip{margin-left:10px; color:#FF0000;}

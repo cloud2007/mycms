@@ -1,6 +1,10 @@
 @charset "utf-8";
-body{padding:0; margin:0 auto; font-size:12px; font-family:"Courier New",微软雅黑;}
-a{ text-decoration:none}
-a:hover{ text-decoration:underline}
+body{padding:0; margin:0 auto; font-size:12px; font-family:"Courier New",微软雅黑; background:#EEE; color:#666;}
+a{ text-decoration:none; color:#666}
+a:hover{ text-decoration:none; color:#666}
 
-input, textarea, select {font-family: inherit;font-size: inherit;font-weight: inherit;vertical-align:middle;}
+#postion{ height:30px; background:#FFFFFF; line-height:30px; padding:0 0 0 20px;
+
+}
+
+#postion a{background-image: url('../images/breadcrumb.png'); padding:0 10px 0 0; background-position: center right;background-repeat: no-repeat;}

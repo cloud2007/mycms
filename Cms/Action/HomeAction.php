@@ -7,19 +7,20 @@
  * @create:2010-11-13
  * @modify:2014-01-03
  */
-class Home extends Controller {
+class HomeAction extends Action {
 
     function __construct() {
-
+        parent::__construct();
     }
 
     function index($id = NULL) {
-
-        $header = new View('header');
-        $footer = new View('footer');
         $view = new View('index');
+        $view->renderHtml($view);
+    }
 
-        $view->renderHtml($header . $view . $footer);
+    function welcome() {
+        $view = new View('welcome');
+        $view->renderHtml($view);
     }
 
 }
