@@ -1,6 +1,13 @@
 <?php
 
-//自动加载类库处理
+/**
+ * 公共函数库
+ * @author:Laven<190296465@vip.qq.com>
+ * @copyright:Copyright 2009 Laven
+ * @create:2010-11-13
+ * @modify:2014-01-03
+ */
+//自动加载类库
 function __autoload($classname) {
     $classname = preg_replace("/[^0-9a-z_]/i", '', $classname);
     $classfile = $classname . '.php';

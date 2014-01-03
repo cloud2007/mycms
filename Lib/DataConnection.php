@@ -1,6 +1,12 @@
 <?php
 
-//连接数据库
+/**
+ * 数据库连接
+ * @author:Laven<190296465@vip.qq.com>
+ * @copyright:Copyright 2009 Laven
+ * @create:2010-11-13
+ * @modify:2014-01-03
+ */
 class DataConnection {
 
     private static $connection = null;

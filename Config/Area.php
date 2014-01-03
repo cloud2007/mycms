@@ -1,5 +1,12 @@
 <?php
-//中国省份数组
+
+/**
+ * 中国省份数组
+ * @author:Laven<190296465@vip.qq.com>
+ * @copyright:Copyright 2009 Laven
+ * @create:2014-01-03
+ * @modify:2014-01-03
+ */
 return array(
     'area1' => array(
         '1' => '北京市',

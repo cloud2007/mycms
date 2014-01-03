@@ -1,7 +1,11 @@
 <?php
 
 /**
- * 获取conf目录下的配置文件的信息
+ * 获取的配置信息
+ * @author:Laven<190296465@vip.qq.com>
+ * @copyright:Copyright 2009 Laven
+ * @create:2010-11-13
+ * @modify:2014-01-03
  */
 class Config {
 

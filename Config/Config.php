@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * 配置文件
+ * @author:Laven<190296465@vip.qq.com>
+ * @copyright:Copyright 2009 Laven
+ * @create:2014-01-03
+ * @modify:2014-01-03
+ */
 session_start();
 date_default_timezone_set('PRC');
 //全站通用配置文件
@@ -7,11 +15,11 @@ date_default_timezone_set('PRC');
 // 系统正常运行后,直接设定为E_ALL || ~E_NOTICE,取消错误显示
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
-define( 'BASEDIR', strtr(dirname(__FILE__) . DIRECTORY_SEPARATOR, "\\", '/') );
-define( 'ROOT_PATH', realpath(BASEDIR . '../') . DIRECTORY_SEPARATOR );
-define( 'LIB_PATH', realpath(BASEDIR . '../Lib') . DIRECTORY_SEPARATOR );
-define( 'STATIC_PATH', realpath(BASEDIR . '../Static') . DIRECTORY_SEPARATOR );
-define( 'UPLOADS_PATH', realpath(BASEDIR . '../Uploads') . DIRECTORY_SEPARATOR );
-define( 'APP_PATH', realpath(BASEDIR . '../App') . DIRECTORY_SEPARATOR );
-define( 'ADMIN_PATH', realpath(BASEDIR . '../Admin') . DIRECTORY_SEPARATOR );
+define('BASEDIR', strtr(dirname(__FILE__) . DIRECTORY_SEPARATOR, "\\", '/'));
+define('ROOT_PATH', realpath(BASEDIR . '../') . DIRECTORY_SEPARATOR);
+define('LIB_PATH', realpath(BASEDIR . '../Lib') . DIRECTORY_SEPARATOR);
+define('STATIC_PATH', realpath(BASEDIR . '../Static') . DIRECTORY_SEPARATOR);
+define('UPLOADS_PATH', realpath(BASEDIR . '../Uploads') . DIRECTORY_SEPARATOR);
+define('APP_PATH', realpath(BASEDIR . '../App') . DIRECTORY_SEPARATOR);
+define('ADMIN_PATH', realpath(BASEDIR . '../Admin') . DIRECTORY_SEPARATOR);
 ?>
