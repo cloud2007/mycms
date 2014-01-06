@@ -49,58 +49,34 @@ class Pager {
         $this->PagerData['offset'] = $this->Offset;
         $this->PagerData['total'] = $this->PageCount;
 
-        if ($resultType == 2) {
-            $this->createLinks();
-        }
+
         if ($resultType == 1) {
             $this->createHtml();
         }
-        if ($resultType == 3) {
-            $this->createNumLinks();
-        }
-        if ($resultType == 4) {
+
+        if ($resultType == 2) {
             $this->createNumHtml();
         }
-        if ($resultType == 5) {
-            $this->createHtml_map();
-        }
-        if ($resultType == 6) {
-            $this->createHtml_new();
+        if ($resultType == 3) {
+            $this->createHtml_ajax();
         }
 
         return $this->PagerData;
     }
 
-    //create link array
-    public function createLinks() {
-        if ($this->Prev > 1) {
-            $this->Links['first'] = $this->Url . 'p=' . $this->First;
-        }
-        if ($this->Prev > 0) {
-            $this->Links['prev'] = $this->Url . 'p=' . $this->Prev;
-        }
-        if ($this->Next <= $this->PageCount) {
-            $this->Links['next'] = $this->Url . 'p=' . $this->Next;
-        }
-        if ($this->Next < $this->PageCount) {
-            $this->Links['last'] = $this->Url . 'p=' . $this->Last;
-        }
-        $this->PagerData['linkhtml'] = $this->Links;
-    }
-
     //create html
     public function createHtml() {
         if ($this->Prev > 1) {
-            $this->LinksHtml.='<a href="' . $this->Url . $this->First . '">首页</a> ';
+            $this->LinksHtml.='<a href="' . $this->Url . 'PageNo=' . $this->First . '">首页</a> ';
         }
         if ($this->Prev > 0) {
-            $this->LinksHtml.='<a href="' . $this->Url . $this->Prev . '">上一页</a> ';
+            $this->LinksHtml.='<a href="' . $this->Url . 'PageNo=' . $this->Prev . '">上一页</a> ';
         }
         if ($this->Next <= $this->PageCount) {
-            $this->LinksHtml.='<a href="' . $this->Url . $this->Next . '">下一页</a> ';
+            $this->LinksHtml.='<a href="' . $this->Url . 'PageNo=' . $this->Next . '">下一页</a> ';
         }
         if ($this->Next < $this->PageCount) {
-            $this->LinksHtml.='<a href="' . $this->Url . $this->Last . '">尾页</a> ';
+            $this->LinksHtml.='<a href="' . $this->Url . 'PageNo=' . $this->Last . '">尾页</a> ';
         }
         if ($this->PageCount > 1) {
             $this->LinksHtml.='第' . $this->Current . '页/共' . $this->PageCount . '页';
@@ -108,20 +84,38 @@ class Pager {
         $this->PagerData['linkhtml'] = $this->LinksHtml;
     }
 
-//新版网站分页
-    public function createHtml_new() {
+    // ajax
+    public function createHtml_ajax() {
+        if ($this->Prev > 0) {
+            $this->LinksHtml.='<a href="javascript:void(0);" onclick="house(' . $this->First . ')">首页</a> ';
+        }
+        if ($this->Prev > 0) {
+            $this->LinksHtml.='<a href="javascript:void(0);" onclick="house(' . $this->Prev . ')">上一页</a> ';
+        }
+        if ($this->Next <= $this->PageCount) {
+            $this->LinksHtml.='<a href="javascript:void(0);" onclick="house(' . $this->Next . ')">下一页</a> ';
+        }
+        if ($this->Next <= $this->PageCount) {
+            $this->LinksHtml.='<a href="javascript:void(0);" onclick="house(' . $this->Last . ')">尾页</a> ';
+        }
+        if ($this->PageCount > 1) {
+            $this->LinksHtml.='第' . $this->Current . '页/共' . $this->PageCount . '页';
+        }
+        $this->PagerData['linkhtml'] = $this->LinksHtml;
+    }
 
-        if ($this->Current > 1) {
-            $this->LinksHtml.='<a href="' . $this->Url . 'PageNo=' . $this->First . '">首页</a> ';
+    //create number html
+    public function createNumHtml() {
+
+        if ($this->Prev > 0) {
+            $this->LinksHtml.='<a href="' . $this->Url . 'PageNo=' . $this->First . '">首页</a>' . '&nbsp;';
+        } else {
+            //$this->LinksHtml.='首页&nbsp;上一页&nbsp;';
         }
 
         if ($this->Prev > 0) {
-            $this->LinksHtml.='<a href="' . $this->Url . 'PageNo=' . $this->Prev . '"><span class="prexpage"><img src="/img/arrow.left-10x10.gif" />&nbsp;上一页</span></a>';
-        } else {
-            //$this->LinksHtml.='<a href="javascript:void(0);"><span class="prexpage"><img src="/img/arrow.left-10x10.gif" />&nbsp;上一页</span></a>';
+            $this->LinksHtml.='<a href="' . $this->Url . 'PageNo=' . $this->Prev . '">上一页</a>' . '&nbsp;';
         }
-
-        //if($this->PageCount>1){$this->LinksHtml.='第'.$this->Current.'页/共'.$this->PageCount.'页';}
         if ($this->PageCount > 10) {
             if ($this->Current > 5) {
                 if ($this->Current + 4 >= $this->PageCount) {
@@ -148,108 +142,25 @@ class Pager {
             if ($i == $this->Current) {
                 $this->LinksHtml.="<span class='current'>$i</span>";
             } else {
-                $this->LinksHtml.='<a href="' . $this->Url . 'PageNo=' . $i . '"><span>' . $i . '</a></span>' . '';
+                $this->LinksHtml.='<a href="' . $this->Url . 'PageNo=' . $i . '">' . $i . '</a>';
             }
         }
 
         if ($this->Next <= $this->PageCount) {
-            $this->LinksHtml.='<a href="' . $this->Url . 'PageNo=' . $this->Next . '"><span class="nextpage">下一页 <img src="/img/arrow.right-10x10.gif" /></span></a>';
+            $this->LinksHtml.='&nbsp;<a href="' . $this->Url . 'PageNo=' . $this->Next . '">下一页</a>';
         } else {
-            //$this->LinksHtml.='<a href="javascript:void(0)"><span class="nextpage">下一页 <img src="/img/arrow.right-10x10.gif" /></span></a>';
-        }
-
-        if ($this->Next < $this->PageCount) {
-            $this->LinksHtml.='<a href="' . $this->Url . 'PageNo=' . $this->Last . '">尾页</a> ';
-        }
-
-        $this->PagerData['linkhtml'] = $this->LinksHtml;
-    }
-
-// 地图找房
-    public function createHtml_map() {
-        if ($this->Prev > 0) {
-            $this->LinksHtml.='<a href="javascript:void(0);" onclick="house(' . $this->First . ')">首页</a> ';
-        }
-        if ($this->Prev > 0) {
-            $this->LinksHtml.='<a href="javascript:void(0);" onclick="house(' . $this->Prev . ')">上一页</a> ';
-        }
-        if ($this->Next <= $this->PageCount) {
-            $this->LinksHtml.='<a href="javascript:void(0);" onclick="house(' . $this->Next . ')">下一页</a> ';
-        }
-        if ($this->Next <= $this->PageCount) {
-            $this->LinksHtml.='<a href="javascript:void(0);" onclick="house(' . $this->Last . ')">尾页</a> ';
-        }
-        if ($this->PageCount > 1) {
-            $this->LinksHtml.='第' . $this->Current . '页/共' . $this->PageCount . '页';
-        }
-        $this->PagerData['linkhtml'] = $this->LinksHtml;
-    }
-
-    //create link array number
-    public function createNumLinks() {
-        for ($i = 1; $i <= $this->PageCount; $i++) {
-            $this->Links[$i] = $this->Url . 'p=' . $i;
-        }
-        $this->PagerData['linkhtml'] = $this->Links;
-    }
-
-    //create number html
-    public function createNumHtml() {
-
-        if ($this->Prev > 0) {
-            $this->LinksHtml.='<a href="' . $this->Url . $this->First . '">首页</a>' . '&nbsp;';
-        } else {
-            $this->LinksHtml.='首页&nbsp;上一页&nbsp;';
-        }
-
-        if ($this->Prev > 0) {
-            $this->LinksHtml.='<a href="' . $this->Url . $this->Prev . '">上一页</a>' . '&nbsp;';
-        }
-        if ($this->PageCount > 10) {
-            if ($this->Current > 5) {
-                if ($this->Current + 4 >= $this->PageCount) {
-                    $start = $this->PageCount - 9;
-                } else {
-                    $start = $this->Current - 5;
-                }
-            } else {
-                $start = 1;
-            }
-            if ($this->Current + 3 < $this->PageCount) {
-                $end = $this->Current + 4;
-                if ($end < 10) {
-                    $end = 10;
-                }
-            } else {
-                $end = $this->PageCount;
-            }
-        } else {
-            $start = 1;
-            $end = $this->PageCount;
-        }
-        for ($i = $start; $i <= $end; $i++) {
-            if ($i == $this->Current) {
-                $this->LinksHtml.="<span class='hoverlink'>$i</span>&nbsp;";
-            } else {
-                $this->LinksHtml.='<a href="' . $this->Url . $i . '">' . $i . '</a>' . '&nbsp;';
-            }
+            //$this->LinksHtml.='&nbsp;下一页';
         }
 
         if ($this->Next <= $this->PageCount) {
-            $this->LinksHtml.='<a href="' . $this->Url . $this->Next . '">下一页</a>';
+            $this->LinksHtml.='&nbsp;' . '<a href="' . $this->Url . 'PageNo=' . $this->Last . '">尾页</a>';
         } else {
-            $this->LinksHtml.='下一页';
+            //$this->LinksHtml.='&nbsp;尾页';
         }
 
-        if ($this->Next < $this->PageCount) {
-            $this->LinksHtml.='&nbsp;' . '<a href="' . $this->Last . '">尾页</a>';
-        } else {
-            $this->LinksHtml.='&nbsp;尾页';
-        }
-
-        if ($this->PageCount > 1) {
+        //if ($this->PageCount > 1) {
             $this->LinksHtml.='&nbsp;第' . $this->Current . '页/共' . $this->PageCount . '页';
-        }
+        //}
         $this->PagerData['linkhtml'] = $this->LinksHtml;
     }
 

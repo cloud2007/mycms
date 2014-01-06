@@ -9,8 +9,6 @@
  */
 class Action {
 
-    public $user = array();
-
     function __construct() {
 
     }

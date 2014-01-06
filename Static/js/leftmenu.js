@@ -68,7 +68,7 @@ function setCookie(c_name,value,expiredays)
 }
 
 //检查以前用户展开的菜单项
-var totalitem = 5;//最多展开五个选项卡
+var totalitem = 10;//最多展开五个选项卡
 function CheckOpenMenu()
 {
 

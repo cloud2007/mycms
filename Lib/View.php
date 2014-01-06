@@ -128,6 +128,12 @@ class View {
         echo "{$content}";
     }
 
+    function renderHeaderFooterHtml($content) {
+        $header = new View('header');
+        $footer = new View('footer');
+        echo "{$header}{$content}{$footer}";
+    }
+
 }
 
 ?>

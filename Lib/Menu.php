@@ -25,7 +25,6 @@ class Menu extends Data {
                 'dataBase' => 'dataBase',
                 'useIng' => 'useIng',
                 'tcit' => 'tcit',
-                /*
                 'cateId' => 'cateId',
                 'title' => 'title',
                 'title1' => 'title1',
@@ -66,7 +65,6 @@ class Menu extends Data {
                 'is_jk' => 'is_jk',
                 'is_mn' => 'is_mn',
                 'hits' => 'hits',
-                */
             ),
             'saveNeeds' => array(menuId, lmId),
         );

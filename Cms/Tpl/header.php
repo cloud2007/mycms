@@ -9,8 +9,3 @@
 <script type="text/javascript" src="/Static/js/jquery-1.4.2.min.js"></script>
 </head>
 <body>
-
-<div id="postion"> <a class="tip-bottom" href="/admin/index" title="Go to TcitCms HomePage" target="_top"><i class="icon-home"></i> Home</a> <a class="current" href="/admin/tminformation">商标资讯</a> </div>
-
-</body>
-</html>
