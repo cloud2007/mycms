@@ -54,7 +54,7 @@
 </style>
 </head>
 <body class="showmenu">
-<div class="head">
+<!--div class="head">
 	<div class="top">
 		<div class="top_logo"> <img src="/Static/images/admin_top_logo.gif" width="200" height="37" alt="Logo" title="Welcome use TcitCMS" id="topdedelogo" /> </div>
 		<div class="top_link">
@@ -85,7 +85,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div-->
 <div class="left">
 	<div class="menu" id="menu">
 		<iframe src="admin.php/menu" id="menufra" name="menu" frameborder="0"></iframe>

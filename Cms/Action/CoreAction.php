@@ -36,9 +36,18 @@ class CoreAction extends AdminAction {
     }
 
     function addMenu() {
+        $data = new Menu();
+        $data ->load(2);
         $view = new View('core/menuAdd');
-        //$view->set('MenuList', $MenuList);
-        //$view->set('PagerData', $PagerData);
+        $view ->set('datainfo', $data);
+        $view->renderHeaderFooterHtml($view);
+    }
+
+    function modify($id=NULL){
+        $data = new Menu();
+        $data ->load($id[3]);
+        $view = new View('core/menuAdd');
+        $view ->set('datainfo', $data);
         $view->renderHeaderFooterHtml($view);
     }
 

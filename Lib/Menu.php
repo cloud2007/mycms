@@ -12,7 +12,7 @@ class Menu extends Data {
     function __construct() {
         $options = array(
             'key' => 'menuId',
-            'table' => TABLE_PREFIX . '_' .'menu',
+            'table' => TABLE_PREFIX . '_' . 'menu',
             'columns' => array(
                 'menuId' => 'menuId',
                 'lmId' => 'lmId',
@@ -23,8 +23,8 @@ class Menu extends Data {
                 'adminLink' => 'adminLink',
                 'grantWord' => 'grantWord',
                 'dataBase' => 'dataBase',
-                'useIng' => 'useIng',
-                'tcit' => 'tcit',
+                'usable' => 'usable',
+                'tcitFields' => 'tcitFields',
                 'category' => 'category',
                 'title' => 'title',
                 'title1' => 'title1',
@@ -41,6 +41,7 @@ class Menu extends Data {
                 'name2' => 'name2',
                 'name3' => 'name3',
                 'name4' => 'name4',
+                'name5' => 'name5',
                 'content' => 'content',
                 'content1' => 'content1',
                 'content2' => 'content2',
@@ -65,6 +66,17 @@ class Menu extends Data {
                 'is_jk' => 'is_jk',
                 'is_mn' => 'is_mn',
                 'hits' => 'hits',
+                //类别字段
+                'categoryTitle' => 'categoryTitle',
+                'categoryTitle1' => 'categoryTitle1',
+                'categoryTitle2' => 'categoryTitle2',
+                'categorySmallPic' => 'categorySmallPic',
+                'categoryBigPic' => 'categoryBigPic',
+                'categoryBremark' => 'categoryBremark',
+                'categoryName1' => 'categoryName1',
+                'categoryName2' => 'categoryName2',
+                'categoryContent1' => 'categoryContent1',
+                'categoryContent2' => 'categoryContent2',
             ),
             'saveNeeds' => array(menuId, lmId),
         );
@@ -73,6 +85,22 @@ class Menu extends Data {
 
     public function creattime($style) {
         return $this->dateConvert($style, $this->creattime);
+    }
+
+    /**
+     * 是否显示字段勾选状态
+     * @param type $field
+     * @param type $return
+     * @return string
+     */
+    public function fieldShow($field,$return) {
+        $returnArray = array(
+            '1'=>'checked',
+            '2'=>'selected',
+        );
+        if (strstr($this->tcitFields, $field))
+            return $returnArray[$return];;
+        return;
     }
 
 }

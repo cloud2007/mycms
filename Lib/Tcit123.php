@@ -9,6 +9,11 @@
  */
 $requestArray = array_filter(explode('/', $_SERVER['PATH_INFO']));
 
+$cmsRequest = $requestArray;
+unset($cmsRequest[1]);
+unset($cmsRequest[2]);
+print_r($cmsRequest);
+
 $Controller = isset($requestArray[1]) ? ucfirst($requestArray[1]).'Action' : 'HomeAction';
 $Method = isset($requestArray[2]) ? $requestArray[2] : 'index';
 
