@@ -1,2 +1,4 @@
-index
-a
+
+
+<hr />
+this is index tpl

@@ -5,7 +5,7 @@
 <title>TcitCms Core</title>
 <link type="text/css" href="/Static/style/reset.css" rel="stylesheet" />
 <link type="text/css" href="/Static/style/style.css" rel="stylesheet" />
-<link type="text/css" href="/Static/style/font-awesome.css" rel="stylesheet" />
 <script type="text/javascript" src="/Static/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/Static/js/Validform_v5.3.2.js"></script>
 </head>
 <body>

@@ -64,15 +64,15 @@ function ShowMsg($msg, $gourl, $onlymsg = 0, $limittime = 0) {
         if(pgo==0){ location='$gourl'; pgo=1; }
       }\r\n";
         $rmsg = $func;
-        $rmsg .= "document.write(\"<br /><div style='width:450px;padding:0px;border:1px solid #DADADA; margin:10% auto 0 auto;'>";
-        $rmsg .= "<div style='padding:6px;font-size:12px;border-bottom:1px solid #DADADA;background:#DBEEBD url({$GLOBALS['cfg_plus_dir']}/img/wbg.gif)';'><b>提示信息！</b></div>\");\r\n";
+        $rmsg .= "document.write(\"<br /><div style='width:450px;padding:0px;border:1px solid #DADADA; margin:10% auto 0 auto;font:12px/24px Courier New,Microsoft Yahei,宋体;'>";
+        $rmsg .= "<div style='padding:6px;font-size:14px;border-bottom:1px solid #DADADA;background:#EEE';'><b>提示信息！</b></div>\");\r\n";
         $rmsg .= "document.write(\"<div style='height:130px;font-size:10pt;background:#ffffff'><br />\");\r\n";
         $rmsg .= "document.write(\"" . str_replace("\"", "“", $msg) . "\");\r\n";
         $rmsg .= "document.write(\"";
 
         if ($onlymsg == 0) {
             if ($gourl != 'javascript:;' && $gourl != '') {
-                $rmsg .= "<br /><br /><a style='color:#0030ff;' href='{$gourl}'>如果你的浏览器没反应，请点击这里...</a>";
+                $rmsg .= "<br /><br /><a style='color:Green; text-decoration:none;' href='{$gourl}'>如果你的浏览器没反应，请点击这里...</a>";
                 $rmsg .= "<br/></div>\");\r\n";
                 $rmsg .= "setTimeout('JumpUrl()',$litime);";
             } else {

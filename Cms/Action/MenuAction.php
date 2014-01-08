@@ -1,7 +1,7 @@
 <?php
 
 /**
- * home
+ * menu
  * @author:Laven<190296465@vip.qq.com>
  * @copyright:Copyright 2009 Laven
  * @create:2010-11-13
@@ -15,8 +15,8 @@ class MenuAction extends Action {
 
     function index($id = NULL) {
         $Menu = new Menu();
-        $Menu->whereAnd('menuId', '!=1');
-        $MenuList = $Menu->groupBy(array('lmName'), array('Count' => 'menuId'), array('order' => array('orderNo' => 'asc')));
+        $Menu->whereAnd('id', '!=1');
+        $MenuList = $Menu->groupBy(array('lmName'), array('Count' => 'id'), array('order' => array('orderNo' => 'asc')));
         foreach ($MenuList as $k => $v) {
             $MenuList[$k]['son'] = $Menu->find(
                     array(

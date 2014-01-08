@@ -11,11 +11,11 @@ class Menu extends Data {
 
     function __construct() {
         $options = array(
-            'key' => 'menuId',
+            'key' => 'id',
             'table' => TABLE_PREFIX . '_' . 'menu',
             'columns' => array(
-                'menuId' => 'menuId',
-                'lmId' => 'lmId',
+                'id' => 'id',
+                'lmId' => 'lmID',
                 'lmName' => 'lmName',
                 'menuName' => 'menuName',
                 'orderNo' => 'orderNo',
@@ -78,13 +78,9 @@ class Menu extends Data {
                 'categoryContent1' => 'categoryContent1',
                 'categoryContent2' => 'categoryContent2',
             ),
-            'saveNeeds' => array(menuId, lmId),
+            'saveNeeds' => array(id, lmId),
         );
         parent::init($options);
-    }
-
-    public function creattime($style) {
-        return $this->dateConvert($style, $this->creattime);
     }
 
     /**
@@ -93,12 +89,12 @@ class Menu extends Data {
      * @param type $return
      * @return string
      */
-    public function fieldShow($field,$return) {
+    public function fieldShow($field, $return) {
         $returnArray = array(
-            '1'=>'checked',
-            '2'=>'selected',
+            '1' => 'checked',
+            '2' => 'selected',
         );
-        if (strstr($this->tcitFields, $field))
+        if (in_array($field, explode('|', $this->tcitFields)))
             return $returnArray[$return];;
         return;
     }

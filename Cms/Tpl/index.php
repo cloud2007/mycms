@@ -88,12 +88,12 @@
 </div-->
 <div class="left">
 	<div class="menu" id="menu">
-		<iframe src="admin.php/menu" id="menufra" name="menu" frameborder="0"></iframe>
+		<iframe src="/admin.php/menu" id="menufra" name="menu" frameborder="0"></iframe>
 	</div>
 </div>
 <div class="right">
 	<div class="main">
-		<iframe src="admin.php/home/welcome" id="main" name="main" frameborder="0"></iframe>
+		<iframe src="/admin.php/home/welcome" id="main" name="main" frameborder="0"></iframe>
 	</div>
 	<!--<div id="help"><span id="content"><a href="#">栏目管理操作使用说明</a></span></div>-->
 </div>

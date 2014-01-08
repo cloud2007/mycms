@@ -457,8 +457,12 @@ class Data {
         return array_filter($keys);
     }
 
-    public function dateConvert($style, $timestamp) {
-        return date($style, $timestamp);
+    public function dateConvert($timestamp, $style) {
+        return date($timestamp, $style);
+    }
+
+    public function creatTime($style = 'Y-m-d H:i:s') {
+        return $this->dateConvert($style, $this->creatTime);
     }
 
 }

@@ -3,12 +3,13 @@
 	<h2 class="title">菜 单 功 能 管 理</h2>
 	<p>管理导航：<a href="/admin.php/Core/">菜单管理</a>&nbsp;|&nbsp;<a href="/admin.php/Core/addMenu">添加菜单功能</a></p>
 </div>
-<form name="menuAdd" method="post" onSubmit="return cf(menuAdd)" action="">
+<form name="menuAdd" id="menuAdd" method="post" action="/admin.php/Core/menuSave">
 	<table width="100%" class="content_table">
 		<tr>
 			<td>栏目名称</td>
 			<td class="textleft"><input type="text" name="lmName" value="<?php echo $datainfo->lmName;?>" size="18" />
-				<input type="hidden" name="menuId" value="<?php echo $datainfo->menuId;?>" />
+				<input type="hidden" name="id" value="<?php echo $datainfo->id;?>" />
+				<input type="hidden" name="lmID" id="lmID" value="<?php echo $datainfo->lmID;?>" />
 			<td>项目标题</td>
 			<td class="textleft"><input type="text" name="menuName" value="<?php echo $datainfo->menuName;?>" size="18" /></td>
 			<td>是否可用</td>
@@ -19,17 +20,13 @@
 		</tr>
 		<tr>
 			<td>功能链接</td>
-			<td colspan="3" class="textleft"><input type="text" name="doLink" value="<?php echo $datainfo->doLink;?>" size="50" />
-				<input name="set_nr[]" type="checkbox" id="set_nr[]" value="link_cs1" checked="checked" />
-				带参数</td>
+			<td colspan="3" class="textleft"><input type="text" name="doLink" value="<?php echo $datainfo->doLink;?>" size="50" /></td>
 			<td>栏 目 ID</td>
-			<td class="textleft"><input name="lmId" type="text" id="lmId" value="<?php echo $datainfo->lmId?>" size="8" /></td>
+			<td class="textleft"><input name="lmId" type="text" value="<?php echo $datainfo->lmId?>" size="8" /></td>
 		</tr>
 		<tr>
 			<td>管理链接</td>
-			<td colspan="3" class="textleft"><input name="adminLink" type="text" id="adminLink" value="<?php echo $datainfo->adminLink;?>" size="50" />
-				<input name="set_nr[]" type="checkbox" id="set_nr[]" value="link_cs2" checked="checked" />
-				带参数 </td>
+			<td colspan="3" class="textleft"><input name="adminLink" type="text" value="<?php echo $datainfo->adminLink;?>" size="50" /></td>
 			<td>排序位置</td>
 			<td class="textleft"><input name="orderNo" type="text" value="<?php echo $datainfo->orderNo?>" size="6" /></td>
 		</tr>
@@ -41,11 +38,11 @@
 		</tr>
 		<tr>
 			<td>禁止添加</td>
-			<td class="textleft"><input name="set_nr[]" type="checkbox" id="set_nr[]" value="noadd" <?php if (strstr($row['set_nr'], 'noadd')) echo "checked" ?>></td>
+			<td class="textleft"><input name="set_nr[]" type="checkbox" value="noadd" <?php echo $datainfo->fieldShow('noadd',1);?> /></td>
 			<td>禁止删除</td>
-			<td class="textleft"><input name="set_nr[]" type="checkbox" id="set_nr[]" value="nodel" <?php if (strstr($row['set_nr'], 'nodel')) echo "checked" ?>></td>
+			<td class="textleft"><input name="set_nr[]" type="checkbox" value="nodel" <?php echo $datainfo->fieldShow('nodel',1);?> /></td>
 			<td>禁止修改</td>
-			<td class="textleft"><input name="set_nr[]" type="checkbox" id="set_nr[]" value="nomod" <?php if (strstr($row['set_nr'], 'nomod')) echo "checked" ?>></td>
+			<td class="textleft"><input name="set_nr[]" type="checkbox" value="nomod" <?php echo $datainfo->fieldShow('nomod',1);?> /></td>
 		</tr>
 	</table>
 	<div class="clearH"></div>
@@ -69,10 +66,10 @@
 		</tr>
 		<tr>
 			<td><input name="set_nr[]" type="checkbox" value="smallpic" <?php echo $datainfo->fieldShow('smallpic',1);?> />
-				<input name="smallpic" type="text" id="smallpic" value="<?php echo $datainfo->smallpic;?>" />
+				<input name="smallpic" type="text" value="<?php echo $datainfo->smallpic;?>" />
 				字段名：smallpic</td>
-			<td><input name="set_nr[]" type="checkbox" id="set_nr[]" value="bigpic" <?php echo $datainfo->fieldShow('bigpic',1);?> />
-				<input name="bigpic" type="text" id="bigpic" value="<?php echo $datainfo->bigpic;?>" />
+			<td><input name="set_nr[]" type="checkbox" value="bigpic" <?php echo $datainfo->fieldShow('bigpic',1);?> />
+				<input name="bigpic" type="text" value="<?php echo $datainfo->bigpic;?>" />
 				字段名：bigpic</td>
 		</tr>
 		<tr>
@@ -122,11 +119,11 @@
 			?>
 		</tr>
 		<tr>
-			<td><input name="set_nr[]" type="checkbox" value="hits"  />
-				<input name="hits" type="text" value="点击数">
+			<td><input name="set_nr[]" type="checkbox" value="hits" <?php echo $datainfo ->fieldShow('hits',1);?> />
+				<input name="hits" type="text" value="<?php echo $datainfo->hits;?>">
 				字段名：hits</td>
-			<td><input name="set_nr[]" type="checkbox" value="creattime"  />
-				<input name="creattime" type="text" value="创建时间">
+			<td><input name="set_nr[]" type="checkbox" value="creattime" <?php echo $datainfo ->fieldShow('creattime',1);?>  />
+				<input name="creattime" type="text" value="<?php echo $datainfo->creattime;?>">
 				字段名：creattime</td>
 		</tr>
 	</table>
@@ -192,3 +189,34 @@
 		</tr>
 	</table>
 </form>
+<script type="text/javascript">
+$(function(){
+	var demo = $("#menuAdd").Validform({
+		tiptype:3,
+	});
+	demo.tipmsg.s="Error!";
+	demo.addRule([
+		{
+			ele:"input[name='lmName']",
+			datatype:"*",
+		},
+		{
+			ele:"input[name='menuName']",
+			datatype:"*",
+		},
+		{
+			ele:"input[name='lmID']",
+			datatype:"*,n",
+		},
+		{
+			ele:"input[name='doLink']",
+			datatype:"*",
+		},
+		{
+			ele:"input[name='orderNo']",
+			datatype:"n",
+			ignore:"ignore",
+		},
+	]);
+})
+</script>
