@@ -124,7 +124,7 @@ a.mm:hover div {
 				<dd style='display:none' class='sitem' id='items<?php echo $key;?>'>
 					<ul class='sitemu'>
 						<?php foreach($val['son'] as $v){?>
-						<li><a href="<?php echo $v->doLink;?>" target="main"><?php echo $v->menuName;?></a><?php if ($v->adminLink){?> | <a href="<?php echo $v->adminLink;?>" target="main">管理</a><?php } ?></li>
+						<li><a href="/admin.php/<?php echo $v->doLink;?>?col=<?php echo $v->id;?>&dat=<?php echo $v->dataBase;?>" target="main"><?php echo $v->menuName;?></a><?php if ($v->adminLink){?> | <a href="/admin.php/<?php echo $v->adminLink;?>?col=<?php echo $v->id;?>&dat=<?php echo $v->dataBase;?>" target="main">管理</a><?php } ?></li>
 						<?php }?>
 					</ul>
 				</dd>

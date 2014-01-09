@@ -15,7 +15,7 @@ class Menu extends Data {
             'table' => TABLE_PREFIX . '_' . 'menu',
             'columns' => array(
                 'id' => 'id',
-                'lmId' => 'lmID',
+                'lmID' => 'lmID',
                 'lmName' => 'lmName',
                 'menuName' => 'menuName',
                 'orderNo' => 'orderNo',
@@ -77,8 +77,29 @@ class Menu extends Data {
                 'categoryName2' => 'categoryName2',
                 'categoryContent1' => 'categoryContent1',
                 'categoryContent2' => 'categoryContent2',
+                //留言字段
+                'uname' => 'uname',
+                'phone' => 'phone',
+                'tel' => 'tel',
+                'fax' => 'fax',
+                'pic' => 'pic',
+                'email' => 'email',
+                'youbian' => 'youbian',
+                'addr' => 'addr',
+                //附加字段
+                'title1_' => 'title1_',
+                'title2_' => 'title2_',
+                'title3_' => 'title3_',
+                'title4_' => 'title4_',
+                'title5_' => 'title5_',
+                'title6_' => 'title6_',
+                'title7_' => 'title7_',
+                'title8_' => 'title8_',
+                'title9_' => 'title9_',
+                'title10_' => 'title10_',
+                'creatTime' => 'creatTime',
             ),
-            'saveNeeds' => array(id, lmId),
+            'saveNeeds' => array('id', 'lmID'),
         );
         parent::init($options);
     }
@@ -97,6 +118,50 @@ class Menu extends Data {
         if (in_array($field, explode('|', $this->tcitFields)))
             return $returnArray[$return];;
         return;
+    }
+
+    /**
+     * input 字段
+     * @param type $field
+     * @return string|null
+     */
+    public function showInput($field) {
+        $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
+        $selectCheckArray = array_filter(explode('|', $this->{$field . '_'}));
+        if (in_array($field, $tcitFieldsArray)) {
+            $returnStr = '<tr><td>';
+            $returnStr .= $this->$field;
+            $returnStr .= '</td><td class="textleft">';
+            if (in_array($field . '_select', $tcitFieldsArray)) {
+                $returnStr .= '<select name="' . $field . '">';
+                foreach ($selectCheckArray as $v) {
+                    $returnStr .= '<option value="' . $v . '">' . $v . '</option>';
+                }
+                $returnStr .= '</select>';
+            } elseif (in_array($field . '_check', $tcitFieldsArray)) {
+                foreach ($selectCheckArray as $v) {
+                    $returnStr .= '<input type="checkbox" name="' . $field . '" value="' . $v . '">&nbsp;' . $v . '&nbsp;';
+                }
+            } else {
+                $returnStr .= '<input type="text" name="' . $field . '" value="" size="50" />';
+            }
+            $returnStr .='</td></tr>';
+            return $returnStr;
+        }
+        return NULL;
+    }
+
+    public function showNameInput($field){
+        $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
+        if (in_array($field, $tcitFieldsArray)) {
+            $returnStr = '<tr><td>';
+            $returnStr .= $this->$field;
+            $returnStr .= '</td><td class="textleft">';
+            $returnStr .= '<textarea cols="80" rows="8" name="' . $field . '"></textarea>';
+            $returnStr .='</td></tr>';
+            return $returnStr;
+        }
+        return NULL;
     }
 
 }

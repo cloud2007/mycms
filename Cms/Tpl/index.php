@@ -54,19 +54,19 @@
 </style>
 </head>
 <body class="showmenu">
-<!--div class="head">
+<div class="head">
 	<div class="top">
 		<div class="top_logo"> <img src="/Static/images/admin_top_logo.gif" width="200" height="37" alt="Logo" title="Welcome use TcitCMS" id="topdedelogo" /> </div>
 		<div class="top_link">
 			<ul>
-				<li class="welcome">您好：admin ，欢迎使用TcitCMS！</li>
+				<li class="welcome">您好：<?php echo $USERINFO->userID;?>，欢迎使用TcitCMS！</li>
 				<li><a href="index_menu.php" target="menu">主菜单</a></li>
 				<li><a href="javascript:;" onclick="JumpFrame('catalog_menu.php','public_guide.php');">内容发布</a></li>
 				<li><a href="javascript:;" onclick="JumpFrame('index_menu.php','content_list.php');">内容维护</a></li>
 				<li><a href="javascript:;" onclick="JumpFrame('index_menu.php','index_body.php');">系统主页</a></li>
 				<li><a href="../index.php?upcache=1" target="_blank">网站主页</a></li>
 				<li><a href="../member" target="_blank">会员中心</a></li>
-				<li><a href="exit.php" target="_top">注销</a></li>
+				<li><a href="/admin.php/User/LoginOut" target="_top">注销</a></li>
 			</ul>
 			<div class="quick"> <a href="javascript:;" class="ac_qucikmenu" id="ac_qucikmenu">快捷方式</a> <a href="javascript:;" class="ac_qucikadd" id="ac_qucikadd"></a> </div>
 		</div>
@@ -85,7 +85,7 @@
 			</div>
 		</div>
 	</div>
-</div-->
+</div>
 <div class="left">
 	<div class="menu" id="menu">
 		<iframe src="/admin.php/menu" id="menufra" name="menu" frameborder="0"></iframe>

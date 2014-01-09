@@ -12,10 +12,10 @@
  *      其他参数为数字序号  从1开始
  * )
  */
-$requestArray = array_filter(explode('/', $_SERVER['PATH_INFO']));
+$requestArray = array_filter(explode('/', @$_SERVER['PATH_INFO']));
 
-$Controller = isset($requestArray[1]) ? ucfirst($requestArray[1]) . 'Action' : 'HomeAction';
-$Method = isset($requestArray[2]) ? $requestArray[2] : 'index';
+$Controller = isset($requestArray[1]) ? ucfirst($requestArray[1]) . 'Action' : $Config['DefaultAction'];
+$Method = isset($requestArray[2]) ? $requestArray[2] : $Config['DefaultMethod'];
 
 $_GET['m'] = str_replace('Action', '', $Controller);
 $_GET['c'] = $Method;

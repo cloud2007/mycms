@@ -20,14 +20,14 @@ class CoreAction extends AdminAction {
         $Menu = new Menu();
 
         $PageSize = 20;
-        $PageNo = (int) $_GET['PageNo'] ? (int) $_GET['PageNo'] : 1;
+        $PageNo = (int) @$_GET['PageNo'] ? (int) $_GET['PageNo'] : 1;
         $PageNum = ($PageNo - 1) * $PageSize;
         $Pager = new Pager();
         $PagerData = $Pager->getPagerData($Menu->count(), $PageNo, '/admin.php/Core?', 2, $PageSize); //参数记录数 当前页数 链接地址 显示样式 每页数量
 
         $MenuList = $Menu->find(
                 array(
-                    'order' => array('lmId' => 'asc'),
+                    'order' => array('lmID' => 'asc'),
                     'limit' => "{$PageNum},{$PageSize}"
                 )
         );
@@ -90,7 +90,7 @@ class CoreAction extends AdminAction {
     /**
      * 检测栏目ID是否存在
      */
-    function AjaxColumn() {
+    function ajaxColumn() {
         $rs = new Menu();
         $res = array();
         try {

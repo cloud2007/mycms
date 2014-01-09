@@ -7,13 +7,13 @@
  * @create:2010-11-13
  * @modify:2014-01-03
  */
-class MenuAction extends Action {
+class MenuAction extends AdminAction {
 
     function __construct() {
-
+        parent::__construct();
     }
 
-    function index($id = NULL) {
+    function index() {
         $Menu = new Menu();
         $Menu->whereAnd('id', '!=1');
         $MenuList = $Menu->groupBy(array('lmName'), array('Count' => 'id'), array('order' => array('orderNo' => 'asc')));

@@ -7,14 +7,15 @@
  * @create:2010-11-13
  * @modify:2014-01-03
  */
-class HomeAction extends Action {
+class HomeAction extends AdminAction {
 
     function __construct() {
         parent::__construct();
     }
 
-    function index($id = NULL) {
+    function index() {
         $view = new View('index');
+        $view->set('USERINFO', $this->USERINFO);
         $view->renderHtml($view);
     }
 

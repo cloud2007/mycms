@@ -1,4 +1,5 @@
 <?php
+
 //入口文件
 require_once 'Config/Config.php';
 require_once ADMIN_PATH . 'Config/Config.php';

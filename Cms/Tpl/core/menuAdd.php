@@ -22,13 +22,13 @@
 			<td>功能链接</td>
 			<td colspan="3" class="textleft"><input type="text" name="doLink" value="<?php echo $datainfo->doLink;?>" size="50" /></td>
 			<td>栏 目 ID</td>
-			<td class="textleft"><input name="lmId" type="text" value="<?php echo $datainfo->lmId?>" size="8" /></td>
+			<td class="textleft"><input name="lmId" type="text" value="<?php echo $datainfo->lmID;?>" size="8" /></td>
 		</tr>
 		<tr>
 			<td>管理链接</td>
 			<td colspan="3" class="textleft"><input name="adminLink" type="text" value="<?php echo $datainfo->adminLink;?>" size="50" /></td>
 			<td>排序位置</td>
-			<td class="textleft"><input name="orderNo" type="text" value="<?php echo $datainfo->orderNo?>" size="6" /></td>
+			<td class="textleft"><input name="orderNo" type="text" value="<?php echo $datainfo->orderNo;?>" size="6" /></td>
 		</tr>
 		<tr>
 			<td>对应权限</td>
@@ -102,7 +102,7 @@
 			?>
 		</tr>
 		<tr>
-			<?php 
+			<?php
 			$fieldlist = array('content1','content2','content3','content4','content5','','name1','name2','name3','name4','name5','','upload1','upload2','upload3','upload4','upload5','','multiPic1','multiPic2');
 			foreach($fieldlist as $k => $field){
 				if(!$field){
@@ -139,7 +139,7 @@
 			<td><input name="set_nr[]" type="checkbox" value="noSonType" <?php echo $datainfo->fieldShow('noSonType',1);?> /> 禁止二级类别</td>
 		</tr>
 		<tr>
-			<?php 
+			<?php
 			$fieldlist = array('categoryTitle1','categoryTitle2','categorySmallPic','categoryBigPic','categoryBremark','categoryName1','categoryName2','categoryContent1','categoryContent2','categoryMultiPic');
 			foreach($fieldlist as $k => $field){
 				if(!$field){
@@ -166,7 +166,7 @@
 				启用回复</td>
 			<td></td>
 		</tr>
-		<?php 
+		<?php
 			$fieldlist = array('uname','phone','tel','fax','pic','email','youbian','addr');
 			foreach($fieldlist as $k => $field){
 				if(!$field){

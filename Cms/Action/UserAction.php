@@ -7,7 +7,7 @@
  * @create:2010-11-13
  * @modify:2014-01-03
  */
-class UserAction extends AdminAction {
+class UserAction extends Action {
 
     function __construct() {
         parent::__construct();
@@ -17,37 +17,30 @@ class UserAction extends AdminAction {
      * 栏目列表
      */
     function index() {
-        $this->login();
-        die;
-        $view = new View('core/menuList');
-        $view->renderHeaderFooterHtml($view);
+        $User = new UserModel();
+        $USERINFO = $User->CheckLogin();
+        if ($USERINFO) {
+            header('Location:/admin.php');
+        } else {
+            $this->login();
+        }
     }
 
     function login() {
+        if (isset($_SESSION['userID']) || isset($_COOKIE['userID']))
+            $this->index();
         $view = new View('user/login');
         $view->renderHeaderFooterHtml($view);
     }
 
     function loginAction() {
-        if (!$_POST['userID'] || !$_POST['passWord']) {
-            echo '用户名密码不能为空！';
-        } else {
-            $user = new User();
-            $res = $user->find(
-                    array(
-                        'whereAnd' => array(array('userID', '=\'' . $_POST['userID'] . '\''))
-                    )
-            );
-            if ($res) {
-                if ($res[0]->passWord == md5($_POST['passWord'])) {
-                    echo 1;
-                } else {
-                    echo '密码错误！';
-                }
-            } else {
-                echo '无此用户!';
-            }
-        }
+        $User = new UserModel();
+        $User->LoginAction();
+    }
+
+    function LoginOut() {
+        $User = new UserModel();
+        $User->LoginOut();
     }
 
 }

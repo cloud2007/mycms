@@ -10,9 +10,11 @@
 class AdminAction extends Action {
 
     public $header, $footer;
-    public $user = array();
+    public $USERINFO = array();
 
     function __construct() {
+        $User = new UserModel();
+        $this->USERINFO = $User->CheckLogin();
         $this->header = new View('header');
         $this->footer = new View('footer');
     }

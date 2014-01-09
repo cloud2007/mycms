@@ -7,7 +7,7 @@
 				<input type="password" value="请输入密码" class="pwd" id="passWord" name="passWord" onfocus="if(this.value=='请输入密码'){this.value=''};this.style='color:#333' " onblur="if(this.value==''){this.value='请输入密码';this.style='color:#999'}" onkeydown="if(event.keyCode==13) ajaxLogin();" />
 			</div>
 			<!--消息提示  控制P标签-->
-			<div class="infos_tips"></div><input type="checkbox" name="remember" class="remember" value="1" />
+			<div class="infos_tips"></div><div class="input_remember"><input type="checkbox" name="remember" id="remember" class="remember" />记住账号</div>
 			<a href="javascript:void(0);" class="login_btn">登录</a> <span> <a href="/Welcome/reg" class="Free_Signup f-fl">免费注册</a> <a href="/Forgetpsw/index" class="forget_pwd f-fr">忘记密码?</a> <a href="/Public/help/help_index.html" class="f-fr">帮助中心</a> </span> </div>
 	</div>
 	<div class="login_info">
@@ -34,12 +34,16 @@ $(document).ready(function () {
 function ajaxLogin(){
 	var userID = $.trim($("#userID").val().replace("请输入用户名", ""));
 	var passWord = $.trim($("#passWord").val().replace("请输入密码", ""));
+	var remember = 0;
+	if($("#remember").attr("checked")){
+		remember=1;
+	}
 	$.ajax({
 		type: "post",
 		url: "/admin.php/User/loginAction",
-		data: {userID:userID, passWord:passWord},
+		data: {userID:userID, passWord:passWord ,remember:remember},
 		success: function (data) {
-			if (data == "1") {
+			if (data == 1) {
 				location.href = "/admin.php";
 			} else {
 				$(".infos_tips").html('<p><i class="tips_icon"></i>' + data + '</p>');

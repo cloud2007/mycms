@@ -15,6 +15,9 @@ function __autoload($classname) {
         require LIB_PATH . '/' . $classfile;
     } else if (file_exists(CONTROLLER_PATH . '/' . $classfile)) {
         require CONTROLLER_PATH . '/' . $classfile;
+    } else
+    if (file_exists(MODEL_PATH . '/' . $classfile)) {
+        require MODEL_PATH . '/' . $classfile;
     } else {
         echo '<pre>';
         echo $classname . '发生错误！';
