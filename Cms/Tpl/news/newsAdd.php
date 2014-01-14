@@ -1,3 +1,4 @@
+<script type="text/javascript" src="/Static/js/kindeditor/kindeditor.js"></script>
 <div id="postion"> <a class="tip-bottom" href="/admin.php" title="Go to TcitCms HomePage" target="_top"><i class="icon-home"></i> HOME</a> 系统信息管理</div>
 <div id="manager">
 	<h2 class="title">菜 单 功 能 管 理</h2>
@@ -22,7 +23,12 @@
 		?>
 		<?php
 			for($i=1;$i<6;$i++){
-				echo $datainfo->showNameInput('name'.$i);
+				echo $datainfo->showTextarea('name'.$i);
+			}
+		?>
+		<?php
+			for($i=1;$i<6;$i++){
+				echo $datainfo->showEditorContent('content'.$i);
 			}
 		?>
 	</table>
@@ -35,32 +41,16 @@
 </form>
 <script type="text/javascript">
 $(function(){
-	var demo = $("#newsAdd").Validform({
-		tiptype:3,
+	var items = ['source','undo','redo','fontsize','|','forecolor', 'hilitecolor', 'bold', 'italic', 'underline','removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright','|', 'emoticons', 'image', 'link'];
+	KindEditor.ready(function(K) {
+		K.create('textarea[class="content"]', {
+			uploadJson : '/Public/js/kindeditor/php/upload_json.php?pathUrl=tminfo',
+			fileManagerJson : '/Static/js/kindeditor/php/file_manager_json.php?pathUrl=tminfo',
+			urlType : 'absolute',
+			allowFileManager : true,
+			//afterBlur:function(){},
+			items : items
+		});
 	});
-	demo.tipmsg.s="Error!";
-	demo.addRule([
-		{
-			ele:"input[name='lmName']",
-			datatype:"*",
-		},
-		{
-			ele:"input[name='menuName']",
-			datatype:"*",
-		},
-		{
-			ele:"input[name='lmID']",
-			datatype:"*,n",
-		},
-		{
-			ele:"input[name='doLink']",
-			datatype:"*",
-		},
-		{
-			ele:"input[name='hits']",
-			datatype:"n",
-			ignore:"ignore",
-		},
-	]);
 })
 </script>

@@ -151,13 +151,35 @@ class Menu extends Data {
         return NULL;
     }
 
-    public function showNameInput($field){
+    /**
+     * 文本区域
+     * @param type $field
+     * @return string|null
+     */
+    public function showTextarea($field){
         $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
         if (in_array($field, $tcitFieldsArray)) {
             $returnStr = '<tr><td>';
             $returnStr .= $this->$field;
             $returnStr .= '</td><td class="textleft">';
             $returnStr .= '<textarea cols="80" rows="8" name="' . $field . '"></textarea>';
+            $returnStr .='</td></tr>';
+            return $returnStr;
+        }
+        return NULL;
+    }
+
+    /**
+     * 编辑器区域
+     * @return string|null
+     */
+    public function  showEditorContent($field){
+        $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
+        if (in_array($field, $tcitFieldsArray)) {
+            $returnStr = '<tr><td>';
+            $returnStr .= $this->$field;
+            $returnStr .= '</td><td class="textleft">';
+            $returnStr .= '<textarea class="content" cols="80" rows="8" name="' . $field . '">1212</textarea>';
             $returnStr .='</td></tr>';
             return $returnStr;
         }
