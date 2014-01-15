@@ -14,7 +14,6 @@ class HomeAction extends Action {
     }
 
     function index($id = NULL) {
-        echo 'index';
         $view = new View('index');
         $view->renderHtml($view);
     }

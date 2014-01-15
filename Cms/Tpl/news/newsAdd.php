@@ -18,11 +18,14 @@
 			for($i=1;$i<6;$i++){
 				echo $datainfo->showEditorContent('content'.$i);
 			}
-			$datainfo->showRadio('is_tj');
+			$radioArray=array('is_tj','is_gd','is_ab','is_cd','is_ef','is_gh','is_jk','is_mn');
+			foreach($radioArray as $v){
+				echo $datainfo->showRadio('{$v}');
+			}
 		?>
 		<tr>
-			<td><?php echo $datainfo->is_tj;?></td>
-			<td class="textleft"><input type="radio" name="is_tj" value="1" /> 是　<input type="radio" name="is_tj" value="0" /> 否</td>
+			<td>upload1</td>
+			<td class="textleft"><input type="text" name="upload1" /></td>
 		</tr>
 	</table>
 	<div class="clearH"></div>

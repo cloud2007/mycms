@@ -196,7 +196,7 @@ class MenuTable extends Data {
             $returnStr = '<tr><td>';
             $returnStr .= $this->$field;
             $returnStr .= '</td><td class="textleft">';
-            $returnStr .= '<textarea class="content" cols="80" rows="8" name="' . $field . '">1212</textarea>';
+            $returnStr .= '<input type="radio" name="' . $field . '" value="1" /> 是　<input type="radio" name="' . $field . '" value="0" /> 否';
             $returnStr .='</td></tr>';
             return $returnStr;
         }
