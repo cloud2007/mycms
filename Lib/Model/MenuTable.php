@@ -7,7 +7,7 @@
  * @create:2014-01-03
  * @modify:2014-01-03
  */
-class Menu extends Data {
+class MenuTable extends Data {
 
     function __construct() {
         $options = array(
@@ -156,7 +156,7 @@ class Menu extends Data {
      * @param type $field
      * @return string|null
      */
-    public function showTextarea($field){
+    public function showTextarea($field) {
         $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
         if (in_array($field, $tcitFieldsArray)) {
             $returnStr = '<tr><td>';
@@ -173,7 +173,24 @@ class Menu extends Data {
      * 编辑器区域
      * @return string|null
      */
-    public function  showEditorContent($field){
+    public function showEditorContent($field) {
+        $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
+        if (in_array($field, $tcitFieldsArray)) {
+            $returnStr = '<tr><td>';
+            $returnStr .= $this->$field;
+            $returnStr .= '</td><td class="textleft">';
+            $returnStr .= '<textarea class="content" cols="80" rows="8" name="' . $field . '">1212</textarea>';
+            $returnStr .='</td></tr>';
+            return $returnStr;
+        }
+        return NULL;
+    }
+
+    /**
+     * 单选按钮
+     * @return string|null
+     */
+    public function showRadio($field) {
         $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
         if (in_array($field, $tcitFieldsArray)) {
             $returnStr = '<tr><td>';

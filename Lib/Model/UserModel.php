@@ -12,7 +12,10 @@ class UserModel extends Model {
     private $userID = '';
     private $userCode = '';
 
-    function __construct() {
+    /**
+     *
+     */
+    public function __construct() {
         parent::__construct();
         if (@$_SESSION['userID'] && @$_COOKIE['userID'] && @$_SESSION['userID'] != @$_COOKIE['userID']) {
             $this->LoginOut();
@@ -32,7 +35,7 @@ class UserModel extends Model {
      * @return $u 用户信息
      */
     function CheckLogin() {
-        $u = new User();
+        $u = new UserTable();
         try {
             $u->load($this->userID);
         } catch (Exception $exc) {
@@ -53,7 +56,7 @@ class UserModel extends Model {
         if (!$_POST['userID'] || !$_POST['passWord']) {
             echo '用户名密码不能为空！';
         } else {
-            $user = new User();
+            $user = new UserTable();
             $res = $user->find(
                     array(
                         'whereAnd' => array(array('userID', '=\'' . $_POST['userID'] . '\''))

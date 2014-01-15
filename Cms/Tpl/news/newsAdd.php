@@ -7,30 +7,23 @@
 <form name="newsAdd" id="newsAdd" method="post" action="/admin.php/News/newsSave">
 	<table width="100%" class="content_table">
 		<?php
-		if(in_array('title', array_filter(explode('|', $datainfo->tcitFields)))){
-		?>
-		<tr>
-			<td><?php echo $datainfo->title;?></td>
-			<td class="textleft"><input type="text" name="title" value="" size="50" /></td>
-		</tr>
-		<?php
-		}
-		?>
-		<?php
+			$datainfo->showInput('title');
 			for($i=1;$i<11;$i++){
 				echo $datainfo->showInput('title'.$i);
 			}
-		?>
-		<?php
 			for($i=1;$i<6;$i++){
 				echo $datainfo->showTextarea('name'.$i);
 			}
-		?>
-		<?php
+			$datainfo->showEditorContent('content');
 			for($i=1;$i<6;$i++){
 				echo $datainfo->showEditorContent('content'.$i);
 			}
+			$datainfo->showRadio('is_tj');
 		?>
+		<tr>
+			<td><?php echo $datainfo->is_tj;?></td>
+			<td class="textleft"><input type="radio" name="is_tj" value="1" /> 是　<input type="radio" name="is_tj" value="0" /> 否</td>
+		</tr>
 	</table>
 	<div class="clearH"></div>
 	<table width="100%" class="content_table">

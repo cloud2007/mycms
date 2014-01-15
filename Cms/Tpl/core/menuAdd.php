@@ -74,11 +74,11 @@
 		</tr>
 		<tr>
 			<td><input name="set_nr[]" type="checkbox" value="is_tj" <?php echo $datainfo->fieldShow('is_tj',1);?> />
-				<input name="is_gd" type="text" value="<?php echo $datainfo->is_tj;?>" />
+				<input name="is_tj" type="text" value="<?php echo $datainfo->is_tj;?>" />
 				字段名：is_tj</td>
 			<td><input name="set_nr[]" type="checkbox" value="is_gd" <?php echo $datainfo->fieldShow('is_gd',1);?> />
 				<input name="is_gd" type="text" value="<?php echo $datainfo->is_gd;?>" />
-				字段名：bigpic</td>
+				字段名：is_gd</td>
 		</tr>
 		<tr>
 			<?php
@@ -119,12 +119,36 @@
 			?>
 		</tr>
 		<tr>
+			<td><input name="set_nr[]" type="checkbox" value="is_ab" <?php echo $datainfo->fieldShow('is_ab',1);?> />
+				<input name="is_ab" type="text" value="<?php echo $datainfo->is_ab;?>" />
+				字段名：is_ab</td>
+			<td><input name="set_nr[]" type="checkbox" value="is_cd" <?php echo $datainfo->fieldShow('is_cd',1);?> />
+				<input name="is_cd" type="text" value="<?php echo $datainfo->is_cd;?>" />
+				字段名：is_cd</td>
+		</tr>
+		<tr>
+			<td><input name="set_nr[]" type="checkbox" value="is_ef" <?php echo $datainfo ->fieldShow('is_ef',1);?> />
+				<input name="is_ef" type="text" value="<?php echo $datainfo->is_ef;?>">
+				字段名：is_ef</td>
+			<td><input name="set_nr[]" type="checkbox" value="is_gh" <?php echo $datainfo ->fieldShow('is_gh',1);?>  />
+				<input name="is_gh" type="text" value="<?php echo $datainfo->is_gh;?>">
+				字段名：is_gh</td>
+		</tr>
+		<tr>
+			<td><input name="set_nr[]" type="checkbox" value="is_jk" <?php echo $datainfo ->fieldShow('is_jk',1);?> />
+				<input name="is_jk" type="text" value="<?php echo $datainfo->is_jk;?>">
+				字段名：is_jk</td>
+			<td><input name="set_nr[]" type="checkbox" value="is_mn" <?php echo $datainfo ->fieldShow('is_mn',1);?>  />
+				<input name="is_mn" type="text" value="<?php echo $datainfo->is_mn;?>">
+				字段名：is_mn</td>
+		</tr>
+		<tr>
 			<td><input name="set_nr[]" type="checkbox" value="hits" <?php echo $datainfo ->fieldShow('hits',1);?> />
 				<input name="hits" type="text" value="<?php echo $datainfo->hits;?>">
 				字段名：hits</td>
-			<td><input name="set_nr[]" type="checkbox" value="creattime" <?php echo $datainfo ->fieldShow('creattime',1);?>  />
-				<input name="creattime" type="text" value="<?php echo $datainfo->creattime;?>">
-				字段名：creattime</td>
+			<td><input name="set_nr[]" type="checkbox" value="creatTime" <?php echo $datainfo ->fieldShow('creatTime',1);?>  />
+				<input name="creatTime" type="text" value="<?php echo $datainfo->creatTime;?>">
+				字段名：creatTime</td>
 		</tr>
 	</table>
 	<div class="clearH"></div>

@@ -19,6 +19,7 @@ define('BASEDIR', strtr(dirname(__FILE__) . DIRECTORY_SEPARATOR, "\\", '/'));
 define('ROOT_PATH', realpath(BASEDIR . '../') . DIRECTORY_SEPARATOR);
 define('LIB_PATH', realpath(BASEDIR . '../Lib') . DIRECTORY_SEPARATOR);
 define('MODEL_PATH', realpath(BASEDIR . '../Lib/Model') . DIRECTORY_SEPARATOR);
+define('LIBRARY_PATH', realpath(BASEDIR . '../Lib/Library') . DIRECTORY_SEPARATOR);
 define('STATIC_PATH', realpath(BASEDIR . '../Static') . DIRECTORY_SEPARATOR);
 define('UPLOADS_PATH', realpath(BASEDIR . '../Uploads') . DIRECTORY_SEPARATOR);
 define('APP_PATH', realpath(BASEDIR . '../App') . DIRECTORY_SEPARATOR);

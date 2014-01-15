@@ -18,8 +18,8 @@ class UserAction extends Action {
      */
     function index() {
         $User = new UserModel();
-        $USERINFO = $User->CheckLogin();
-        if ($USERINFO) {
+        $UserInfo = $User->CheckLogin();
+        if ($UserInfo) {
             header('Location:/admin.php');
         } else {
             $this->login();

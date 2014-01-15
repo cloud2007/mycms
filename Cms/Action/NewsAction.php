@@ -24,7 +24,7 @@ class NewsAction extends AdminAction {
             die;
         }
         $view = new View('news/newsAdd');
-        $data = new Menu;
+        $data = new MenuTable();
         $data->load($_GET['col']);
         //print_r($data);
         $view->set('datainfo', $data);

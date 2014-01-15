@@ -14,7 +14,7 @@ class MenuAction extends AdminAction {
     }
 
     function index() {
-        $Menu = new Menu();
+        $Menu = new MenuTable();
         $Menu->whereAnd('id', '!=1');
         $MenuList = $Menu->groupBy(array('lmName'), array('Count' => 'id'), array('order' => array('orderNo' => 'asc')));
         foreach ($MenuList as $k => $v) {

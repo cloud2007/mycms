@@ -17,8 +17,7 @@ class CoreAction extends AdminAction {
      * 栏目列表
      */
     function index() {
-        $Menu = new Menu();
-
+        $Menu = new MenuTable();
         $PageSize = 20;
         $PageNo = (int) @$_GET['PageNo'] ? (int) $_GET['PageNo'] : 1;
         $PageNum = ($PageNo - 1) * $PageSize;
@@ -42,7 +41,7 @@ class CoreAction extends AdminAction {
      * 栏目保存
      */
     function menuSave() {
-        $menu = new Menu();
+        $menu = new MenuTable();
         if ($_POST) {
             if ($_POST['id'])
                 $menu->load($_POST['id']);
@@ -61,7 +60,7 @@ class CoreAction extends AdminAction {
      * 增加新栏目
      */
     function addMenu() {
-        $data = new Menu();
+        $data = new MenuTable();
         /*
          * 设置系统默认菜单
          */
@@ -80,7 +79,7 @@ class CoreAction extends AdminAction {
      * 修改栏目
      */
     function modify() {
-        $data = new Menu();
+        $data = new MenuTable();
         $data->load($_GET[1]);
         $view = new View('core/menuAdd');
         $view->set('datainfo', $data);
@@ -91,7 +90,7 @@ class CoreAction extends AdminAction {
      * 检测栏目ID是否存在
      */
     function ajaxColumn() {
-        $rs = new Menu();
+        $rs = new MenuTable();
         $res = array();
         try {
             $rs->load($_POST['param']);
