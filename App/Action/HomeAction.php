@@ -13,7 +13,7 @@ class HomeAction extends Action {
         parent::__construct();
     }
 
-    function index($id = NULL) {
+    function index() {
         $view = new View('index');
         $view->renderHtml($view);
     }

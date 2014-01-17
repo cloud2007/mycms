@@ -1,3 +1,4 @@
+<link href="/Static/js/swfupload/css/upload.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/Static/js/kindeditor/kindeditor.js"></script>
 <div id="postion"> <a class="tip-bottom" href="/admin.php" title="Go to TcitCms HomePage" target="_top"><i class="icon-home"></i> HOME</a> 系统信息管理</div>
 <div id="manager">
@@ -22,11 +23,11 @@
 			foreach($radioArray as $v){
 				echo $datainfo->showRadio('{$v}');
 			}
+			for($i=1;$i<6;$i++){
+				echo $datainfo->showUploadSingle('upload'.$i);
+			}
+			echo $datainfo->showUploadMulti('multiPic');
 		?>
-		<tr>
-			<td>upload1</td>
-			<td class="textleft"><input type="text" name="upload1" /></td>
-		</tr>
 	</table>
 	<div class="clearH"></div>
 	<table width="100%" class="content_table">
@@ -35,6 +36,9 @@
 		</tr>
 	</table>
 </form>
+<script type="text/javascript" src="/Static/js/swfupload/scripts/swfobject.js"></script>
+<script type="text/javascript" src="/Static/js/swfupload/scripts/jquery.uploadify.v2.1.0.min.js"></script>
+<script type="text/javascript" src="/Static/js/swfupload/myupload.js"></script>
 <script type="text/javascript">
 $(function(){
 	var items = ['source','undo','redo','fontsize','|','forecolor', 'hilitecolor', 'bold', 'italic', 'underline','removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright','|', 'emoticons', 'image', 'link'];

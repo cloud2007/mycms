@@ -103,7 +103,7 @@
 		</tr>
 		<tr>
 			<?php
-			$fieldlist = array('content1','content2','content3','content4','content5','','name1','name2','name3','name4','name5','','upload1','upload2','upload3','upload4','upload5','','multiPic1','multiPic2');
+			$fieldlist = array('content1','content2','content3','content4','content5','','name1','name2','name3','name4','name5','','upload1','upload2','upload3','upload4','upload5','multiPic');
 			foreach($fieldlist as $k => $field){
 				if(!$field){
 					echo '<td></td>';

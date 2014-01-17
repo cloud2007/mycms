@@ -55,8 +55,7 @@ class MenuTable extends Data {
                 'upload3' => 'upload3',
                 'upload4' => 'upload4',
                 'upload5' => 'upload5',
-                'multiPic1' => 'multiPic1',
-                'multiPic2' => 'multiPic2',
+                'multiPic' => 'multiPic',
                 'is_tj' => 'is_tj',
                 'is_gd' => 'is_gd',
                 'is_ab' => 'is_ab',
@@ -197,6 +196,41 @@ class MenuTable extends Data {
             $returnStr .= $this->$field;
             $returnStr .= '</td><td class="textleft">';
             $returnStr .= '<input type="radio" name="' . $field . '" value="1" /> 是　<input type="radio" name="' . $field . '" value="0" /> 否';
+            $returnStr .='</td></tr>';
+            return $returnStr;
+        }
+        return NULL;
+    }
+
+    /**
+     * 单图片上传字段
+     *
+     */
+    public function showUploadSingle($field) {
+        $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
+        if (in_array($field, $tcitFieldsArray)) {
+            $returnStr = '<tr><td>';
+            $returnStr .= $this->$field;
+            $returnStr .= '</td><td class="textleft">';
+            $returnStr .= '<div id="' . $field . 'Div"><ul><li class="uploadButtonDiv" id="' . $field . 'ButtonDiv"><input id="' . $field . 'Button" type="file" name="file" size="1"/></li>
+</ul></div>';
+            $returnStr .='</td></tr>';
+            return $returnStr;
+        }
+        return NULL;
+    }
+
+    /**
+     * 多图片上传
+     */
+    public function showUploadMulti($field) {
+        $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
+        if (in_array($field, $tcitFieldsArray)) {
+            $returnStr = '<tr><td>';
+            $returnStr .= $this->$field;
+            $returnStr .= '</td><td class="textleft">';
+            $returnStr .= '<div class="multiPicDiv" id="multiPicDiv"><ul><li class="uploadButtonDiv" id="multiPicButtonDiv"><input id="multiPicButton" type="file" name="file" size="1"/></li>
+</ul></div>';
             $returnStr .='</td></tr>';
             return $returnStr;
         }

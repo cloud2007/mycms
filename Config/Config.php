@@ -22,6 +22,7 @@ define('MODEL_PATH', realpath(BASEDIR . '../Lib/Model') . DIRECTORY_SEPARATOR);
 define('LIBRARY_PATH', realpath(BASEDIR . '../Lib/Library') . DIRECTORY_SEPARATOR);
 define('STATIC_PATH', realpath(BASEDIR . '../Static') . DIRECTORY_SEPARATOR);
 define('PUBLIC_PATH', realpath(BASEDIR . '../Public') . DIRECTORY_SEPARATOR);
+define('UPLOAD_PATH', '/Uploads');
 define('UPLOADS_PATH', realpath(BASEDIR . '../Uploads') . DIRECTORY_SEPARATOR);
 define('APP_PATH', realpath(BASEDIR . '../App') . DIRECTORY_SEPARATOR);
 define('ADMIN_PATH', realpath(BASEDIR . '../Cms') . DIRECTORY_SEPARATOR);
