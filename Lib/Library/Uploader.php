@@ -23,6 +23,7 @@ class Uploader {
         $this->allowFile = 'txt,rar,zip,jpg,jpeg,gif,png,swf,wmv,avi,wma,mp3,mid'; //上传扩展名
         $this->enableSize = $config['thumbSize'];
         $this->needResize = true;
+        $this->needWaterMark = $config['watermark'];
     }
 
     function save($json = true) {
@@ -115,8 +116,18 @@ class Uploader {
                     if ($this->needResize == true) {//需要生成缩略图
                         foreach ($this->enableSize as $size => $val) {
                             $resize = $this->resize($this->rootdir . $target, $size);
-                            if ($val['watermark']) {
-                                $this->waterMarkText($resize);
+                            /* if ($val['watermark']) {
+                              $this->waterMarkText($resize);
+                              } */
+                            switch ($val['watermark']) {
+                                case self::WATER_MARK_IMAGE:
+                                    $this->waterMarkImage($resize);
+                                    break;
+                                case self::WATER_MARK_TEXT:
+                                    $this->waterMarkText($resize);
+                                    break;
+                                default:
+                                    break;
                             }
                         }
                     }
@@ -165,7 +176,6 @@ class Uploader {
                 'wm_vrt_alignment' => 'bottom',
                 'wm_hor_alignment' => 'right',
                 'wm_padding' => '0',
-                'wm_padding' => 0,
                     ), $config);
             $image = new Image($defaultConfig);
             //$image->full_dst_path = str_replace($image->thumb_marker, "_{$size}", $image->full_dst_path);
@@ -174,7 +184,7 @@ class Uploader {
         }
     }
 
-    private function waterMarkText($imagePath, $text = NULL) {
+    private function waterMarkText($imagePath, $text = 'Veision1.0!') {
         if (is_null($text))
             $text = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
         if (!is_null($text)) {
@@ -182,9 +192,9 @@ class Uploader {
                 'wm_text' => $text,
                 'wm_type' => 'text', //(必须)设置想要使用的水印处理类型(text, overlay)
                 'wm_font_size' => 5, //字体大小 没有使用自定义字体则只能是1-5之间
-                'wm_font_color' => '808080', //字体颜色
+                'wm_font_color' => 'FF0000', //字体颜色
                 'wm_shadow_color' => 'ffffff', //阴影的颜色
-                'wm_shadow_distance' => 1, //阴影与文字之间的距离(以像素为单位)。
+                'wm_shadow_distance' => 0, //阴影与文字之间的距离(以像素为单位)。
                     //'wm_font_path' => Url::filePath('msyh.ttf'),//水印字体名字和路径
             ));
         }
@@ -193,7 +203,7 @@ class Uploader {
     private function waterMarkImage($imagePath) {
 
         $this->waterMark($imagePath, array(
-            'wm_overlay_path' => './ava.png', //水印图像的名字和路径
+            'wm_overlay_path' => ROOT_PATH . 'logo.png', //水印图像的名字和路径
             'wm_type' => 'overlay', //(必须)设置想要使用的水印处理类型(text, overlay)
             'wm_x_transp' => 4, //水印图像通道
             'wm_y_transp' => 4, //水印图像通道

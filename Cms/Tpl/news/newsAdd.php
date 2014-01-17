@@ -44,8 +44,8 @@ $(function(){
 	var items = ['source','undo','redo','fontsize','|','forecolor', 'hilitecolor', 'bold', 'italic', 'underline','removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright','|', 'emoticons', 'image', 'link'];
 	KindEditor.ready(function(K) {
 		K.create('textarea[class="content"]', {
-			uploadJson : '/Public/js/kindeditor/php/upload_json.php?pathUrl=tminfo',
-			fileManagerJson : '/Static/js/kindeditor/php/file_manager_json.php?pathUrl=tminfo',
+			uploadJson : '/admin.php/upload/sigleUpload',
+			fileManagerJson : '/admin.php/upload/fileManager?pathUrl=tminfo',
 			urlType : 'absolute',
 			allowFileManager : true,
 			//afterBlur:function(){},

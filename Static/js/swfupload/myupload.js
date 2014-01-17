@@ -124,7 +124,7 @@ function addthispic(ID,picthumb,pic_sub_cate,pic_show_name){
 function uploadSigle(buttonName){
 	$('#'+buttonName+'Button').uploadify({
 		'uploader'       : '/Static/js/swfupload/scripts/uploadify.swf',
-		'script'         : '/admin.php/upload',
+		'script'         : '/admin.php/upload/sigleUpload',
 		'scriptAccess'   : 'always',
 		'cancelImg'      : '',
 		'wmode'          : 'transparent',  //falsh透明
@@ -165,7 +165,7 @@ function uploadSigle(buttonName){
 function uploadMulti(buttonName){
 	$('#'+buttonName+'Button').uploadify({
 		'uploader'       : '/Static/js/swfupload/scripts/uploadify.swf',
-		'script'         : '/admin.php/upload',
+		'script'         : '/admin.php/upload/mutliUpload',
 		'scriptAccess'   : 'always',
 		'cancelImg'      : '',
 		'wmode'          : 'transparent',  //falsh透明
