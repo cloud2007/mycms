@@ -16,7 +16,7 @@ class Uploader {
         $this->immediate = null;
         $this->dirtype = '4';
         $this->rootdir = ROOT_PATH;
-        $this->attachdir = $this->rootdir . UPLOAD_PATH . '/' . $config['uploadPath']; //上传文件保存路径，结尾不要带/
+        $this->attachdir = $this->rootdir . UPLOAD_PATH . $config['uploadPath']; //上传文件保存路径，结尾不要带/
         $this->uploadDir = UPLOAD_PATH . '/' . $config['uploadPath'];
         $this->maxsize = 16777216; //2097152;//最大上传大小，默认是2M
         $this->msgtype = 1; //返回上传参数的格式：1，只返回url，2，返回参数数组

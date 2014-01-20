@@ -14,14 +14,14 @@
 		<td><b>对应权限</b></td>
 		<td><b>单项操作</b></td>
 	</tr>
-	<?php foreach($MenuList as $v){?>
+	<?php foreach($NewsList as $v){?>
 	<tr class="content">
-		<td><?php echo $v->lmID;?></td>
-		<td><?php echo $v->lmName;?></td>
-		<td><?php echo $v->menuName;?></td>
-		<td align="left"><?php echo $v->doLink;?></td>
-		<td><?php echo $v->grantWord;?></td>
-		<td><a href="/admin.php/Core/Modify/<?php echo $v->id;?>">修改</a>|<a href="javascript:if (confirm('确定要删除此条信息吗？')) {location='/admin.php/Core/Delete/<?php echo $v->id;?>';}">删除</a> </td>
+		<td><?php echo $v->id;?></td>
+		<td><?php echo $v->title;?></td>
+		<td><?php echo $v->title1;?></td>
+		<td align="left"><?php echo $v->title1;?></td>
+		<td><?php echo $v->title1;?></td>
+		<td><a href="/admin.php/News/Add/<?php echo $v->id;?>">修改</a>|<a href="javascript:if (confirm('确定要删除此条信息吗？')) {location='/admin.News/Delete/<?php echo $v->id;?>';}">删除</a> </td>
 	</tr>
 	<?php }?>
 	<tr class="pages">

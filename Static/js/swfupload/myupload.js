@@ -3,25 +3,25 @@ var flash_buttonImg_small = "/Static/js/swfupload/images/upload_smallbottom.gif"
 var upload_list = $('#multiPicDiv');//图片群根节点
 var z_index=99;
 $(document).ready(function() {
-	
+
 	//上传按钮初始化
-	uploadSigle('upload1');  
+	uploadSigle('upload1');
 	uploadSigle('upload2');
 	uploadSigle('upload3');
 	uploadSigle('upload4');
 	uploadSigle('upload5');
 	uploadMulti('multiPic');
-	
+
 	//设置默认图事件
 	$(".default_box a").live('click',function(){
 		BatchSetDefault($(this).parent().parent());
 	});
-	
+
 	//绑定删除事件
 	$(".closed").live('click',function(event){
 		BatchDeleteImgBox($(this).parents('li').eq(0),event);
 	});
-	
+
 	//默认图片是否显示控制
 	$('.list_img').live('mouseover mouseout',function(event){
 		if(event.type =='mouseover'){
@@ -58,15 +58,15 @@ function BatchDeleteImgBox(box,e) {
 
 //Action “设置默认”
 function BatchSetDefault(button, catId) {
-	var button_old = upload_list.find('li').has('[name="pic_is_default[]"][value!=0]').find('.default_box');
-	if(button.parent().find('[name="pic_is_default[]"]').val()!=1){
+	var button_old = upload_list.find('li').has('[name="multiDefault[]"][value!=0]').find('.default_box');
+	if(button.parent().find('[name="multiDefault[]"]').val()!=1){
 		if(button_old.length>0){
 			BatchCreateSetDefaultButton(button_old, catId);//变更原“默认图”为“设置默认”按钮
 			button_old.hide();
 		}
-		
-		$('input[name="pic_is_default[]"]').val(0);//处理全部图片为非默认图
-		button.parent().find('[name="pic_is_default[]"]').val(1);//将当前节点设为“默认图”
+
+		$('input[name="multiDefault[]"]').val(0);//处理全部图片为非默认图
+		button.parent().find('[name="multiDefault[]"]').val(1);//将当前节点设为“默认图”
 		button.html('');//移除原文案
 		BatchCreateDefaultIcon(button, catId);
 	}
@@ -116,8 +116,8 @@ function addthispic(ID,picthumb,pic_sub_cate,pic_show_name){
 	//$('#'+ID).append('排序:<input type="text" name="pic_order[]" size="4" value="">');
 	$('#'+ID).append('<input type="hidden" name="pic_thumb[]" value="'+picthumb+'">');
 	$('#'+ID).append('<input type="hidden" name="pic_sub_cate[]" id="subcate_'+ ID +'" value="'+pic_sub_cate+'">');
-	$('#'+ID).append('<input type="hidden" name="pic_is_default[]" value="0">');
-	$('#'+ID).append('<input type="hidden" name="pic_category[]" value="0">');		
+	$('#'+ID).append('<input type="hidden" name="multiDefault[]" value="0">');
+	$('#'+ID).append('<input type="hidden" name="pic_category[]" value="0">');
 }
 
 //单张图片上传
@@ -196,7 +196,7 @@ function uploadMulti(buttonName){
 							$('#'+ID).append('<input type="text" class="multiInputTitle" name="multiTitle[]" />');
 							$('#'+ID).append('<input type="text" class="multiInputOrder" name="multiOrder[]" />');
 							$('#'+ID).append('<input type="hidden" name="multiUrl[]" value="'+json['msg']+'">');
-							$('#'+ID).append('<input type="hidden" name="pic_is_default[]" value="0">');
+							$('#'+ID).append('<input type="hidden" name="multiDefault[]" value="0">');
 							$('#'+ID).append('<div class="default_box" style="display: none;"><span class="default_picbg"></span><span class="default_pictext"><a>设为默认图</a></span></div>');
 							$('#'+ID).append('<span class="closed"></span>');
 		},

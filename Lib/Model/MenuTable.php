@@ -124,7 +124,7 @@ class MenuTable extends Data {
      * @param type $field
      * @return string|null
      */
-    public function showInput($field) {
+    public function showInput($field, $newsinfo) {
         $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
         $selectCheckArray = array_filter(explode('|', $this->{$field . '_'}));
         if (in_array($field, $tcitFieldsArray)) {
@@ -134,15 +134,22 @@ class MenuTable extends Data {
             if (in_array($field . '_select', $tcitFieldsArray)) {
                 $returnStr .= '<select name="' . $field . '">';
                 foreach ($selectCheckArray as $v) {
-                    $returnStr .= '<option value="' . $v . '">' . $v . '</option>';
+                    $selected = '';
+                    if ($v == $newsinfo->$field)
+                        $selected = 'selected';
+                    $returnStr .= '<option value="' . $v . '" ' . $selected . '>' . $v . '</option>';
                 }
                 $returnStr .= '</select>';
             } elseif (in_array($field . '_check', $tcitFieldsArray)) {
                 foreach ($selectCheckArray as $v) {
-                    $returnStr .= '<input type="checkbox" name="' . $field . '" value="' . $v . '">&nbsp;' . $v . '&nbsp;';
+                    $checked = '';
+                    $fieldArray = explode('|', $newsinfo->$field);
+                    if (in_array($v, $fieldArray))
+                        $checked = 'checked';
+                    $returnStr .= '<input type="checkbox" name="' . $field . '[]" value="' . $v . '"' . $checked . ' />&nbsp;' . $v . '&nbsp;';
                 }
             } else {
-                $returnStr .= '<input type="text" name="' . $field . '" value="" size="50" />';
+                $returnStr .= '<input type="text" name="' . $field . '" value="' . $newsinfo->$field . '" size="50" />';
             }
             $returnStr .='</td></tr>';
             return $returnStr;
@@ -155,13 +162,13 @@ class MenuTable extends Data {
      * @param type $field
      * @return string|null
      */
-    public function showTextarea($field) {
+    public function showTextarea($field, $newsinfo) {
         $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
         if (in_array($field, $tcitFieldsArray)) {
             $returnStr = '<tr><td>';
             $returnStr .= $this->$field;
             $returnStr .= '</td><td class="textleft">';
-            $returnStr .= '<textarea cols="80" rows="8" name="' . $field . '"></textarea>';
+            $returnStr .= '<textarea cols="80" rows="8" name="' . $field . '">' . $newsinfo->$field . '</textarea>';
             $returnStr .='</td></tr>';
             return $returnStr;
         }
@@ -172,13 +179,13 @@ class MenuTable extends Data {
      * 编辑器区域
      * @return string|null
      */
-    public function showEditorContent($field) {
+    public function showEditorContent($field, $newsinfo) {
         $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
         if (in_array($field, $tcitFieldsArray)) {
             $returnStr = '<tr><td>';
             $returnStr .= $this->$field;
             $returnStr .= '</td><td class="textleft">';
-            $returnStr .= '<textarea class="content" cols="80" rows="8" name="' . $field . '">1212</textarea>';
+            $returnStr .= '<textarea class="content" cols="80" rows="8" name="' . $field . '">' . $newsinfo->$field . '</textarea>';
             $returnStr .='</td></tr>';
             return $returnStr;
         }
@@ -189,13 +196,19 @@ class MenuTable extends Data {
      * 单选按钮
      * @return string|null
      */
-    public function showRadio($field) {
+    public function showRadio($field, $newsinfo) {
         $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
         if (in_array($field, $tcitFieldsArray)) {
             $returnStr = '<tr><td>';
             $returnStr .= $this->$field;
             $returnStr .= '</td><td class="textleft">';
-            $returnStr .= '<input type="radio" name="' . $field . '" value="1" /> 是　<input type="radio" name="' . $field . '" value="0" /> 否';
+            $checkedY = '';
+            $checkedN = '';
+            if ($newsinfo->$field)
+                $checkedY = 'checked';
+            if (!$newsinfo->$field)
+                $checkedN = 'checked';
+            $returnStr .= '<input type="radio" name="' . $field . '" value="1" ' . $checkedY . ' /> 是　<input type="radio" name="' . $field . '" value="0"' . $checkedN . ' /> 否';
             $returnStr .='</td></tr>';
             return $returnStr;
         }
@@ -206,13 +219,16 @@ class MenuTable extends Data {
      * 单图片上传字段
      *
      */
-    public function showUploadSingle($field) {
+    public function showUploadSingle($field, $newsinfo) {
         $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
         if (in_array($field, $tcitFieldsArray)) {
             $returnStr = '<tr><td>';
             $returnStr .= $this->$field;
             $returnStr .= '</td><td class="textleft">';
-            $returnStr .= '<div id="' . $field . 'Div"><ul><li class="uploadButtonDiv" id="' . $field . 'ButtonDiv"><input id="' . $field . 'Button" type="file" name="file" size="1"/></li>
+            $returnStr .= '<div id="' . $field . 'Div"><ul>';
+            if(is_file(ROOT_PATH . $newsinfo->$field))
+            $returnStr .= '<li class="wait"><a href="'.$newsinfo->$field.'" target="_blank"><img src="'.$newsinfo->$field.'"></a><input type="hidden" name="upload1" value="'.$newsinfo->$field.'"><span class="closed"></span></li>';
+            $returnStr .= '<li class="uploadButtonDiv" id="' . $field . 'ButtonDiv"><input id="' . $field . 'Button" type="file" name="file" size="1"/></li>
 </ul></div>';
             $returnStr .='</td></tr>';
             return $returnStr;
@@ -223,7 +239,7 @@ class MenuTable extends Data {
     /**
      * 多图片上传
      */
-    public function showUploadMulti($field) {
+    public function showUploadMulti($field, $newsinfo) {
         $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
         if (in_array($field, $tcitFieldsArray)) {
             $returnStr = '<tr><td>';

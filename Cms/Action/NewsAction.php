@@ -10,25 +10,70 @@
 class NewsAction extends AdminAction {
 
     function __construct() {
+        $_SESSION['col'] = $_SESSION['col'] ? $_SESSION['col'] : $_GET['col'];
+        $_SESSION['dat'] = $_SESSION['dat'] ? $_SESSION['dat'] : $_GET['dat'];
         parent::__construct();
     }
 
     function index() {
-        print_r($_GET);
+        $News = new NewsTable();
+        $PageSize = 20;
+        $PageNo = (int) @$_GET['PageNo'] ? (int) $_GET['PageNo'] : 1;
+        $PageNum = ($PageNo - 1) * $PageSize;
+        $Pager = new Pager();
+        $PagerData = $Pager->getPagerData($News->count(), $PageNo, '/admin.php/News?', 2, $PageSize); //参数记录数 当前页数 链接地址 显示样式 每页数量
+        $res = $NewsList = $News->find(
+                array(
+                    'order' => array('lmID' => 'asc'),
+                    'limit' => "{$PageNum},{$PageSize}"
+                )
+        );
+        $view = new View('news/newsList');
+        $view->set('NewsList', $res);
+        $view->set('PagerData', $PagerData);
+        $view->renderHeaderFooterHtml($view);
     }
 
+    /**
+     * new 表单构造
+     */
     function add() {
-        $_SESSION['col'] = $_SESSION['col'] ? $_SESSION['col'] : $_GET['col'];
-        if (!$_SESSION['col']) {
+        if (!$_SESSION['col'] && !$_SESSION['dat']) {
             echo 'There is some wrong , please stop! ';
             die;
         }
         $view = new View('news/newsAdd');
         $data = new MenuTable();
-        $data->load($_GET['col']);
-        //print_r($data);
+        $data->load($_SESSION['col']);
         $view->set('datainfo', $data);
+
+        $newsinfo = new NewsTable();
+        $newsinfo->load($_GET[1]);
+        $view->set('newsinfo', $newsinfo);
+
         $view->renderHeaderFooterHtml($view);
+    }
+
+    /**
+     * new 保存
+     */
+    function newsSave() {
+        $News = new NewsTable();
+        foreach ($_POST as $k => $v) {
+            if (is_array($v))
+                $v = implode('|', $v);
+            $News->$k = $v;
+        }
+        if ($_POST['multiUrl']) {
+            $multiArray = array();
+            foreach ($_POST['multiUrl'] as $k => $v) {
+                $multiArray[] = $_POST['multiUrl'][$k] . '|' . $_POST['multiTitle'][$k] . '|' . $_POST['multiOrder'][$k] . '|' . $_POST['multiDefault'][$k];
+            }
+            $multiStr = implode("\n", $multiArray);
+            print_r($multiStr);
+            $News->multiPic = $multiStr;
+        }
+        $News->save();
     }
 
 }

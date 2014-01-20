@@ -6,27 +6,29 @@
 	<p>管理导航：<a href="/admin.php/News/">信息管理</a>&nbsp;|&nbsp;<a href="/admin.php/News/Add">信息添加</a></p>
 </div>
 <form name="newsAdd" id="newsAdd" method="post" action="/admin.php/News/newsSave">
+	<input type="hidden" name="lmID" value="<?php echo $_SESSION['col'];?>" />
+	<input type="hidden" name="id" value="<?php echo $newsinfo->id;?>" />
 	<table width="100%" class="content_table">
 		<?php
-			$datainfo->showInput('title');
+			echo $datainfo->showInput('title',$newsinfo);
 			for($i=1;$i<11;$i++){
-				echo $datainfo->showInput('title'.$i);
+				echo $datainfo->showInput('title'.$i,$newsinfo);
 			}
 			for($i=1;$i<6;$i++){
-				echo $datainfo->showTextarea('name'.$i);
+				echo $datainfo->showTextarea('name'.$i,$newsinfo);
 			}
-			$datainfo->showEditorContent('content');
+			$datainfo->showEditorContent('content',$newsinfo);
 			for($i=1;$i<6;$i++){
-				echo $datainfo->showEditorContent('content'.$i);
+				echo $datainfo->showEditorContent('content'.$i,$newsinfo);
 			}
 			$radioArray=array('is_tj','is_gd','is_ab','is_cd','is_ef','is_gh','is_jk','is_mn');
 			foreach($radioArray as $v){
-				echo $datainfo->showRadio('{$v}');
+				echo $datainfo->showRadio("{$v}",$newsinfo);
 			}
 			for($i=1;$i<6;$i++){
-				echo $datainfo->showUploadSingle('upload'.$i);
+				echo $datainfo->showUploadSingle('upload'.$i,$newsinfo);
 			}
-			echo $datainfo->showUploadMulti('multiPic');
+			echo $datainfo->showUploadMulti('multiPic',$newsinfo);
 		?>
 	</table>
 	<div class="clearH"></div>
