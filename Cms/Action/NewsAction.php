@@ -46,11 +46,11 @@ class NewsAction extends AdminAction {
         $data = new MenuTable();
         $data->load($_SESSION['col']);
         $view->set('datainfo', $data);
-
-        $newsinfo = new NewsTable();
-        $newsinfo->load($_GET[1]);
-        $view->set('newsinfo', $newsinfo);
-
+        if ($_GET[1] || is_int($_GET[1])) {
+            $newsinfo = new NewsTable();
+            $newsinfo->load($_GET[1]);
+            $view->set('newsinfo', $newsinfo);
+        }
         $view->renderHeaderFooterHtml($view);
     }
 
@@ -67,13 +67,13 @@ class NewsAction extends AdminAction {
         if ($_POST['multiUrl']) {
             $multiArray = array();
             foreach ($_POST['multiUrl'] as $k => $v) {
-                $multiArray[] = $_POST['multiUrl'][$k] . '|' . $_POST['multiTitle'][$k] . '|' . $_POST['multiOrder'][$k] . '|' . $_POST['multiDefault'][$k];
+                $multiArray[] = $_POST['multiOrder'][$k] . '|' . $_POST['multiUrl'][$k] . '|' . $_POST['multiTitle'][$k] . '|' . $_POST['multiDefault'][$k];
             }
             $multiStr = implode("\n", $multiArray);
-            print_r($multiStr);
             $News->multiPic = $multiStr;
         }
-        $News->save();
+        if ($News->save())
+            ShowMsg('保存成功', '/admin.php/News');
     }
 
 }

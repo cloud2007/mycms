@@ -1,6 +1,7 @@
 var flash_buttonImg = "/Static/js/swfupload/images/upload_bigbottom.gif";
 var flash_buttonImg_small = "/Static/js/swfupload/images/upload_smallbottom.gif";
 var upload_list = $('#multiPicDiv');//图片群根节点
+var upload_path = '/uploads'
 var z_index=99;
 $(document).ready(function() {
 
@@ -45,6 +46,16 @@ $(document).ready(function() {
                     button.hide();
 				}
 		}
+	});
+	
+	$('.list_img').each(function(){
+		var button = $(this).parent().find(".default_box");
+		if(button.find("a").text()=='默认图片'){
+			button.show();
+		}else{
+			button.hide();
+		}
+		
 	});
 
 })//DOCUMENT END
@@ -151,9 +162,14 @@ function uploadSigle(buttonName){
 		},
 		'onComplete'	 : function(event, ID, fileObj, response, data) {
 							var json = eval("(" + response + ")");
-							$('#'+ID).html('<a href="'+json['msg']+'" target="_blank"><img src="'+json['msg']+'" /></a>');
-							$('#'+ID).append('<input type="hidden" name="'+ buttonName+'" value="'+ json['msg'] +'" />');
-							$('#'+ID).append('<span class="closed"></span>');
+							if(json['err']){
+								alert(json['err']);
+								$('#'+buttonName+'Div .wait').remove();
+							}else{
+								$('#'+ID).html('<a href="' + upload_path + json['msg']+'" target="_blank"><img src="' + upload_path + json['msg']+'" /></a>');
+								$('#'+ID).append('<input type="hidden" name="'+ buttonName+'" value="'+ json['msg'] +'" />');
+								$('#'+ID).append('<span class="closed"></span>');
+							}
 		},
 		'onError'         : function (event,ID,fileObj,errorObj) {
 							$('#'+ID).html('<div class="waiting">Error!'+errorObj.type+'|'+errorObj.info+'</div>');
@@ -191,14 +207,19 @@ function uploadMulti(buttonName){
 		},
 		'onComplete'	 : function(event, ID, fileObj, response, data) {
 							var json = eval("(" + response + ")");
-							$('#'+buttonName).val(json['msg']);
-							$('#'+ID).html('<div class="list_img"><a href="'+json['msg']+'" target="_blank"><img src="'+json['msg']+'" /></a></div>');
-							$('#'+ID).append('<input type="text" class="multiInputTitle" name="multiTitle[]" />');
-							$('#'+ID).append('<input type="text" class="multiInputOrder" name="multiOrder[]" />');
-							$('#'+ID).append('<input type="hidden" name="multiUrl[]" value="'+json['msg']+'">');
-							$('#'+ID).append('<input type="hidden" name="multiDefault[]" value="0">');
-							$('#'+ID).append('<div class="default_box" style="display: none;"><span class="default_picbg"></span><span class="default_pictext"><a>设为默认图</a></span></div>');
-							$('#'+ID).append('<span class="closed"></span>');
+							if(json['err']){
+								//alert(json['err']);
+								$('#'+ID).remove();
+							}else{	
+								$('#'+buttonName).val(json['msg']);
+								$('#'+ID).html('<div class="list_img"><a href="'+ upload_path + json['msg']+'" target="_blank"><img src="'+ upload_path + json['msg']+'" /></a></div>');
+								$('#'+ID).append('<input type="text" class="multiInputTitle" name="multiTitle[]" />');
+								$('#'+ID).append('<input type="text" class="multiInputOrder" name="multiOrder[]" />');
+								$('#'+ID).append('<input type="hidden" name="multiUrl[]" value="'+json['msg']+'">');
+								$('#'+ID).append('<input type="hidden" name="multiDefault[]" value="0">');
+								$('#'+ID).append('<div class="default_box" style="display: none;"><span class="default_picbg"></span><span class="default_pictext"><a>设为默认图</a></span></div>');
+								$('#'+ID).append('<span class="closed"></span>');
+							}
 		},
 		'onError'         : function (event,ID,fileObj,errorObj) {
 							$('#'+ID).html('<div class="waiting">Error!'+errorObj.type+'|'+errorObj.info+'</div>');

@@ -10,9 +10,19 @@ class Uploader {
     public $inputname, $immediate, $dirtype, $rootdir, $attachdir, $uploadDir, $maxsize, $msgtype, $allowFile, $enableSize, $needResize, $needWaterMark;
 
     const WATER_MARK_TEXT = 'text', WATER_MARK_IMAGE = 'image';
+    const ALLOWFILE_IMAGE = 'image', ALLOWFILE_FLASH = 'flash', ALLOWFILE_MEDIA = 'media', ALLOWFILE_FILE = 'file';
+
+    private $fileList = array(
+        'image' => 'gif,jpg,jpeg,png,bmp',
+        'flash' => 'swf,flv',
+        'media' => 'swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb',
+        'file' => 'txt,rar,zip',
+    );
+    private $fileListAll;
 
     function __construct($config) {
-        $this->inputname = 'Filedata';
+        $this->fileListAll = implode(',', $this->fileList);
+        $this->inputname = $config['inputname'] ? $config['inputname'] : 'Filedata';
         $this->immediate = null;
         $this->dirtype = '4';
         $this->rootdir = ROOT_PATH;
@@ -20,7 +30,7 @@ class Uploader {
         $this->uploadDir = UPLOAD_PATH . '/' . $config['uploadPath'];
         $this->maxsize = 16777216; //2097152;//最大上传大小，默认是2M
         $this->msgtype = 1; //返回上传参数的格式：1，只返回url，2，返回参数数组
-        $this->allowFile = 'txt,rar,zip,jpg,jpeg,gif,png,swf,wmv,avi,wma,mp3,mid'; //上传扩展名
+        $this->allowFile = $config['allowFile'] ? $this->fileList[$config['allowFile']] : $this->fileListAll; //上传扩展名
         $this->enableSize = $config['thumbSize'];
         $this->needResize = true;
         $this->needWaterMark = $config['watermark'];
@@ -119,7 +129,7 @@ class Uploader {
                             /* if ($val['watermark']) {
                               $this->waterMarkText($resize);
                               } */
-                            switch ($val['watermark']) {
+                            switch ($val['watermark'] && stripos($this->fileList['image'], $extension)) {
                                 case self::WATER_MARK_IMAGE:
                                     $this->waterMarkImage($resize);
                                     break;
@@ -131,7 +141,7 @@ class Uploader {
                             }
                         }
                     }
-                    switch ($this->needWaterMark) {
+                    switch ($this->needWaterMark && stripos($this->fileList['image'], $extension)) {
                         case self::WATER_MARK_IMAGE:
                             $this->waterMarkImage($this->rootdir . $target);
                             break;
@@ -146,7 +156,14 @@ class Uploader {
             else
                 $err = '上传文件扩展名必需为：' . $this->allowFile;
         }
-        $result = array('err' => $err, 'msg' => $msg);
+        $result = array();
+        $result['err'] = $err;
+        $result['msg'] = str_replace(UPLOAD_PATH, '', $msg);
+        //下面两行为kindEditor返回数据
+        $result['error'] = $err ? 1 : 0;
+        $result['message'] = $err;
+        $result['url'] = $msg;
+        //$result = array('err' => $err, 'url' => $msg, 'msg' => str_replace(UPLOAD_PATH, '', $msg));
         return $json ? json_encode($result) : $result;
     }
 

@@ -30,8 +30,9 @@ class UploadAction extends AdminAction {
      */
     public function mutliUpload() {
         $config = array(
-            'uploadPath' => 'a',
+            'uploadPath' => '/mutli',
             'watermark' => '', //1 text 2 image
+            'allowFile' => Uploader::ALLOWFILE_IMAGE,
             'thumbSize' => array(
                 'small' => array(
                     'width' => '200',
@@ -50,36 +51,51 @@ class UploadAction extends AdminAction {
     }
 
     /**
+     * kindEditor
+     */
+    public function kindEditor() {
+        $config = array(
+            'uploadPath' => '/kindEditor',
+            'watermark' => 'image', //1 text 2 image
+            'inputname' => 'imgFile',
+                //'allowFile' => Uploader::ALLOWFILE_IMAGE,
+        );
+        $uploader = new Uploader($config);
+        echo $uploader->save();
+    }
+
+    /**
      * 图片管理
      */
     public function fileManager() {
-        require_once 'JSON.php';
 
-        $php_path = dirname(__FILE__) . '/';
-        $php_url = dirname($_SERVER['PHP_SELF']) . '/';
+        $root_path = ROOT_PATH . 'Uploads/kindEditor/'; //根目录路径，可以指定绝对路径，比如 /var/www/attached/
+        $root_url = UPLOAD_PATH . '/kindEditor/'; //根目录URL，可以指定绝对路径，比如 http://www.yoursite.com/attached/
+        //$ext_arr = array('gif', 'jpg', 'jpeg', 'png', 'bmp'); //图片扩展名
+        $ext_arr = array(
+            'image' => array('gif', 'jpg', 'jpeg', 'png', 'bmp'),
+            'flash' => array('swf', 'flv'),
+            'media' => array('swf', 'flv', 'mp3', 'wav', 'wma', 'wmv', 'mid', 'avi', 'mpg', 'asf', 'rm', 'rmvb'),
+            'file' => array('txt', 'rar', 'zip'),
+        );
+        //目录名
 
-//根目录路径，可以指定绝对路径，比如 /var/www/attached/
-        $root_path = '/uploads';
-//根目录URL，可以指定绝对路径，比如 http://www.yoursite.com/attached/
-        $root_url = 'http://cms.chofn.com/uploads';
-//图片扩展名
-        $ext_arr = array('gif', 'jpg', 'jpeg', 'png', 'bmp');
-
-//目录名
         $dir_name = empty($_GET['dir']) ? '' : trim($_GET['dir']);
         if (!in_array($dir_name, array('', 'image', 'flash', 'media', 'file'))) {
             echo "Invalid Directory name.";
             exit;
         }
-        if ($dir_name !== '') {
-            $root_path .= $dir_name . "/";
-            $root_url .= $dir_name . "/";
-            if (!file_exists($root_path)) {
-                mkdir($root_path);
-            }
-        }
-
-//根据path参数，设置各路径和URL
+        /**
+          if ($dir_name !== '') {
+          $root_path .= $dir_name . "/";
+          $root_url .= $dir_name . "/";
+          if (!file_exists($root_path)) {
+          mkdir($root_path);
+          }
+          }
+         *
+         */
+        //根据path参数，设置各路径和URL
         if (empty($_GET['path'])) {
             $current_path = realpath($root_path) . '/';
             $current_url = $root_url;
@@ -91,27 +107,27 @@ class UploadAction extends AdminAction {
             $current_dir_path = $_GET['path'];
             $moveup_dir_path = preg_replace('/(.*?)[^\/]+\/$/', '$1', $current_dir_path);
         }
-        echo realpath($root_path);
-//排序形式，name or size or type
+
+        //排序形式，name or size or type
         $order = empty($_GET['order']) ? 'name' : strtolower($_GET['order']);
 
-//不允许使用..移动到上一级目录
+        //不允许使用..移动到上一级目录
         if (preg_match('/\.\./', $current_path)) {
             echo 'Access is not allowed.';
             exit;
         }
-//最后一个字符不是/
+        //最后一个字符不是/
         if (!preg_match('/\/$/', $current_path)) {
             echo 'Parameter is not valid.';
             exit;
         }
-//目录不存在或不是目录
+        //目录不存在或不是目录
         if (!file_exists($current_path) || !is_dir($current_path)) {
             echo 'Directory does not exist.';
             exit;
         }
 
-//遍历目录取得文件信息
+        //遍历目录取得文件信息
         $file_list = array();
         if ($handle = opendir($current_path)) {
             $i = 0;
@@ -125,25 +141,29 @@ class UploadAction extends AdminAction {
                     $file_list[$i]['filesize'] = 0; //文件大小
                     $file_list[$i]['is_photo'] = false; //是否图片
                     $file_list[$i]['filetype'] = ''; //文件类别，用扩展名判断
+                    $file_list[$i]['filename'] = $filename; //文件名，包含扩展名
+                    $file_list[$i]['datetime'] = date('Y-m-d H:i:s', filemtime($file)); //文件最后修改时间
                 } else {
-                    $file_list[$i]['is_dir'] = false;
-                    $file_list[$i]['has_file'] = false;
-                    $file_list[$i]['filesize'] = filesize($file);
-                    $file_list[$i]['dir_path'] = '';
                     $file_ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-                    $file_list[$i]['is_photo'] = in_array($file_ext, $ext_arr);
-                    $file_list[$i]['filetype'] = $file_ext;
+                    if (in_array($file_ext, $ext_arr[$dir_name])) {
+                        $file_list[$i]['is_dir'] = false;
+                        $file_list[$i]['has_file'] = false;
+                        $file_list[$i]['filesize'] = filesize($file);
+                        $file_list[$i]['dir_path'] = '';
+                        $file_list[$i]['is_photo'] = in_array($file_ext, $ext_arr['image']);
+                        $file_list[$i]['filetype'] = $file_ext;
+                        $file_list[$i]['filename'] = $filename; //文件名，包含扩展名
+                        $file_list[$i]['datetime'] = date('Y-m-d H:i:s', filemtime($file)); //文件最后修改时间
+                    }
                 }
-                $file_list[$i]['filename'] = $filename; //文件名，包含扩展名
-                $file_list[$i]['datetime'] = date('Y-m-d H:i:s', filemtime($file)); //文件最后修改时间
                 $i++;
             }
             closedir($handle);
         }
 
-//排序
+        //排序
         function cmp_func($a, $b) {
-            global $order;
+            $order = empty($_GET['order']) ? 'name' : strtolower($_GET['order']);
             if ($a['is_dir'] && !$b['is_dir']) {
                 return -1;
             } else if (!$a['is_dir'] && $b['is_dir']) {
@@ -168,21 +188,14 @@ class UploadAction extends AdminAction {
         usort($file_list, 'cmp_func');
 
         $result = array();
-//相对于根目录的上一级目录
-        $result['moveup_dir_path'] = $moveup_dir_path;
-//相对于根目录的当前目录
-        $result['current_dir_path'] = $current_dir_path;
-//当前目录的URL
-        $result['current_url'] = $current_url;
-//文件数
-        $result['total_count'] = count($file_list);
-//文件列表数组
-        $result['file_list'] = $file_list;
 
-//输出JSON字符串
+        $result['moveup_dir_path'] = $moveup_dir_path; //相对于根目录的上一级目录
+        $result['current_dir_path'] = $current_dir_path; //相对于根目录的当前目录
+        $result['current_url'] = $current_url; //当前目录的URL
+        $result['total_count'] = count($file_list); //文件数
+        $result['file_list'] = $file_list; //文件列表数组
         header('Content-type: application/json; charset=UTF-8');
-        $json = new Services_JSON();
-        echo $json->encode($result);
+        echo json_encode($result);
     }
 
 }

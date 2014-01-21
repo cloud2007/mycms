@@ -43,15 +43,15 @@
 <script type="text/javascript" src="/Static/js/swfupload/myupload.js"></script>
 <script type="text/javascript">
 $(function(){
-	var items = ['source','undo','redo','fontsize','|','forecolor', 'hilitecolor', 'bold', 'italic', 'underline','removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright','|', 'emoticons', 'image', 'link'];
+	var items = ['source','undo','redo','fontsize','|','forecolor', 'hilitecolor', 'bold', 'italic', 'underline','removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright','|', 'emoticons', 'image', 'multiimage', 'link'];
 	KindEditor.ready(function(K) {
 		K.create('textarea[class="content"]', {
-			uploadJson : '/admin.php/upload/sigleUpload',
-			fileManagerJson : '/admin.php/upload/fileManager?pathUrl=tminfo',
+			uploadJson : '/admin.php/upload/kindEditor',
+			fileManagerJson : '/admin.php/upload/fileManager',
 			urlType : 'absolute',
 			allowFileManager : true,
 			//afterBlur:function(){},
-			items : items
+			//items : items
 		});
 	});
 })

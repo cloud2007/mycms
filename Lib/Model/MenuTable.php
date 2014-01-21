@@ -185,7 +185,7 @@ class MenuTable extends Data {
             $returnStr = '<tr><td>';
             $returnStr .= $this->$field;
             $returnStr .= '</td><td class="textleft">';
-            $returnStr .= '<textarea class="content" cols="80" rows="8" name="' . $field . '">' . $newsinfo->$field . '</textarea>';
+            $returnStr .= '<textarea class="content" cols="100" rows="15" name="' . $field . '">' . $newsinfo->$field . '</textarea>';
             $returnStr .='</td></tr>';
             return $returnStr;
         }
@@ -226,8 +226,8 @@ class MenuTable extends Data {
             $returnStr .= $this->$field;
             $returnStr .= '</td><td class="textleft">';
             $returnStr .= '<div id="' . $field . 'Div"><ul>';
-            if(is_file(ROOT_PATH . $newsinfo->$field))
-            $returnStr .= '<li class="wait"><a href="'.$newsinfo->$field.'" target="_blank"><img src="'.$newsinfo->$field.'"></a><input type="hidden" name="upload1" value="'.$newsinfo->$field.'"><span class="closed"></span></li>';
+            if (is_file(ROOT_PATH . UPLOAD_PATH . $newsinfo->$field))
+                $returnStr .= '<li class="wait"><a href="' . UPLOAD_PATH . $newsinfo->$field . '" target="_blank"><img src="' . UPLOAD_PATH . $newsinfo->$field . '"></a><input type="hidden" name="upload1" value="' . $newsinfo->$field . '"><span class="closed"></span></li>';
             $returnStr .= '<li class="uploadButtonDiv" id="' . $field . 'ButtonDiv"><input id="' . $field . 'Button" type="file" name="file" size="1"/></li>
 </ul></div>';
             $returnStr .='</td></tr>';
@@ -245,7 +245,18 @@ class MenuTable extends Data {
             $returnStr = '<tr><td>';
             $returnStr .= $this->$field;
             $returnStr .= '</td><td class="textleft">';
-            $returnStr .= '<div class="multiPicDiv" id="multiPicDiv"><ul><li class="uploadButtonDiv" id="multiPicButtonDiv"><input id="multiPicButton" type="file" name="file" size="1"/></li>
+            $returnStr .= '<div class="multiPicDiv" id="multiPicDiv"><ul>';
+            if ($newsinfo->multiPic) {
+                $picArray = explode("\n", $newsinfo->multiPic); //0order 1url 2title 3default
+                asort($picArray);
+                foreach ($picArray as $value) {
+                    $picInfoArray = explode('|', $value);
+                    $defaultText = $picInfoArray[3] == 1 ? "默认图片" : "设为默认图";
+                    if (is_file(ROOT_PATH . UPLOAD_PATH . $picInfoArray[1]))
+                        $returnStr .= '<li class="waits"><div class="list_img"><a href="' . UPLOAD_PATH . $picInfoArray[1] . '" target="_blank"><img src="' . UPLOAD_PATH . $picInfoArray[1] . '"></a></div><input type="text" class="multiInputTitle" name="multiTitle[]" value="' . $picInfoArray[2] . '" /><input type="text" class="multiInputOrder" name="multiOrder[]" value="' . $picInfoArray[0] . '" /><input type="hidden" name="multiUrl[]" value="' . $picInfoArray[1] . '" /><input type="hidden" name="multiDefault[]" value="' . $picInfoArray[3] . '"><div class="default_box" style="display: none;"><span class="default_picbg"></span><span class="default_pictext"><a>' . $defaultText . '</a></span></div><span class="closed"></span></li>';
+                }
+            }
+            $returnStr .= '<li class="uploadButtonDiv" id="multiPicButtonDiv"><input id="multiPicButton" type="file" name="file" size="1"/></li>
 </ul></div>';
             $returnStr .='</td></tr>';
             return $returnStr;
