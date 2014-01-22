@@ -6,11 +6,15 @@ var z_index=99;
 $(document).ready(function() {
 
 	//上传按钮初始化
+	uploadSigle('smallpic');
+	uploadSigle('bigpic');
 	uploadSigle('upload1');
 	uploadSigle('upload2');
 	uploadSigle('upload3');
 	uploadSigle('upload4');
 	uploadSigle('upload5');
+	uploadSigle('categorySmallPic');
+	uploadSigle('categoryBigPic');
 	uploadMulti('multiPic');
 
 	//设置默认图事件

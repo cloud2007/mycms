@@ -13,10 +13,14 @@ class AdminAction extends Action {
     public $UserInfo = array();
 
     function __construct() {
-        $User = new UserModel();
-        $this->UserInfo = $User->CheckLogin();
+        $UserAdmin = new UserModel();
+        $this->UserInfo = $UserAdmin->CheckLogin();
         $this->header = new View('header');
         $this->footer = new View('footer');
+        $_SESSION['col'] = $_GET['col'] ? $_GET['col'] : $_SESSION['col'];
+        $_SESSION['dat'] = $_GET['dat'] ? $_GET['dat'] : $_SESSION['dat'];
+        $MenuAdmin = new MenuTable;
+        $_SESSION['lam'] = $_SESSION['col'] ? $MenuAdmin->load($_SESSION['col'])->lmID : NULL;
     }
 
 }

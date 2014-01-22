@@ -37,7 +37,3 @@ $(document).ready(function(){
       $("tr.content:even").addClass("alt");
 });
 </script>
-<style type="text/css">
-.alt{background:#F7F7F7;}
-.over{background:#FEF3D1;}
-</style>

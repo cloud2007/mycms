@@ -1,9 +1,9 @@
 <div id="postion"> <a class="tip-bottom" href="/admin.php" title="Go to TcitCms HomePage" target="_top"><i class="icon-home"></i> HOME</a> 系统信息管理</div>
 <div id="manager">
 	<h2 class="title">菜 单 功 能 管 理</h2>
-	<p>管理导航：<a href="/admin.php/News/">信息管理</a>&nbsp;|&nbsp;<a href="/admin.php/News/Add">信息添加</a></p>
+	<p>管理导航：<a href="/admin.php/Category/">信息管理</a>&nbsp;|&nbsp;<a href="/admin.php/Category/Add">信息添加</a></p>
 </div>
-<form name="ListForm" id="ListForm" method="post" action="/admin.php/News/Deletes">
+<form name="ListForm" id="ListForm" method="post" action="/admin.php/Category/Deletes">
 <table width="100%" class="content_table">
 	<tr class="title">
 		<td><input type="checkbox" id="checkAll"> 全选</td>

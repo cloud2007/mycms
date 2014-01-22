@@ -3,34 +3,36 @@
 <div id="postion"> <a class="tip-bottom" href="/admin.php" title="Go to TcitCms HomePage" target="_top"><i class="icon-home"></i> HOME</a> 系统信息管理</div>
 <div id="manager">
 	<h2 class="title">菜 单 功 能 管 理</h2>
-	<p>管理导航：<a href="/admin.php/News/">信息管理</a>&nbsp;|&nbsp;<a href="/admin.php/News/Add">信息添加</a></p>
+	<p>管理导航：<a href="/admin.php/Category/">信息管理</a>&nbsp;|&nbsp;<a href="/admin.php/Category/Add">信息添加</a></p>
 </div>
-<form name="AddForm" id="AddForm" method="post" action="/admin.php/News/newsSave">
+<form name="AddForm" id="AddForm" method="post" action="/admin.php/Category/categorySave">
 	<input type="hidden" name="lmID" value="<?php echo $_SESSION['lam'];?>" />
 	<input type="hidden" name="id" value="<?php echo $newsinfo->id;?>" />
 	<table width="100%" class="content_table">
+		<tr>
+			<td>所属类别</td>
+			<td class="textleft">
+				<select name="parentID">
+					<option value="">一级类别</option>
+				</select>
+			</td>
+		</tr>
 		<?php
-			echo $datainfo->showInput('title',$newsinfo);
-			for($i=1;$i<11;$i++){
-				echo $datainfo->showInput('title'.$i,$newsinfo);
+			$inputArray=array('categoryTitle','categoryTitle1','categoryTitle2','categoryBremark');
+			foreach($inputArray as $v){
+				echo $datainfo->showInput("{$v}",$newsinfo);
 			}
-			for($i=1;$i<6;$i++){
-				echo $datainfo->showTextarea('name'.$i,$newsinfo);
+			for($i=1;$i<3;$i++){
+				echo $datainfo->showTextarea('categoryName'.$i,$newsinfo);
 			}
-			echo $datainfo->showEditorContent('content',$newsinfo);
-			for($i=1;$i<6;$i++){
-				echo $datainfo->showEditorContent('content'.$i,$newsinfo);
+			for($i=1;$i<3;$i++){
+				echo $datainfo->showEditorContent('categoryContent'.$i,$newsinfo);
 			}
-			$radioArray=array('is_tj','is_gd','is_ab','is_cd','is_ef','is_gh','is_jk','is_mn');
-			foreach($radioArray as $v){
-				echo $datainfo->showRadio("{$v}",$newsinfo);
+			$uploadArray=array('categorySmallPic','categoryBigPic');
+			foreach($uploadArray as $v){
+				echo $datainfo->showUploadSingle("{$v}",$newsinfo);
 			}
-			echo $datainfo->showUploadSingle('smallpic',$newsinfo);
-			echo $datainfo->showUploadSingle('bigpic',$newsinfo);
-			for($i=1;$i<6;$i++){
-				echo $datainfo->showUploadSingle('upload'.$i,$newsinfo);
-			}
-			echo $datainfo->showUploadMulti('multiPic',$newsinfo);
+			echo $datainfo->showUploadMulti('categoryMultiPic',$newsinfo);
 		?>
 	</table>
 	<div class="clearH"></div>

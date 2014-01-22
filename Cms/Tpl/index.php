@@ -59,7 +59,7 @@
 		<div class="top_logo"> <img src="/Static/images/admin_top_logo.gif" width="200" height="37" alt="Logo" title="Welcome use TcitCMS" id="topdedelogo" /> </div>
 		<div class="top_link">
 			<ul>
-				<li class="welcome">您好：<?php echo $USERINFO->userID;?>，欢迎使用TcitCMS！</li>
+				<li class="welcome">您好：<?php echo $UserInfo->userID;?>，欢迎使用TcitCMS！</li>
 				<li><a href="index_menu.php" target="menu">主菜单</a></li>
 				<li><a href="javascript:;" onclick="JumpFrame('catalog_menu.php','public_guide.php');">内容发布</a></li>
 				<li><a href="javascript:;" onclick="JumpFrame('index_menu.php','content_list.php');">内容维护</a></li>

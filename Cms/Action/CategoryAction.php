@@ -1,15 +1,17 @@
 <?php
 
 /**
- * system news core
+ * system category core
  * @author:Laven<190296465@vip.qq.com>
  * @copyright:Copyright 2009 Laven
  * @create:2010-11-13
  * @modify:2014-01-03
  */
-class NewsAction extends AdminAction {
+class CategoryAction extends AdminAction {
 
     function __construct() {
+        $_SESSION['col'] = $_SESSION['col'] ? $_SESSION['col'] : $_GET['col'];
+        $_SESSION['dat'] = $_SESSION['dat'] ? $_SESSION['dat'] : $_GET['dat'];
         parent::__construct();
     }
 
@@ -22,26 +24,40 @@ class NewsAction extends AdminAction {
         $PagerData = $Pager->getPagerData($News->count(), $PageNo, '/admin.php/News?', 2, $PageSize); //参数记录数 当前页数 链接地址 显示样式 每页数量
         $res = $NewsList = $News->find(
                 array(
-                    'whereAnd' => array(array('lmID','='.$_SESSION['lam'])),
-                    'order' => array('id' => 'desc'),
+                    'order' => array('lmID' => 'asc'),
                     'limit' => "{$PageNum},{$PageSize}"
                 )
         );
-        $view = new View('news/newsList');
+        $view = new View('category/categoryList');
         $view->set('NewsList', $res);
         $view->set('PagerData', $PagerData);
         $view->renderHeaderFooterHtml($view);
     }
 
-    /**
-     * new 表单构造
-     */
     function add() {
+        $tree = new Tree();
+        $data = array(
+            1 => array('id' => '1', 'parentid' => 0, 'name' => '一级栏目一'),
+            2 => array('id' => '2', 'parentid' => 0, 'name' => '一级栏目二'),
+            3 => array('id' => '3', 'parentid' => 1, 'name' => '二级栏目一'),
+            4 => array('id' => '4', 'parentid' => 1, 'name' => '二级栏目二'),
+            5 => array('id' => '5', 'parentid' => 2, 'name' => '二级栏目三'),
+            6 => array('id' => '6', 'parentid' => 3, 'name' => '三级栏目一'),
+            7 => array('id' => '7', 'parentid' => 3, 'name' => '三级栏目二')
+        );
+        $tree->tree($data);
+        //$tree->getArray($data); // 如果使用数组, 请使用 getArray方法
+        echo '<select>';
+        echo $tree->get_tree(0, "<option value=\$id \$select>\$spacer\$name</option>", $i); // 下拉菜单选项使用 get_tree方法
+        echo '</secect>';
+
+        die;
+
         if (!$_SESSION['col'] && !$_SESSION['dat']) {
             echo 'There is some wrong , please stop! ';
             die;
         }
-        $view = new View('news/newsAdd');
+        $view = new View('category/categoryAdd');
         $data = new MenuTable();
         $data->load($_SESSION['col']);
         $view->set('datainfo', $data);
@@ -51,42 +67,6 @@ class NewsAction extends AdminAction {
             $view->set('newsinfo', $newsinfo);
         }
         $view->renderHeaderFooterHtml($view);
-    }
-
-    /**
-     * new 保存
-     */
-    function newsSave() {
-        $News = new NewsTable();
-        foreach ($_POST as $k => $v) {
-            if (is_array($v))
-                $v = implode('|', $v);
-            $News->$k = $v;
-        }
-        if ($_POST['multiUrl']) {
-            $multiArray = array();
-            foreach ($_POST['multiUrl'] as $k => $v) {
-                $multiArray[] = $_POST['multiOrder'][$k] . '|' . $_POST['multiUrl'][$k] . '|' . $_POST['multiTitle'][$k] . '|' . $_POST['multiDefault'][$k];
-            }
-            $multiStr = implode("\n", $multiArray);
-            $News->multiPic = $multiStr;
-        }
-        if ($News->save())
-            ShowMsg('保存成功', '/admin.php/News');
-    }
-
-    /**
-     * 删除一条记录
-     */
-    function delete(){
-        echo $_GET[1].'=>delete';
-    }
-
-    /**
-     * 删除记录集合
-     */
-    function deletes(){
-        print_r($_POST['checkID']);
     }
 
 }

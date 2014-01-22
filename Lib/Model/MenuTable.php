@@ -76,6 +76,7 @@ class MenuTable extends Data {
                 'categoryName2' => 'categoryName2',
                 'categoryContent1' => 'categoryContent1',
                 'categoryContent2' => 'categoryContent2',
+                'categoryMultiPic' => 'categoryMultiPic',
                 //留言字段
                 'uname' => 'uname',
                 'phone' => 'phone',
@@ -98,7 +99,7 @@ class MenuTable extends Data {
                 'title10_' => 'title10_',
                 'creatTime' => 'creatTime',
             ),
-            'saveNeeds' => array('id', 'lmID'),
+            'saveNeeds' => array('lmID'),
         );
         parent::init($options);
     }
@@ -185,7 +186,7 @@ class MenuTable extends Data {
             $returnStr = '<tr><td>';
             $returnStr .= $this->$field;
             $returnStr .= '</td><td class="textleft">';
-            $returnStr .= '<textarea class="content" cols="100" rows="15" name="' . $field . '">' . $newsinfo->$field . '</textarea>';
+            $returnStr .= '<textarea class="content" cols="100" rows="15" name="' . $field . '">' . stripslashes($newsinfo->$field) . '</textarea>';
             $returnStr .='</td></tr>';
             return $returnStr;
         }

@@ -15,7 +15,7 @@ class HomeAction extends AdminAction {
 
     function index() {
         $view = new View('index');
-        $view->set('USERINFO', $this->USERINFO);
+        $view->set('UserInfo', $this->UserInfo);
         $view->renderHtml($view);
     }
 

@@ -9,7 +9,6 @@
 			<td>栏目名称</td>
 			<td class="textleft"><input type="text" name="lmName" value="<?php echo $datainfo->lmName;?>" size="18" />
 				<input type="hidden" name="id" value="<?php echo $datainfo->id;?>" />
-				<input type="hidden" name="lmID" id="lmID" value="<?php echo $datainfo->lmID;?>" />
 			<td>项目标题</td>
 			<td class="textleft"><input type="text" name="menuName" value="<?php echo $datainfo->menuName;?>" size="18" /></td>
 			<td>是否可用</td>
@@ -22,7 +21,7 @@
 			<td>功能链接</td>
 			<td colspan="3" class="textleft"><input type="text" name="doLink" value="<?php echo $datainfo->doLink;?>" size="50" /></td>
 			<td>栏 目 ID</td>
-			<td class="textleft"><input name="lmId" type="text" value="<?php echo $datainfo->lmID;?>" size="8" /></td>
+			<td class="textleft"><input name="lmID" type="text" value="<?php echo $datainfo->lmID;?>" size="8" /></td>
 		</tr>
 		<tr>
 			<td>管理链接</td>
