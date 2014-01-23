@@ -10,6 +10,10 @@
 class NewsAction extends AdminAction {
 
     function __construct() {
+        if (!$_SESSION['col'] && !$_SESSION['dat']) {
+            echo 'There is some wrong , please stop! ';
+            die;
+        }
         parent::__construct();
     }
 
@@ -22,7 +26,7 @@ class NewsAction extends AdminAction {
         $PagerData = $Pager->getPagerData($News->count(), $PageNo, '/admin.php/News?', 2, $PageSize); //参数记录数 当前页数 链接地址 显示样式 每页数量
         $res = $NewsList = $News->find(
                 array(
-                    'whereAnd' => array(array('lmID','='.$_SESSION['lam'])),
+                    'whereAnd' => array(array('lmID', '=' . $_SESSION['lam'])),
                     'order' => array('id' => 'desc'),
                     'limit' => "{$PageNum},{$PageSize}"
                 )
@@ -45,11 +49,19 @@ class NewsAction extends AdminAction {
         $data = new MenuTable();
         $data->load($_SESSION['col']);
         $view->set('datainfo', $data);
+
+        $cateobj = new CategoryTable();
+        $tree = new Tree($cateobj->formatArray());
+
         if ($_GET[1] || is_int($_GET[1])) {
             $newsinfo = new NewsTable();
             $newsinfo->load($_GET[1]);
             $view->set('newsinfo', $newsinfo);
+            $dataList = $tree->getArray(0, $newsinfo->categoryID);
+        }else{
+            $dataList = $tree->getArray();
         }
+        $view->set('dataList', $dataList);
         $view->renderHeaderFooterHtml($view);
     }
 
@@ -78,14 +90,14 @@ class NewsAction extends AdminAction {
     /**
      * 删除一条记录
      */
-    function delete(){
-        echo $_GET[1].'=>delete';
+    function delete() {
+        echo $_GET[1] . '=>delete';
     }
 
     /**
      * 删除记录集合
      */
-    function deletes(){
+    function deletes() {
         print_r($_POST['checkID']);
     }
 

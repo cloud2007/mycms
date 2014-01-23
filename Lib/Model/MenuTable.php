@@ -159,6 +159,30 @@ class MenuTable extends Data {
     }
 
     /**
+     * categoryID 字段
+     * @param type $field
+     * @return string|null
+     */
+    public function showCategoryID($field, $newsinfo) {
+        $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
+        $selectCheckArray = array_filter(explode('|', $this->{$field . '_'}));
+        if (in_array($field, $tcitFieldsArray)) {
+            $returnStr = '<tr><td>';
+            $returnStr .= $this->$field;
+            $returnStr .= '</td><td class="textleft">';
+            $returnStr .= '<select name="categoryID">';
+            $returnStr .='<option value="0">一级类别</option>';
+            foreach ($newsinfo as $v) {
+                $returnStr .= '<option value="' . $v['id'] . '" ' . $v['selected'] . '>' . $v['spacer'] . $v['categoryTitle'] . '</option>';
+            }
+            $returnStr .='</select>';
+            $returnStr .='</td></tr>';
+            return $returnStr;
+        }
+        return NULL;
+    }
+
+    /**
      * 文本区域
      * @param type $field
      * @return string|null

@@ -16,6 +16,7 @@ $(document).ready(function() {
 	uploadSigle('categorySmallPic');
 	uploadSigle('categoryBigPic');
 	uploadMulti('multiPic');
+	uploadMulti('categoryMultiPic');
 
 	//设置默认图事件
 	$(".default_box a").live('click',function(){

@@ -457,6 +457,16 @@ class Data {
         return array_filter($keys);
     }
 
+    public function Aggregate($fun, $column) {
+        $this->connection = DataConnection::getConnection();
+        $this->sql = "SELECT " . $fun . "(`" . $column . "`) as " . $fun . " from " . $this->table;
+        if ($this->query()) {
+            $row = mysql_fetch_assoc($this->result);
+            $this->$fun = $row[$fun];
+        }
+        return $this;
+    }
+
     public function dateConvert($timestamp, $style) {
         return date($timestamp, $style);
     }

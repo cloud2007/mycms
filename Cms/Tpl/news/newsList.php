@@ -9,6 +9,7 @@
 		<td><input type="checkbox" id="checkAll"> 全选</td>
 		<td><b>ID</b></td>
 		<td><b>菜单标题</b></td>
+		<td><b>所属类别</b></td>
 		<td><b>项目标题</b></td>
 		<td><b>功能链接</b></td>
 		<td><b>对应权限</b></td>
@@ -19,6 +20,7 @@
 		<td><input name="checkID[]" type="checkbox" value="<?php echo $v->id;?>"></td>
 		<td><?php echo $v->id;?></td>
 		<td><?php echo $v->title;?></td>
+		<td><?php echo $v->categoryPath();?></td>
 		<td><?php echo $v->title1;?></td>
 		<td align="left"><?php echo $v->title1;?></td>
 		<td><?php echo $v->title1;?></td>

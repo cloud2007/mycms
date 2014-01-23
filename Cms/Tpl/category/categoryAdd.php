@@ -7,32 +7,38 @@
 </div>
 <form name="AddForm" id="AddForm" method="post" action="/admin.php/Category/categorySave">
 	<input type="hidden" name="lmID" value="<?php echo $_SESSION['lam'];?>" />
-	<input type="hidden" name="id" value="<?php echo $newsinfo->id;?>" />
+	<input type="hidden" name="id" value="<?php echo $cateinfo->id;?>" />
+	<input type="hidden" name="orderNo" value="<?php echo $cateinfo->orderNo;?>" />
 	<table width="100%" class="content_table">
 		<tr>
 			<td>所属类别</td>
 			<td class="textleft">
 				<select name="parentID">
-					<option value="">一级类别</option>
+					<option value="0">一级类别</option>
+					<?php
+					foreach($dataList as $v){
+						echo '<option value="'.$v['id'].'" '. $v['selected'] .'>'. $v['spacer'] . $v['categoryTitle'].'</option>';
+					}
+					?>
 				</select>
 			</td>
 		</tr>
 		<?php
 			$inputArray=array('categoryTitle','categoryTitle1','categoryTitle2','categoryBremark');
 			foreach($inputArray as $v){
-				echo $datainfo->showInput("{$v}",$newsinfo);
+				echo $datainfo->showInput("{$v}",$cateinfo);
 			}
 			for($i=1;$i<3;$i++){
-				echo $datainfo->showTextarea('categoryName'.$i,$newsinfo);
+				echo $datainfo->showTextarea('categoryName'.$i,$cateinfo);
 			}
 			for($i=1;$i<3;$i++){
-				echo $datainfo->showEditorContent('categoryContent'.$i,$newsinfo);
+				echo $datainfo->showEditorContent('categoryContent'.$i,$cateinfo);
 			}
 			$uploadArray=array('categorySmallPic','categoryBigPic');
 			foreach($uploadArray as $v){
-				echo $datainfo->showUploadSingle("{$v}",$newsinfo);
+				echo $datainfo->showUploadSingle("{$v}",$cateinfo);
 			}
-			echo $datainfo->showUploadMulti('categoryMultiPic',$newsinfo);
+			echo $datainfo->showUploadMulti('categoryMultiPic',$cateinfo);
 		?>
 	</table>
 	<div class="clearH"></div>

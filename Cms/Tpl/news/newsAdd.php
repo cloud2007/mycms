@@ -9,7 +9,21 @@
 	<input type="hidden" name="lmID" value="<?php echo $_SESSION['lam'];?>" />
 	<input type="hidden" name="id" value="<?php echo $newsinfo->id;?>" />
 	<table width="100%" class="content_table">
+		<!--tr>
+			<td>标题名称</td>
+			<!--td class="textleft">
+				<select name="categoryID">
+					<option value="0">一级类别</option>
+					<?php
+					foreach($dataList as $v){
+						echo '<option value="'.$v['id'].'" '. $v['selected'] .'>'. $v['spacer'] . $v['categoryTitle'].'</option>';
+					}
+					?>
+				</select>
+			</td>
+		</tr-->
 		<?php
+			echo $datainfo->showCategoryID('category',$dataList);
 			echo $datainfo->showInput('title',$newsinfo);
 			for($i=1;$i<11;$i++){
 				echo $datainfo->showInput('title'.$i,$newsinfo);

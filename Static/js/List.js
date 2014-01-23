@@ -52,6 +52,14 @@ $(function(){
 		else
 			return nFalse;
 	}
+	
+	//控制上移下移按钮显示
+	$('.textleftlist .btn').addClass('none');
+	$('.textleftlist').bind({
+		mouseover:function(){$(this).find('.btn').removeClass('none');},
+		mouseout :function(){$(this).find('.btn').addClass('none');},
+	})
+	
 })
 
 //表单名ListForm 全选按钮name=checkAll checkbox name=checkID[]

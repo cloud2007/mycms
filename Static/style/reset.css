@@ -19,6 +19,7 @@ a{ text-decoration:none; color:#666}
 a:hover{ text-decoration:none; color:#666}
 .alt{background:#F7F7F7;}
 .over{background:#FEF3D1;}
+.none{filter:alpha(opacity=0); -moz-opacity:0; -khtml-opacity:0; opacity:0;}
 
 /*form验证 样式*/
 .Validform_checktip{margin-left:10px; color:#FF0000;}
@@ -42,6 +43,7 @@ background: -moz-linear-gradient(top, #999, #666 100%); background: -webkit-grad
 .btn.pink { background: #e1a;}
 
 .btn.big {padding:3px 10px; font-size:16px;}
+.btn.small {padding:1px 5px; font-size:9px;}
 
 .btn:hover { background-color: #a00; }
 .btn:active { background-color: #444; }

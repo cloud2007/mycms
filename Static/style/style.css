@@ -12,6 +12,7 @@ h2.title{background:url(../images/newlinebg3.gif);line-height:36px;color: #000;t
 table.content_table{ border-collapse:collapse;}
 table.content_table td{border: 1px solid #CFCFCF; height:35px; padding:0 2px; text-align:center}
 table.content_table td.textleft{text-align:left; padding:10px}
+table.content_table td.textleftlist{text-align:left; padding:0 10px}
 table.content_table td.textarea{text-align:left; padding:10px}
 table.content_table tr.title td{background:url(../images/newlinebg3.gif);line-height:35px; color: #000;text-align:center; font-size:14px; font-weight:normal}
 table.content_table_left td{text-align:left; padding:0 0 0 10px; line-height:35px;}

@@ -6,23 +6,17 @@
 <form name="ListForm" id="ListForm" method="post" action="/admin.php/Category/Deletes">
 <table width="100%" class="content_table">
 	<tr class="title">
-		<td><input type="checkbox" id="checkAll"> 全选</td>
+		<td><input type="checkbox" id="checkAll" disabled="disabled" /> 全选</td>
 		<td><b>ID</b></td>
-		<td><b>菜单标题</b></td>
-		<td><b>项目标题</b></td>
-		<td><b>功能链接</b></td>
-		<td><b>对应权限</b></td>
+		<td><b>类别名称</b></td>
 		<td><b>单项操作</b></td>
 	</tr>
-	<?php foreach($NewsList as $v){?>
+	<?php foreach($dataList as $v){?>
 	<tr class="content">
-		<td><input name="checkID[]" type="checkbox" value="<?php echo $v->id;?>"></td>
-		<td><?php echo $v->id;?></td>
-		<td><?php echo $v->title;?></td>
-		<td><?php echo $v->title1;?></td>
-		<td align="left"><?php echo $v->title1;?></td>
-		<td><?php echo $v->title1;?></td>
-		<td><a href="/admin.php/News/Add/<?php echo $v->id;?>">修改</a>|<a href="javascript:if (confirm('确定要删除此条信息吗？')) {location='/admin.php/News/Delete/<?php echo $v->id;?>';}">删除</a> </td>
+		<td><input name="checkID[]" type="checkbox" value="<?php echo $v->id;?>" /></td>
+		<td><?php echo $v['id'];?></td>
+		<td class="textleftlist"><?php echo $v['spacer'];?><?php echo $v['categoryTitle'];?><div style="float:right;"><input id="<?php echo $v['id'];?>" op="up" name="upButton" type="button" value="上移" class="btn blue small" /> <input id="<?php echo $v['id'];?>" op="down" name="downButton" type="button" value="下移" class="btn blue small" /></div></td>
+		<td><a href="/admin.php/Category/AddSon/<?php echo $v['id'];?>">添加子类</a>|<a href="/admin.php/Category/Add/<?php echo $v['id'];?>">修改</a>|<a href="javascript:if (confirm('确定要删除此条信息吗？')) {location='/admin.php/Category/Delete/<?php echo $v['id'];?>';}">删除</a> </td>
 	</tr>
 	<?php }?>
 	<tr>
@@ -32,3 +26,14 @@
 </table>
 </form>
 <script type="text/javascript" src="/Static/js/List.js"></script>
+<script>
+	$("input[name='upButton'],input[name='downButton']").click(function(){
+		var id = $(this).attr('id');
+		var op = $(this).attr('op');
+		//alert(id+op);
+		$('#ListForm').attr("action","/admin.php/category/"+op+'/'+id);
+		$('#ListForm').submit();
+	})
+	
+	
+</script>
