@@ -10,10 +10,6 @@
 class NewsAction extends AdminAction {
 
     function __construct() {
-        if (!$_SESSION['col'] && !$_SESSION['dat']) {
-            echo 'There is some wrong , please stop! ';
-            die;
-        }
         parent::__construct();
     }
 

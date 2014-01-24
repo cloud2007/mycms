@@ -9,6 +9,8 @@
  */
 class NewsTable extends Data {
 
+    private $categoryArray = array();
+
     function __construct() {
         $options = array(
             'key' => 'id',
@@ -66,31 +68,18 @@ class NewsTable extends Data {
 
     public function categoryPath() {
         $cateID = $this->categoryID;
-        return $this->getCategoryTitle($cateID);
-        /*
-          $cateobj = new CategoryTable();
-          $tree = new Tree($cateobj->formatArray());
-          $dataList = $tree->getArray(0,$this->categoryID);
-          echo '<select name="categoryID"><option value="0">一级类别</option>';
-          foreach ($dataList as $v) {
-          echo '<option value="' . $v['id'] . '" ' . $v['selected'] . '>' . $v['spacer'] . $v['categoryTitle'] . '</option>';
-          }
-          echo '</select>';
-         */
-        //return $cateObj->categoryTitle;
+        return $res = $this->getCategoryTitle($cateID);
     }
 
     private function getCategoryTitle($cateID) {
-        //$strArray = array();
-        $objname = 'obj'.$cateID;
-        $objname = new CategoryTable;
-        $objname->load($cateID);
-        $strArray[] = $objname->categoryTitle;
-        if ($objname->parentID > 0) {
-            $this->getCategoryTitle($objname->parentID);
+        if ($cateID != 0) {
+            $obj = new CategoryTable;
+            $obj->load($cateID);
+            $this->categoryArray[] = $obj->categoryTitle;
+            $this->getCategoryTitle($obj->parentID);
         }
-        //return $objname->parentID;
-        return implode('-', $strArray);
+        arsort($this->categoryArray);
+        return implode('<font color="red"> -> </font>', $this->categoryArray);
     }
 
 }

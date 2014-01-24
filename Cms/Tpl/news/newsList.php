@@ -29,7 +29,7 @@
 	<?php }?>
 	<tr>
 		<td><input name="del" type="button" value="删 除" class="btn blue" /></td>
-		<td colspan="6" class="pages"><?php echo $PagerData['linkhtml'];?></td>
+		<td colspan="7" class="pages"><?php echo $PagerData['linkhtml'];?></td>
 	</tr>
 </table>
 </form>

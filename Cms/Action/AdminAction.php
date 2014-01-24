@@ -21,6 +21,12 @@ class AdminAction extends Action {
         $_SESSION['dat'] = $_GET['dat'] ? $_GET['dat'] : $_SESSION['dat'];
         $MenuAdmin = new MenuTable;
         $_SESSION['lam'] = $_SESSION['col'] ? $MenuAdmin->load($_SESSION['col'])->lmID : NULL;
+        /**
+          if (!$_SESSION['col'] && !$_SESSION['dat']) {
+          echo 'There is some wrong , please stop! ';
+          die;
+          }
+         */
     }
 
 }

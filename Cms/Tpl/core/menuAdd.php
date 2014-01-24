@@ -94,7 +94,7 @@
 				select
 				<input name="set_nr[]" type="checkbox" value="<?php echo $o;?>_check" <?php echo $datainfo ->fieldShow($o_check,1);?> />
 				check
-				<input name="<?php echo $o;?>_" type="text" value="<?php echo $datainfo->$o_;?>" size="50"></td>
+				<input name="<?php echo $o;?>_" type="text" value="<?php echo $datainfo->$o_;?>" size="40"></td>
 			<?php
 			if($i%2==0)echo'</tr><tr>';
 			}
