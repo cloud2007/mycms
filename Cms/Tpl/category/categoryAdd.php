@@ -39,6 +39,7 @@
 				echo $datainfo->showUploadSingle("{$v}",$cateinfo);
 			}
 			echo $datainfo->showUploadMulti('categoryMultiPic',$cateinfo);
+			echo $datainfo->showCreatTime('creatTime',$newsinfo);
 		?>
 	</table>
 	<div class="clearH"></div>
@@ -51,6 +52,7 @@
 <script type="text/javascript" src="/Static/js/swfupload/scripts/swfobject.js"></script>
 <script type="text/javascript" src="/Static/js/swfupload/scripts/jquery.uploadify.v2.1.0.min.js"></script>
 <script type="text/javascript" src="/Static/js/swfupload/myupload.js"></script>
+<script type="text/javascript" src="/Static/js/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript">
 //content字段Kind初始化
 $(function(){

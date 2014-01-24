@@ -159,13 +159,30 @@ class MenuTable extends Data {
     }
 
     /**
+     * input 时间字段
+     * @param type $field
+     * @return string|null
+     */
+    public function showCreatTime($field, $newsinfo) {
+        $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
+        if (in_array($field, $tcitFieldsArray)) {
+            $returnStr = '<tr><td>';
+            $returnStr .= $this->$field;
+            $returnStr .= '</td><td class="textleft">';
+            $returnStr .= '<input type="text" name="' . $field . '" value="' . date('Y-m-d H:i:s',$newsinfo->$field ? $newsinfo->$field : time()) . '" onClick="WdatePicker()" style="width:182px;" />';
+            $returnStr .='</td></tr>';
+            return $returnStr;
+        }
+        return NULL;
+    }
+
+    /**
      * categoryID 字段
      * @param type $field
      * @return string|null
      */
     public function showCategoryID($field, $newsinfo) {
         $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
-        $selectCheckArray = array_filter(explode('|', $this->{$field . '_'}));
         if (in_array($field, $tcitFieldsArray)) {
             $returnStr = '<tr><td>';
             $returnStr .= $this->$field;
@@ -173,7 +190,7 @@ class MenuTable extends Data {
             $returnStr .= '<select name="categoryID">';
             $returnStr .='<option value="0">一级类别</option>';
             foreach ($newsinfo as $v) {
-                $returnStr .= '<option value="' . $v['id'] . '" ' . $v['selected'] . '>' . $v['spacer'] . $v['categoryTitle'] . '</option>';
+                $returnStr .= '<option value="' . $v['id'] . '" ' . $v['selected'] . '>' . $v['categoryTitle'] . '</option>';
             }
             $returnStr .='</select>';
             $returnStr .='</td></tr>';

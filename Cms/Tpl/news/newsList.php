@@ -10,9 +10,9 @@
 		<td><b>ID</b></td>
 		<td><b>菜单标题</b></td>
 		<td><b>所属类别</b></td>
-		<td><b>项目标题</b></td>
-		<td><b>功能链接</b></td>
-		<td><b>对应权限</b></td>
+		<td><b>属　　性</b></td>
+		<td><b>点 击 数</b></td>
+		<td><b>创建时间</b></td>
 		<td><b>单项操作</b></td>
 	</tr>
 	<?php foreach($NewsList as $v){?>
@@ -21,9 +21,9 @@
 		<td><?php echo $v->id;?></td>
 		<td><?php echo $v->title;?></td>
 		<td><?php echo $v->categoryPath();?></td>
-		<td><?php echo $v->title1;?></td>
-		<td align="left"><?php echo $v->title1;?></td>
-		<td><?php echo $v->title1;?></td>
+		<td><?php echo $v->status();?></td>
+		<td><?php echo $v->hits;?></td>
+		<td><?php echo $v->creatTime();?></td>
 		<td><a href="/admin.php/News/Add/<?php echo $v->id;?>">修改</a>|<a href="javascript:if (confirm('确定要删除此条信息吗？')) {location='/admin.php/News/Delete/<?php echo $v->id;?>';}">删除</a> </td>
 	</tr>
 	<?php }?>

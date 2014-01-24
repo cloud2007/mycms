@@ -9,25 +9,13 @@
 	<input type="hidden" name="lmID" value="<?php echo $_SESSION['lam'];?>" />
 	<input type="hidden" name="id" value="<?php echo $newsinfo->id;?>" />
 	<table width="100%" class="content_table">
-		<!--tr>
-			<td>标题名称</td>
-			<!--td class="textleft">
-				<select name="categoryID">
-					<option value="0">一级类别</option>
-					<?php
-					foreach($dataList as $v){
-						echo '<option value="'.$v['id'].'" '. $v['selected'] .'>'. $v['spacer'] . $v['categoryTitle'].'</option>';
-					}
-					?>
-				</select>
-			</td>
-		</tr-->
 		<?php
 			echo $datainfo->showCategoryID('category',$dataList);
 			echo $datainfo->showInput('title',$newsinfo);
 			for($i=1;$i<11;$i++){
 				echo $datainfo->showInput('title'.$i,$newsinfo);
 			}
+			echo $datainfo->showInput('hits',$newsinfo);
 			for($i=1;$i<6;$i++){
 				echo $datainfo->showTextarea('name'.$i,$newsinfo);
 			}
@@ -45,6 +33,7 @@
 				echo $datainfo->showUploadSingle('upload'.$i,$newsinfo);
 			}
 			echo $datainfo->showUploadMulti('multiPic',$newsinfo);
+			echo $datainfo->showCreatTime('creatTime',$newsinfo);
 		?>
 	</table>
 	<div class="clearH"></div>
@@ -57,6 +46,7 @@
 <script type="text/javascript" src="/Static/js/swfupload/scripts/swfobject.js"></script>
 <script type="text/javascript" src="/Static/js/swfupload/scripts/jquery.uploadify.v2.1.0.min.js"></script>
 <script type="text/javascript" src="/Static/js/swfupload/myupload.js"></script>
+<script type="text/javascript" src="/Static/js/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript">
 //content字段Kind初始化
 $(function(){

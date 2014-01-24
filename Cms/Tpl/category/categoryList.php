@@ -15,13 +15,13 @@
 	<tr class="content">
 		<td><input name="checkID[]" type="checkbox" value="<?php echo $v->id;?>" /></td>
 		<td><?php echo $v['id'];?></td>
-		<td class="textleftlist"><?php echo $v['spacer'];?><?php echo $v['categoryTitle'];?><div style="float:right;"><input id="<?php echo $v['id'];?>" op="up" name="upButton" type="button" value="上移" class="btn blue small" /> <input id="<?php echo $v['id'];?>" op="down" name="downButton" type="button" value="下移" class="btn blue small" /></div></td>
+		<td class="textleftlist"><?php echo $v['categoryTitle'];?><div style="float:right;"><input id="<?php echo $v['id'];?>" op="up" name="upButton" type="button" value="上移" class="btn blue small" /> <input id="<?php echo $v['id'];?>" op="down" name="downButton" type="button" value="下移" class="btn blue small" /></div></td>
 		<td><a href="/admin.php/Category/AddSon/<?php echo $v['id'];?>">添加子类</a>|<a href="/admin.php/Category/Add/<?php echo $v['id'];?>">修改</a>|<a href="javascript:if (confirm('确定要删除此条信息吗？')) {location='/admin.php/Category/Delete/<?php echo $v['id'];?>';}">删除</a> </td>
 	</tr>
 	<?php }?>
 	<tr>
 		<td><input name="del" type="button" value="删 除" class="btn blue" /></td>
-		<td colspan="6" class="pages"><?php echo $PagerData['linkhtml'];?></td>
+		<td colspan="6" class="pages"><?php echo '^_^';?></td>
 	</tr>
 </table>
 </form>

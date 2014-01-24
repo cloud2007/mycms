@@ -17,8 +17,8 @@ class AdminAction extends Action {
         $this->UserInfo = $UserAdmin->CheckLogin();
         $this->header = new View('header');
         $this->footer = new View('footer');
-        $_SESSION['col'] = $_GET['col'] ? $_GET['col'] : $_SESSION['col'];
-        $_SESSION['dat'] = $_GET['dat'] ? $_GET['dat'] : $_SESSION['dat'];
+        @$_SESSION['col'] = $_GET['col'] ? $_GET['col'] : $_SESSION['col'];
+        @$_SESSION['dat'] = $_GET['dat'] ? $_GET['dat'] : $_SESSION['dat'];
         $MenuAdmin = new MenuTable;
         $_SESSION['lam'] = $_SESSION['col'] ? $MenuAdmin->load($_SESSION['col'])->lmID : NULL;
         /**

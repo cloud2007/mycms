@@ -36,11 +36,20 @@ class CategoryTable extends Data {
         parent::init($options);
     }
 
+    public function save() {
+        if (!$this->creatTime)
+            $this->creatTime = time();
+        else
+            $this->creatTime = strtotime($this->creatTime);
+        parent::save();
+        return $this;
+    }
+
     /**
      * 格式化TreeClass需求的数组格式
      * @param type $array
      */
-    function formatArray($lmID) {
+    function formatArray($lmID = '') {
         $lmID = $lmID ? $lmID : $_SESSION['lam'];
         $array = $this->find(
                 array(

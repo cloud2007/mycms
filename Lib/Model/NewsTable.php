@@ -82,6 +82,35 @@ class NewsTable extends Data {
         return implode('<font color="red"> -> </font>', $this->categoryArray);
     }
 
+    public function save() {
+        if (!$this->creatTime)
+            $this->creatTime = time();
+        else
+            $this->creatTime = strtotime($this->creatTime);
+        parent::save();
+        return $this;
+    }
+
+    public function status() {
+        $status = array('is_tj', 'is_gd', 'is_ab','is_cd','is_ef','is_gh','is_jk' => 'is_jk','is_mn');
+        $statusArray = array();
+        $Menu = new MenuTable();
+        $res = $Menu->find(
+                array(
+                    'whereAnd' => array(array('id', '=' . $_SESSION['col'])),
+                )
+        );
+        if (!$res)
+            return NULL;
+        $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
+        foreach ($status as $field) {
+            if (in_array($field, $tcitFieldsArray) || $this->$field == 1) {
+                $statusArray[] = '[' . $res[0]->$field . ']';
+            }
+        }
+        return implode('', $statusArray);
+    }
+
 }
 
 ?>

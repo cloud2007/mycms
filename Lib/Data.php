@@ -255,6 +255,7 @@ class Data {
     }
 
     public function save() {
+        $this->htmlspecialchars();
         if (!empty($this->saveNeeds)) {
             foreach ($this->saveNeeds as $o) {
                 if (!$this->get($o) || strlen($this->get($o)) == 0) {

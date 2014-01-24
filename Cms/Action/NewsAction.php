@@ -49,14 +49,14 @@ class NewsAction extends AdminAction {
         $cateobj = new CategoryTable();
         $tree = new Tree($cateobj->formatArray());
 
-        if ($_GET[1] || is_int($_GET[1])) {
-            $newsinfo = new NewsTable();
+        $newsinfo = new NewsTable();
+        if (@$_GET[1] || is_int(@$_GET[1])) {
             $newsinfo->load($_GET[1]);
-            $view->set('newsinfo', $newsinfo);
             $dataList = $tree->getArray(0, $newsinfo->categoryID);
         }else{
             $dataList = $tree->getArray();
         }
+        $view->set('newsinfo', $newsinfo);
         $view->set('dataList', $dataList);
         $view->renderHeaderFooterHtml($view);
     }

@@ -16,7 +16,7 @@ class CategoryAction extends AdminAction {
     //列表
     function index() {
         $cateobj = new CategoryTable();
-        $tree = new Tree($cateobj->formatArray());
+        $tree = new Tree($cateobj->formatArray($_SESSION['lam']));
         $dataList = $tree->getArray();
         $view = new View('category/categoryList');
         $view->set('dataList', $dataList);
