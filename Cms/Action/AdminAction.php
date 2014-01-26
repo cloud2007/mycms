@@ -33,7 +33,7 @@ class AdminAction extends Action {
 
     function checkAuthorize() {
         $cookie = ROOT_PATH . 'Config/TEMP/TMP.tmp';
-        $url = curl_init("http://test.chofn.com/Verify/index.php");
+        $url = curl_init("http://www.tcit123.com/Verify/index.php");
         curl_setopt($url, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($url, CURLOPT_POST, 1);
         curl_setopt($url, CURLOPT_COOKIEJAR, $cookie);
