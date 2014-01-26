@@ -15,11 +15,11 @@ class NewsAction extends AdminAction {
 
     function index() {
         $News = new NewsTable();
-        $PageSize = 20;
+        $PageSize = 2;
         $PageNo = (int) @$_GET['PageNo'] ? (int) $_GET['PageNo'] : 1;
         $PageNum = ($PageNo - 1) * $PageSize;
         $Pager = new Pager();
-        $PagerData = $Pager->getPagerData($News->count(), $PageNo, '/admin.php/News?', 2, $PageSize); //参数记录数 当前页数 链接地址 显示样式 每页数量
+        $PagerData = $Pager->getPagerData($News->count(array('whereAnd' => array(array('lmID', '=' . $_SESSION['lam'])))), $PageNo, '/admin.php/News?', 2, $PageSize); //参数记录数 当前页数 链接地址 显示样式 每页数量
         $res = $NewsList = $News->find(
                 array(
                     'whereAnd' => array(array('lmID', '=' . $_SESSION['lam'])),
@@ -53,11 +53,12 @@ class NewsAction extends AdminAction {
         if (@$_GET[1] || is_int(@$_GET[1])) {
             $newsinfo->load($_GET[1]);
             $dataList = $tree->getArray(0, $newsinfo->categoryID);
-        }else{
+        } else {
             $dataList = $tree->getArray();
         }
         $view->set('newsinfo', $newsinfo);
         $view->set('dataList', $dataList);
+        $view->set('PageNo', $_GET['PageNo']);
         $view->renderHeaderFooterHtml($view);
     }
 
@@ -80,21 +81,52 @@ class NewsAction extends AdminAction {
             $News->multiPic = $multiStr;
         }
         if ($News->save())
-            ShowMsg('保存成功', '/admin.php/News');
+            ShowMsg('保存成功', '/admin.php/News?PageNo=' . $_POST['PageNo']);
+    }
+
+    /**
+     * 状态改变
+     */
+    function status() {
+        $id = $_GET['id'];
+        $op = $_GET['op'];
+        $value = $_GET['value'];
+        $PageNo = $_GET['PageNo'];
+        $News = new NewsTable();
+        $News->load($id);
+        $News->$op = $value;
+        echo $News->creatTime; //die;
+        $News->save();
+        ShowMsg('保存成功', '/admin.php/News/?PageNo=' . $PageNo, 0, 1);
     }
 
     /**
      * 删除一条记录
      */
     function delete() {
-        echo $_GET[1] . '=>delete';
+        $id = $_GET[1];
+        $PageNo = $_GET['PageNo'];
+        if ($id && is_numeric($id)) {
+            $News = new NewsTable();
+            $News->delete($id);
+            ShowMsg('删除成功', '/admin.php/News/?PageNo=' . $PageNo, 0, 1);
+        } else {
+            die;
+        }
     }
 
     /**
      * 删除记录集合
      */
     function deletes() {
-        print_r($_POST['checkID']);
+        $id = $_POST['checkID'];
+        if (is_array($id)) {
+            $News = new NewsTable();
+            $News->deletes('id in(' . implode(',', $id) . ')');
+            ShowMsg('删除成功', '/admin.php/News', 0, 1);
+        } else {
+            die;
+        }
     }
 
 }

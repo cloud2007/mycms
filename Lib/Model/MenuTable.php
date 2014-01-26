@@ -104,6 +104,13 @@ class MenuTable extends Data {
         parent::init($options);
     }
 
+    public function save() {
+        if (!$this->creatTime)
+            $this->creatTime = time();
+        parent::save();
+        return $this;
+    }
+    
     /**
      * 是否显示字段勾选状态
      * @param type $field

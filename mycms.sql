@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: 127.0.0.1:3306
--- 生成日期: 2014 年 01 月 24 日 09:46
+-- 生成日期: 2014 年 01 月 26 日 09:53
 -- 服务器版本: 5.1.28
 -- PHP 版本: 5.2.6
 
@@ -243,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `tcit_category` (
   `multiPic` text,
   `creatTime` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='类别表' AUTO_INCREMENT=23 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='类别表' AUTO_INCREMENT=26 ;
 
 --
 -- 导出表中的数据 `tcit_category`
@@ -254,8 +254,8 @@ INSERT INTO `tcit_category` (`id`, `lmID`, `parentID`, `orderNo`, `categoryTitle
 (2, 1, 0, 3, '基本知识', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1362645030),
 (3, 1, 0, 2, '行业动态', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1362645030),
 (4, 1, 1, 4, '前端技术', '别名一', '别名二', NULL, '描述', NULL, '/201401/20140123_120102_6390.jpg', NULL, '&lt;span style=\\"color:#666666;font-family:\\''Courier New\\'', \\''Microsoft Yahei\\'', 宋体;line-height:24px;background-color:#FFFFFF;\\"&gt;内容&lt;/span&gt;', NULL, '|/mutli/201401/20140123_132854_4702.jpg||0\n|/mutli/201401/20140123_132855_6326.jpg||0\n|/mutli/201401/20140123_132856_5457.jpg||0', 1390555716),
-(5, 1, 1, 14, '后台服务', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(6, 1, 2, 6, 'HTML/XML', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(5, 1, 1, 14, '后台服务', '', '', NULL, '', NULL, NULL, NULL, '', NULL, NULL, 1390701651),
+(6, 1, 2, 6, 'HTML/XML', '', '', NULL, '', NULL, NULL, NULL, '', NULL, NULL, 1390701672),
 (7, 1, 2, 8, 'ASP/JSP/PHP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
 (8, 1, 2, 7, 'AJAX/JS/JQUERY', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
 (9, 1, 3, 11, '艾特业界', '', '', NULL, '', NULL, NULL, NULL, '', NULL, NULL, 0),
@@ -264,14 +264,16 @@ INSERT INTO `tcit_category` (`id`, `lmID`, `parentID`, `orderNo`, `categoryTitle
 (12, 1, 9, 0, '360VSQQ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
 (13, 1, 1, 0, '系统OP', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1390555714),
 (14, 1, 1, 13, '系统开发', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(15, 1, 1, 15, '脚本技术', '别名1', '别名2', NULL, '描述', NULL, '/201401/20140123_115940_4501.jpg', NULL, '<span style=\\"color:#666666;font-family:\\''Courier New\\'', \\''Microsoft Yahei\\'', 宋体;line-height:24px;background-color:#FFFFFF;\\">内容</span>', NULL, NULL, NULL),
 (16, 1, 9, 12, '腾讯技术', '', '', NULL, '', NULL, NULL, NULL, '', NULL, NULL, NULL),
 (17, 1, 12, 0, '360', '', '', NULL, '', NULL, NULL, NULL, '', NULL, NULL, NULL),
 (18, 1, 12, 0, 'QQ', '', '', NULL, '', NULL, NULL, NULL, '', NULL, NULL, NULL),
 (19, 1, 17, 0, '35000', '', '', NULL, '', NULL, NULL, NULL, '', NULL, NULL, NULL),
 (20, 1, 18, 0, '1111111111111111111111', '', '', NULL, '', NULL, NULL, NULL, '', NULL, NULL, NULL),
 (21, 1, 1, 5, '办公系统开发', '', '', NULL, '', NULL, NULL, NULL, '', NULL, NULL, 0),
-(22, 1, 17, 0, '1111111111111111111111', '', '', NULL, '', NULL, NULL, NULL, '', NULL, NULL, NULL);
+(22, 1, 17, 0, '1111111111111111111111', '', '', NULL, '', NULL, NULL, NULL, '', NULL, NULL, NULL),
+(23, 2, 0, 16, '栏目类别一', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1390697162),
+(24, 2, 0, 17, '栏目类别二', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1390697175),
+(25, 2, 0, 18, '栏目类别三', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1390697182);
 
 -- --------------------------------------------------------
 
@@ -362,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `tcit_menu` (
   `title10_` varchar(255) DEFAULT NULL,
   `creatTime` varchar(10) DEFAULT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='MENU菜单表' AUTO_INCREMENT=14 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='MENU菜单表' AUTO_INCREMENT=112 ;
 
 --
 -- 导出表中的数据 `tcit_menu`
@@ -370,18 +372,19 @@ CREATE TABLE IF NOT EXISTS `tcit_menu` (
 
 INSERT INTO `tcit_menu` (`id`, `lmID`, `lmName`, `menuName`, `orderNo`, `doLink`, `adminLink`, `grantWord`, `dataBase`, `usable`, `tcitFields`, `category`, `title`, `title1`, `title2`, `title3`, `title4`, `title5`, `title6`, `title7`, `title8`, `title9`, `title10`, `name1`, `name2`, `name3`, `name4`, `name5`, `content`, `content1`, `content2`, `content3`, `content4`, `content5`, `smallpic`, `bigpic`, `upload1`, `upload2`, `upload3`, `upload4`, `upload5`, `multiPic`, `is_tj`, `is_gd`, `is_ab`, `is_cd`, `is_ef`, `is_gh`, `is_jk`, `is_mn`, `hits`, `categoryTitle`, `categoryTitle1`, `categoryTitle2`, `categorySmallPic`, `categoryBigPic`, `categoryBremark`, `categoryName1`, `categoryName2`, `categoryContent1`, `categoryContent2`, `categoryMultiPic`, `uname`, `phone`, `tel`, `fax`, `pic`, `email`, `youbian`, `addr`, `title1_`, `title2_`, `title3_`, `title4_`, `title5_`, `title6_`, `title7_`, `title8_`, `title9_`, `title10_`, `creatTime`) VALUES
 (1, 1000, '--------', '--------', 0, '------非管理员请勿修改下列内容------', NULL, 'menu', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
-(2, 1000, '数据库管理', '恢复数据库', 1000, 'datamanage/datarestore.php', NULL, 'datamanage', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
-(3, 1000, '数据库管理', '备份数据库', 1000, 'datamanage/databackup.php', NULL, 'datamanage', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
-(4, 1000, '数据库管理', '系统初始化', 1000, 'datamanage/datareset.php', NULL, 'ALL', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
-(5, 1000, '系统信息管理', '添加菜单', 1000, 'Core/addMenu', 'Core', 'Core', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
-(6, 1000, '系统信息管理', '权限字管理', 1000, 'grant/grantword.php', NULL, 'grantword', 'grant', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
-(7, 1000, '系统信息管理', '用户权限管理', 1000, 'grant/grant.php', NULL, 'usergrant', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
-(8, 1000, '系统信息管理', '系统信息查看', 1000, 'welcome.php', NULL, 'info', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
-(9, 1000, '系统信息管理', '用户管理', 1000, 'other/edituser.php', NULL, 'user', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
-(10, 1000, '系统信息管理', '用户名和密码', 1000, 'other/changepassword.php', NULL, 'change', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
-(11, 1, '栏目名称', '添加', 1, 'News/Add', 'News', 'add', 'news', 1, 'title|content|category|smallpic|bigpic|is_tj|is_gd|title1|title2|title3|title4|title4_select|title5|title5_check|content1|content2|content3|content4|content5|name1|name2|name3|name5|upload1|upload2|upload3|upload4|upload5|multiPic|is_ab|is_cd|is_ef|is_gh|is_jk|is_mn|hits|creatTime', '所属类别', '标题名称', 'Title', 'Keywords', 'Descriptio', 'select测试', 'checked测试', '', '', '', '', '', 'name1', 'name2', 'name3', '', 'name5', 'content', '内容1', '内容2', '内容3', '内容4', '内容5', 'smallpic', 'bigpic', 'upload1', 'upload2', 'upload3', 'upload4', 'upload5', 'multiPic', '推荐', '固顶', 'is_ab', 'is_cd', 'is_ef', 'is_gh', 'is_jk', 'is_mn', '点击数', '类别名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '中国|美国|英国|日本|韩国', '中国|美国|英国|日本|韩国', '', '', '', '', '', 'creatTime'),
-(12, 1, '栏目名称', '类别管理', 1, 'Category', '', 'add', 'category', 1, 'creatTime|categoryTitle|noSonType|categoryTitle1|categoryTitle2|categorySmallPic|categoryName1|categoryContent1|categoryMultiPic', '', '标题名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '详细内容', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '类别名称', '别名一', '别名二', '小图片一', 'categoryBi', 'categoryBr', '描述', '哪么2', '内容', 'con2', '多图', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '创建时间'),
-(13, 2, '栏目名称2', '添加', 2, 'News/Add', 'News', 'add', 'news', 1, 'title|content|smallpic|is_tj|title1|multiPic|creatTime', '', '标题名称', 'title1', 'title2', '', '', '', '', '', '', '', '', '', '', '', '', '', '详细内容', 'content1', '', '', '', '', 'smallpic', 'bigpic', '', '', '', '', '', 'multiPic', 'is_tj', '', 'is_ab', '', '', '', '', '', '', '类别名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '添加时间');
+(2, 1000, '数据库管理', '恢复数据库', 12, 'datamanage/datarestore.php', NULL, 'datamanage', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
+(3, 1000, '数据库管理', '备份数据库', 11, 'datamanage/databackup.php', NULL, 'datamanage', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
+(4, 1000, '数据库管理', '系统初始化', 13, 'datamanage/datareset.php', NULL, 'ALL', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
+(5, 1000, '系统信息管理', '添加菜单', 21, 'Core/addMenu', 'Core', 'Core', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
+(6, 1000, '系统信息管理', '权限字管理', 25, 'grant/grantword.php', NULL, 'grantword', 'grant', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
+(7, 1000, '系统信息管理', '用户权限管理', 24, 'grant/grant.php', NULL, 'usergrant', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
+(8, 1000, '系统信息管理', '系统信息查看', 26, 'system', NULL, 'info', 'None', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
+(9, 1000, '系统信息管理', '用户管理', 23, 'other/edituser.php', NULL, 'user', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
+(10, 1000, '系统信息管理', '用户名和密码', 22, 'other/changepassword.php', NULL, 'change', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0'),
+(11, 1, '栏目名称', '添加', 1, 'News/Add', 'News', 'add', 'news', 1, 'title|content|category|smallpic|bigpic|is_tj|is_gd|title1|title2|title3|title4|title4_select|title5|title5_check|content1|content2|content3|content4|content5|name1|name2|name3|name5|upload1|upload2|upload3|upload4|upload5|multiPic|is_ab|is_cd|is_ef|hits|creatTime', '所属类别', '标题名称', 'Title', 'Keywords', 'Descriptio', 'select测试', 'checked测试', '', '', '', '', '', 'name1', 'name2', 'name3', '', 'name5', 'content', '内容1', '内容2', '内容3', '内容4', '内容5', 'smallpic', 'bigpic', 'upload1', 'upload2', 'upload3', 'upload4', 'upload5', 'multiPic', '推荐', '固顶', '幻灯', '头条', '特荐', 'is_gh', 'is_jk', 'is_mn', '点击数', '类别名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '中国|美国|英国|日本|韩国', '中国|美国|英国|日本|韩国', '', '', '', '', '', 'creatTime'),
+(12, 1, '栏目名称', '类别管理', 1, 'Category', '', 'add', 'category', 1, 'creatTime|categoryTitle|categoryTitle1|categoryTitle2|categorySmallPic|categoryName1|categoryContent1|categoryMultiPic', '', '标题名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '详细内容', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '类别名称', '别名一', '别名二', '小图片一', 'categoryBi', 'categoryBr', '描述', '哪么2', '内容', 'con2', '多图', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '创建时间'),
+(13, 2, '栏目名称2', '添加', 2, 'News/Add', 'News', 'add', 'news', 1, 'title|content|category|smallpic|is_tj|title1|multiPic|creatTime', '所属类别', '标题名称', 'title1', 'title2', '', '', '', '', '', '', '', '', '', '', '', '', '', '详细内容', 'content1', '', '', '', '', 'smallpic', 'bigpic', '', '', '', '', '', 'multiPic', 'is_tj', '', 'is_ab', '', '', '', '', '', '', '类别名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '添加时间'),
+(14, 2, '栏目名称2', '类别管理', 2, 'Category', '', 'add', 'category', 1, 'categoryTitle|noSonType', '', '标题名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '详细内容', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '类别名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -438,16 +441,86 @@ CREATE TABLE IF NOT EXISTS `tcit_news` (
   `likeNews` int(5) DEFAULT NULL,
   `creatTime` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- 导出表中的数据 `tcit_news`
 --
 
 INSERT INTO `tcit_news` (`id`, `lmID`, `categoryID`, `categorysID`, `title`, `title1`, `title2`, `title3`, `title4`, `title5`, `title6`, `title7`, `title8`, `title9`, `title10`, `name1`, `name2`, `name3`, `name4`, `name5`, `content`, `content1`, `content2`, `content3`, `content4`, `content5`, `smallpic`, `bigpic`, `upload1`, `upload2`, `upload3`, `upload4`, `upload5`, `multiPic`, `is_tj`, `is_gd`, `is_ab`, `is_cd`, `is_ef`, `is_gh`, `is_jk`, `is_mn`, `hits`, `city`, `area`, `likeNews`, `creatTime`) VALUES
-(1, 1, 21, NULL, 'title', 'Title', 'Keywords', 'Descriptio', '英国', '美国|英国', NULL, NULL, NULL, NULL, NULL, 'name1', 'name2', 'name3', NULL, 'name5', '&lt;img src=\\"/Uploads/kindEditor/201401/20140121_143839_1091.jpg\\" alt=\\"\\" /&gt;&lt;img src=\\"/Static/js/kindeditor/plugins/emoticons/images/1.gif\\" border=\\"0\\" alt=\\"\\" /&gt;&lt;img src=\\"/Static/js/kindeditor/plugins/emoticons/images/11.gif\\" border=\\"0\\" alt=\\"\\" /&gt;', '&lt;a class=\\"ke-insertfile\\" href=\\"/Uploads/kindEditor/201401/20140121_170735_7906.zip\\" target=\\"_blank\\"&gt;/Uploads/kindEditor/201401/20140121_170735_7906.zip&lt;/a&gt;&lt;br /&gt;', '', '', '', '', NULL, NULL, '/201401/20140121_174527_7925.jpg', '/201401/20140121_095008_2427.jpg', '/201401/20140121_174527_7925.jpg', '/201401/20140121_094630_9136.jpg', '/201401/20140120_110636_8136.jpg', '|/mutli/201401/20140121_143104_9001.jpg||0\n|/mutli/201401/20140121_143105_9835.jpg||0\n|/mutli/201401/20140121_143106_7803.jpg||0\n|/mutli/201401/20140121_174534_1272.jpg||0\n|/mutli/201401/20140121_174535_6074.jpg||0\n|/mutli/201401/20140121_174536_6832.jpg||0', 1, NULL, 0, 0, 0, NULL, NULL, 1, 111, NULL, NULL, NULL, 1390465235),
-(2, 1, 6, NULL, 'title', 'Title', 'Keywords', 'Descriptio', '英国', '中国|美国|英国|韩国', NULL, NULL, NULL, NULL, NULL, '111', '2', '3', '4', '5', '', '1212', '1212', '1212', '1212', '1212', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '/Uploads/a/201401/20140121_091018_4537.jpg|||0', 0, NULL, 0, 1, 0, NULL, NULL, 0, 0, NULL, NULL, NULL, 1390551984),
-(4, 1, 21, NULL, '标题名称', '', '', '', '中国', NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', NULL, '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, 1, 1, 1, 1, 0, 0, NULL, NULL, NULL, 1390555365),
+(2, 1, 6, NULL, 'title', 'Title', 'Keywords', 'Descriptio', '英国', '中国|美国|英国|韩国', NULL, NULL, NULL, NULL, NULL, '111', '2', '3', '4', '5', '', '1212', '1212', '1212', '1212', '1212', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '/Uploads/a/201401/20140121_091018_4537.jpg|||0', 0, 0, 0, 0, 0, NULL, NULL, 0, 0, NULL, NULL, NULL, 1390703036),
+(11, 2, 23, NULL, '1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 1970),
+(5, 1, 13, NULL, '系统OprationSystem', 'Title', 'Keywords', 'Descriptio', '英国', '美国', NULL, NULL, NULL, NULL, NULL, '', '', '', NULL, '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, 111, NULL, NULL, NULL, 1390703043),
+(4, 1, 21, NULL, '标题名称', '', '', '', '中国', NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', NULL, '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 1, 1, 0, 0, NULL, NULL, NULL, 1390703040),
+(6, 1, 4, NULL, '前端技术', '', '', '', '中国', NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', NULL, '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 1390703144);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tcit_news_copy`
+--
+
+CREATE TABLE IF NOT EXISTS `tcit_news_copy` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `lmID` int(2) NOT NULL,
+  `categoryID` int(2) DEFAULT NULL,
+  `categorysID` int(2) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `title1` varchar(100) DEFAULT NULL,
+  `title2` varchar(100) DEFAULT NULL,
+  `title3` varchar(100) DEFAULT NULL,
+  `title4` varchar(100) DEFAULT NULL,
+  `title5` varchar(100) DEFAULT NULL,
+  `title6` varchar(100) DEFAULT NULL,
+  `title7` varchar(100) DEFAULT NULL,
+  `title8` varchar(100) DEFAULT NULL,
+  `title9` varchar(100) DEFAULT NULL,
+  `title10` varchar(100) DEFAULT NULL,
+  `name1` text,
+  `name2` text,
+  `name3` text,
+  `name4` text,
+  `name5` text,
+  `content` text,
+  `content1` text,
+  `content2` text,
+  `content3` text,
+  `content4` text,
+  `content5` text,
+  `smallpic` varchar(50) DEFAULT NULL,
+  `bigpic` varchar(50) DEFAULT NULL,
+  `upload1` varchar(50) DEFAULT NULL,
+  `upload2` varchar(50) DEFAULT NULL,
+  `upload3` varchar(50) DEFAULT NULL,
+  `upload4` varchar(50) DEFAULT NULL,
+  `upload5` varchar(50) DEFAULT NULL,
+  `multiPic` text,
+  `is_tj` tinyint(1) DEFAULT NULL,
+  `is_gd` tinyint(1) DEFAULT NULL,
+  `is_ab` tinyint(1) DEFAULT NULL,
+  `is_cd` tinyint(1) DEFAULT NULL,
+  `is_ef` tinyint(1) DEFAULT NULL,
+  `is_gh` tinyint(1) DEFAULT NULL,
+  `is_jk` tinyint(1) DEFAULT NULL,
+  `is_mn` tinyint(1) DEFAULT NULL,
+  `hits` int(5) NOT NULL DEFAULT '0',
+  `city` varchar(20) DEFAULT NULL,
+  `area` varchar(20) DEFAULT NULL,
+  `likeNews` int(5) DEFAULT NULL,
+  `creatTime` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- 导出表中的数据 `tcit_news_copy`
+--
+
+INSERT INTO `tcit_news_copy` (`id`, `lmID`, `categoryID`, `categorysID`, `title`, `title1`, `title2`, `title3`, `title4`, `title5`, `title6`, `title7`, `title8`, `title9`, `title10`, `name1`, `name2`, `name3`, `name4`, `name5`, `content`, `content1`, `content2`, `content3`, `content4`, `content5`, `smallpic`, `bigpic`, `upload1`, `upload2`, `upload3`, `upload4`, `upload5`, `multiPic`, `is_tj`, `is_gd`, `is_ab`, `is_cd`, `is_ef`, `is_gh`, `is_jk`, `is_mn`, `hits`, `city`, `area`, `likeNews`, `creatTime`) VALUES
+(1, 1, 21, NULL, 'title', 'Title', 'Keywords', 'Descriptio', '英国', '美国|英国', NULL, NULL, NULL, NULL, NULL, 'name1', 'name2', 'name3', NULL, 'name5', '&lt;img src=\\"/Uploads/kindEditor/201401/20140121_143839_1091.jpg\\" alt=\\"\\" /&gt;&lt;img src=\\"/Static/js/kindeditor/plugins/emoticons/images/1.gif\\" border=\\"0\\" alt=\\"\\" /&gt;&lt;img src=\\"/Static/js/kindeditor/plugins/emoticons/images/11.gif\\" border=\\"0\\" alt=\\"\\" /&gt;', '&lt;a class=\\"ke-insertfile\\" href=\\"/Uploads/kindEditor/201401/20140121_170735_7906.zip\\" target=\\"_blank\\"&gt;/Uploads/kindEditor/201401/20140121_170735_7906.zip&lt;/a&gt;&lt;br /&gt;', '', '', '', '', NULL, NULL, '/201401/20140121_174527_7925.jpg', '/201401/20140121_095008_2427.jpg', '/201401/20140121_174527_7925.jpg', '/201401/20140121_094630_9136.jpg', '/201401/20140120_110636_8136.jpg', '|/mutli/201401/20140121_143104_9001.jpg||0\n|/mutli/201401/20140121_143105_9835.jpg||0\n|/mutli/201401/20140121_143106_7803.jpg||0\n|/mutli/201401/20140121_174534_1272.jpg||0\n|/mutli/201401/20140121_174535_6074.jpg||0\n|/mutli/201401/20140121_174536_6832.jpg||0', 1, 1, 0, 1, 1, NULL, NULL, 1, 111, NULL, NULL, NULL, 1390703098),
+(2, 1, 6, NULL, 'title', 'Title', 'Keywords', 'Descriptio', '英国', '中国|美国|英国|韩国', NULL, NULL, NULL, NULL, NULL, '111', '2', '3', '4', '5', '', '1212', '1212', '1212', '1212', '1212', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '/Uploads/a/201401/20140121_091018_4537.jpg|||0', 0, 0, 0, 0, 0, NULL, NULL, 0, 0, NULL, NULL, NULL, 1390703036),
+(5, 1, 13, NULL, '系统OprationSystem', 'Title', 'Keywords', 'Descriptio', '英国', '美国', NULL, NULL, NULL, NULL, NULL, '', '', '', NULL, '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, NULL, NULL, NULL, 111, NULL, NULL, NULL, 1390703043),
+(4, 1, 21, NULL, '标题名称', '', '', '', '中国', NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', NULL, '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 1, 1, 0, 0, NULL, NULL, NULL, 1390703040),
+(6, 1, 4, NULL, '前端技术', '', '', '', '中国', NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', NULL, '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 1, 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 1390703144),
 (3, 2, NULL, NULL, '栏目2内容', '栏目2内容1', '栏目2内容2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '栏目2内容栏目2内容栏目2内容', '栏目2内容栏目2内容栏目2内容栏目2内容栏目2内容栏目2内容栏目2内容', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '|/mutli/201401/20140122_132110_7073.jpg||0\n|/mutli/201401/20140122_132111_1388.jpg||0\n|/mutli/201401/20140122_132112_7628.jpg||0\n|/mutli/201401/20140122_132113_9328.jpg||0', 0, NULL, 1, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 1390549735);
 
 -- --------------------------------------------------------

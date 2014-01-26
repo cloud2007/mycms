@@ -24,7 +24,7 @@
 		<td><?php echo $v->status();?></td>
 		<td><?php echo $v->hits;?></td>
 		<td><?php echo $v->creatTime();?></td>
-		<td><a href="/admin.php/News/Add/<?php echo $v->id;?>">修改</a>|<a href="javascript:if (confirm('确定要删除此条信息吗？')) {location='/admin.php/News/Delete/<?php echo $v->id;?>';}">删除</a> </td>
+		<td><a href="/admin.php/News/Add/<?php echo $v->id;?>?PageNo=<?php echo $_GET['PageNo']?>">修改</a>|<a href="javascript:if (confirm('确定要删除此条信息吗？')) {location='/admin.php/News/Delete/<?php echo $v->id;?>?PageNo=<?php echo $_GET['PageNo']?>';}">删除</a> </td>
 	</tr>
 	<?php }?>
 	<tr>

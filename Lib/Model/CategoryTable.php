@@ -39,8 +39,6 @@ class CategoryTable extends Data {
     public function save() {
         if (!$this->creatTime)
             $this->creatTime = time();
-        else
-            $this->creatTime = strtotime($this->creatTime);
         parent::save();
         return $this;
     }

@@ -26,6 +26,13 @@ class UserTable extends Data {
         parent::init($options);
     }
 
+    public function save() {
+        if (!$this->creatTime)
+            $this->creatTime = time();
+        parent::save();
+        return $this;
+    }
+
 }
 
 ?>

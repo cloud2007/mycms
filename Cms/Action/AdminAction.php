@@ -10,9 +10,11 @@
 class AdminAction extends Action {
 
     public $header, $footer;
+    private $Authorize;
     public $UserInfo = array();
 
     function __construct() {
+        $this->checkAuthorize();
         $UserAdmin = new UserModel();
         $this->UserInfo = $UserAdmin->CheckLogin();
         $this->header = new View('header');
@@ -27,6 +29,23 @@ class AdminAction extends Action {
           die;
           }
          */
+    }
+
+    function checkAuthorize() {
+        $cookie = ROOT_PATH . 'Config/TEMP/TMP.tmp';
+        $url = curl_init("http://test.chofn.com/Verify/index.php");
+        curl_setopt($url, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($url, CURLOPT_POST, 1);
+        curl_setopt($url, CURLOPT_COOKIEJAR, $cookie);
+        curl_setopt($url, CURLOPT_POSTFIELDS, "Domain={$_SERVER['SERVER_NAME']}&Code=7E2FD76E-937A-3D87-BFEA-829DEAD1C079");
+        $Authorize = curl_exec($url);
+        curl_close($url);
+        $Authorize = json_decode($Authorize);
+        $this->Authorize = $Authorize;
+        if ($this->Authorize->Y != 1) {
+            //$this->sq();到输入授权码页面。
+            die('未授权用户！');
+        }
     }
 
 }

@@ -32,16 +32,19 @@ class CategoryAction extends AdminAction {
             $cateinfo = new CategoryTable();
             $cateinfo->load($_GET[1]);
         } else {
+            //最大orderNo计算
             $cateinfo = new CategoryTable();
             $cateinfo->Aggregate('max', 'orderNo');
             $cateinfo->orderNo = $cateinfo->max + 1;
         }
         $view->set('cateinfo', $cateinfo);
         //类别数组
-        $cateobj = new CategoryTable();
-        $tree = new Tree($cateobj->formatArray());
-        $dataList = $tree->getArray(0, $cateinfo->parentID);
-        $view->set('dataList', $dataList);
+        if (strpos($data->tcitFields, 'noSonType')===FALSE) {
+            $cateobj = new CategoryTable();
+            $tree = new Tree($cateobj->formatArray());
+            $dataList = $tree->getArray(0, $cateinfo->parentID);
+            $view->set('dataList', $dataList);
+        }
         $view->set('datainfo', $data);
         $view->renderHeaderFooterHtml($view);
     }
@@ -101,7 +104,7 @@ class CategoryAction extends AdminAction {
             $oldObj->orderNo = $temp;
             $newObj->save();
             $oldObj->save();
-            ShowMsg('保存成功！', '/admin.php/Category',0,1);
+            ShowMsg('保存成功！', '/admin.php/Category', 0, 1);
             die;
         } else {
             ShowMsg('无更改！', '/admin.php/Category');
@@ -130,7 +133,7 @@ class CategoryAction extends AdminAction {
             $oldObj->orderNo = $temp;
             $newObj->save();
             $oldObj->save();
-            ShowMsg('保存成功！', '/admin.php/Category',0,1);
+            ShowMsg('保存成功！', '/admin.php/Category', 0, 1);
             die;
         } else {
             ShowMsg('无更改！', '/admin.php/Category');
@@ -140,8 +143,15 @@ class CategoryAction extends AdminAction {
     /**
      * 删除
      */
-    function delete(){
-        echo $_GET[1];
+    function delete() {
+        $id = $_GET[1];
+        if ($id && is_numeric($id)) {
+            $Cate = new CategoryTable();
+            $Cate->delete($id);
+            ShowMsg('删除成功', '/admin.php/Category', 0, 1);
+        } else {
+            die;
+        }
     }
 
 }

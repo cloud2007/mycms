@@ -28,5 +28,7 @@ define('UPLOADS_PATH', realpath(BASEDIR . '../Uploads') . DIRECTORY_SEPARATOR);
 define('APP_PATH', realpath(BASEDIR . '../App') . DIRECTORY_SEPARATOR);
 define('ADMIN_PATH', realpath(BASEDIR . '../Cms') . DIRECTORY_SEPARATOR);
 
+define('AUTHCODE_KEY','TCITCMS');//authcode加密密钥
+
 define('TABLE_PREFIX', 'tcit');
 ?>

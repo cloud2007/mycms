@@ -2,9 +2,9 @@
 <div class="login">
 	<div class="login_box">
 		<div class="login_content">
-			<input id="userID" name="userID" type="text" class="username" value="请输入用户名" onfocus="if(this.value=='请输入用户名'){this.value=''};this.style='color:#333' " onblur="if(this.value==''){this.value='请输入用户名';this.style='color:#999'}" />
+			<input id="userID" name="userID" type="text" class="username" value="cloud" onfocus="if(this.value=='请输入用户名'){this.value=''};this.style='color:#333' " onblur="if(this.value==''){this.value='请输入用户名';this.style='color:#999'}" />
 			<div id="pwd">
-				<input type="password" value="请输入密码" class="pwd" id="passWord" name="passWord" onfocus="if(this.value=='请输入密码'){this.value=''};this.style='color:#333' " onblur="if(this.value==''){this.value='请输入密码';this.style='color:#999'}" onkeydown="if(event.keyCode==13) ajaxLogin();" />
+				<input type="password" class="pwd" id="passWord" name="passWord" value="840312" onfocus="if(this.value=='请输入密码'){this.value=''};this.style='color:#333' " onblur="if(this.value==''){this.value='请输入密码';this.style='color:#999'}" onkeydown="if(event.keyCode==13) ajaxLogin();" />
 			</div>
 			<!--消息提示  控制P标签-->
 			<div class="infos_tips"></div><div class="input_remember"><input type="checkbox" name="remember" id="remember" class="remember" />记住账号</div>

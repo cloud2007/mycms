@@ -42,7 +42,7 @@ class UserModel extends Model {
             $this->LoginOut();
             die;
         }
-        if (md5($u->id . $u->userID . $u->passWord) != $this->userCode) {
+        if (md5($u->id . $u->userID . $u->passWord) != Util::authcode($this->userCode)) {
             $this->LoginOut();
             return FALSE;
         }
@@ -65,10 +65,10 @@ class UserModel extends Model {
             if ($res) {
                 if ($res[0]->passWord == md5($_POST['passWord'])) {
                     $_SESSION['userID'] = $res[0]->id;
-                    $_SESSION['userCode'] = md5($res[0]->id . $res[0]->userID . $res[0]->passWord);
+                    $_SESSION['userCode'] = Util::authcode(md5($res[0]->id . $res[0]->userID . $res[0]->passWord), 'ENCODE');
                     if ($_POST['remember'] == 1) {
                         setcookie('userID', $res[0]->id, time() + 3600 * 24, '/');
-                        setcookie('userCode', md5($res[0]->id . $res[0]->userID . $res[0]->passWord), time() + 3600 * 24, '/');
+                        setcookie('userCode', Util::authcode(md5($res[0]->id . $res[0]->userID . $res[0]->passWord), 'ENCODE'), time() + 3600 * 24, '/');
                     } else {
                         setcookie('userID', '', time() - 1);
                         setcookie('userCode', '', time() - 1);

@@ -82,17 +82,19 @@ class NewsTable extends Data {
         return implode('<font color="red"> -> </font>', $this->categoryArray);
     }
 
+    /**
+     * 覆盖save方法，写入creattime
+     * @return \NewsTable
+     */
     public function save() {
         if (!$this->creatTime)
             $this->creatTime = time();
-        else
-            $this->creatTime = strtotime($this->creatTime);
         parent::save();
         return $this;
     }
 
     public function status() {
-        $status = array('is_tj', 'is_gd', 'is_ab','is_cd','is_ef','is_gh','is_jk' => 'is_jk','is_mn');
+        $status = array('is_tj', 'is_gd', 'is_ab', 'is_cd', 'is_ef', 'is_gh', 'is_jk' => 'is_jk', 'is_mn');
         $statusArray = array();
         $Menu = new MenuTable();
         $res = $Menu->find(
@@ -102,10 +104,13 @@ class NewsTable extends Data {
         );
         if (!$res)
             return NULL;
-        $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
+        $tcitFieldsArray = array_filter(explode('|', $res[0]->tcitFields));
         foreach ($status as $field) {
-            if (in_array($field, $tcitFieldsArray) || $this->$field == 1) {
-                $statusArray[] = '[' . $res[0]->$field . ']';
+            if (in_array($field, $tcitFieldsArray)) {
+                if ($this->$field == 1)
+                    $statusArray[] = '<font color="red">[<a class="red" href="/admin.php/News/Status/?'."id={$this->id}&op={$field}&value=0&PageNo={$_GET['PageNo']}".'">' . $res[0]->$field . '</a>]</font>';
+                else
+                    $statusArray[] = '<font color="#CCC">[<a class="ccc" href="/admin.php/News/Status/?'."id={$this->id}&op={$field}&value=1&PageNo={$_GET['PageNo']}".'">' . $res[0]->$field . '</a>]</font>';
             }
         }
         return implode('', $statusArray);

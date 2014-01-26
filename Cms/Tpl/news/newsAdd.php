@@ -8,6 +8,7 @@
 <form name="AddForm" id="AddForm" method="post" action="/admin.php/News/newsSave">
 	<input type="hidden" name="lmID" value="<?php echo $_SESSION['lam'];?>" />
 	<input type="hidden" name="id" value="<?php echo $newsinfo->id;?>" />
+	<input type="hidden" name="PageNo" value="<?php echo $PageNo;?>" />
 	<table width="100%" class="content_table">
 		<?php
 			echo $datainfo->showCategoryID('category',$dataList);
