@@ -23,7 +23,13 @@ class Config {
             $rs = self::$conf[$file];
         elseif (is_file(ROOT_PATH . "/Config/{$file}.php")) {
             $rs = self::$conf[$file] = include_once(ROOT_PATH . "/Config/{$file}.php");
-        } else {
+        }
+        elseif (is_file(ADMIN_PATH . "/Config/{$file}.php")) {
+            $rs = self::$conf[$file] = include_once(ADMIN_PATH . "/Config/{$file}.php");
+        }
+        elseif (is_file(APP_PATH . "/Config/{$file}.php")) {
+            $rs = self::$conf[$file] = include_once(APP_PATH . "/Config/{$file}.php");
+        }else {
             return NULL;
             //throw new Exception("file [{$file}] not found in config dir");
         }

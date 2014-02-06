@@ -4,7 +4,7 @@ define( 'CONTROLLER_PATH', realpath(BASEDIR . '../Cms/Action') . DIRECTORY_SEPAR
 define( 'VIEW_PATH', realpath(BASEDIR . '../Cms/Tpl') . DIRECTORY_SEPARATOR );
 
 
-$Config = array(
+$Default = array(
     'DefaultAction' => 'HomeAction',
     'DefaultMethod' => 'Index',
 )

@@ -89,6 +89,8 @@ class NewsTable extends Data {
     public function save() {
         if (!$this->creatTime)
             $this->creatTime = time();
+        else
+            $this->creatTime = strtotime($this->creatTime);
         parent::save();
         return $this;
     }
@@ -108,9 +110,9 @@ class NewsTable extends Data {
         foreach ($status as $field) {
             if (in_array($field, $tcitFieldsArray)) {
                 if ($this->$field == 1)
-                    $statusArray[] = '<font color="red">[<a class="red" href="/admin.php/News/Status/?'."id={$this->id}&op={$field}&value=0&PageNo={$_GET['PageNo']}".'">' . $res[0]->$field . '</a>]</font>';
+                    $statusArray[] = '<font color="red">[<a class="red" href="/admin.php/News/Status/?' . "id={$this->id}&op={$field}&value=0&PageNo={$_GET['PageNo']}" . '">' . $res[0]->$field . '</a>]</font>';
                 else
-                    $statusArray[] = '<font color="#CCC">[<a class="ccc" href="/admin.php/News/Status/?'."id={$this->id}&op={$field}&value=1&PageNo={$_GET['PageNo']}".'">' . $res[0]->$field . '</a>]</font>';
+                    $statusArray[] = '<font color="#CCC">[<a class="ccc" href="/admin.php/News/Status/?' . "id={$this->id}&op={$field}&value=1&PageNo={$_GET['PageNo']}" . '">' . $res[0]->$field . '</a>]</font>';
             }
         }
         return implode('', $statusArray);

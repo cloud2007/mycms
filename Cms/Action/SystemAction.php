@@ -17,11 +17,7 @@ class SystemAction extends AdminAction {
     function index() {
         $view = new View('system/index');
         $view->set('Authorize', $this->Authorize);
-        $view->renderHeaderFooterHtml($view);
-    }
-
-    function sq() {
-        echo 1;
+        $view->renderHeaderFooterHtml($view, $this->RuntimeObj);
     }
 
 }

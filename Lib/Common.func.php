@@ -91,6 +91,21 @@ function ShowMsg($msg, $gourl, $onlymsg = 0, $limittime = 0) {
 }
 
 /**
+ *  短消息函数，只显示提示信息
+ */
+function ShowNote($msg) {
+    $htmlhead = "<html>\r\n<head>\r\n<title>提示信息</title>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n";
+    $htmlhead .= "<style>div{line-height:200%;}a{ text-decoration:none}a:hover{ text-decoration:underline}</style></head>\r\n<body leftmargin='0' topmargin='0' bgcolor='#FFFFFF'>\r\n<center>\r\n";
+    $htmlfoot = "</center>\r\n</body>\r\n</html>\r\n";
+    $rmsg .= "<div style='width:450px;padding:0px;border:1px solid #DADADA; margin:10% auto 0 auto;font:12px/24px Courier New,Microsoft Yahei,宋体;'>";
+    $rmsg .= "<div style='padding:6px;font-size:14px;border-bottom:1px solid #DADADA;background:#EEE';'><b>提示信息！</b></div>";
+    $rmsg .= "<div style='height:130px;font-size:10pt;background:#ffffff'><br />";
+    $rmsg .= str_replace("\"", "“", $msg);
+    $msg = $htmlhead . $rmsg . $htmlfoot;
+    echo $msg;
+}
+
+/**
  *  获取验证码的session值
  *
  * @return    string

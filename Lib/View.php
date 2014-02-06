@@ -128,9 +128,15 @@ class View {
         echo "{$content}";
     }
 
-    function renderHeaderFooterHtml($content) {
+    function renderHeaderFooterHtml($content, $runtimeObj = '') {
         $header = new View('header');
         $footer = new View('footer');
+        //时间统计
+        if ($runtimeObj) {
+            $runtimeObj->stop();
+            $Runtime = '页面执行时间' . $runtimeObj->spent() . " 毫秒";
+            $footer->set('runtime', $Runtime);
+        }
         echo "{$header}{$content}{$footer}";
     }
 

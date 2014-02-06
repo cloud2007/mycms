@@ -14,8 +14,8 @@
  */
 $requestArray = array_filter(explode('/', @$_SERVER['PATH_INFO']));
 
-$Controller = isset($requestArray[1]) ? ucfirst($requestArray[1]) . 'Action' : $Config['DefaultAction'];
-$Method = isset($requestArray[2]) ? $requestArray[2] : $Config['DefaultMethod'];
+$Controller = isset($requestArray[1]) ? ucfirst($requestArray[1]) . 'Action' : $Default['DefaultAction'];
+$Method = isset($requestArray[2]) ? $requestArray[2] : $Default['DefaultMethod'];
 
 $_GET['m'] = str_replace('Action', '', $Controller);
 $_GET['c'] = $Method;

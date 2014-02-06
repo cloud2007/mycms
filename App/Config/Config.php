@@ -3,7 +3,7 @@
 define( 'CONTROLLER_PATH', realpath(BASEDIR . '../App/Action') . DIRECTORY_SEPARATOR );
 define( 'VIEW_PATH', realpath(BASEDIR . '../App/Tpl') . DIRECTORY_SEPARATOR );
 
-$Config = array(
+$Default = array(
     'DefaultAction' => 'HomeAction',
     'DefaultMethod' => 'Index',
 )
