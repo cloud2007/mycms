@@ -110,7 +110,7 @@ class MenuTable extends Data {
         parent::save();
         return $this;
     }
-    
+
     /**
      * 是否显示字段勾选状态
      * @param type $field
@@ -311,6 +311,15 @@ class MenuTable extends Data {
             return $returnStr;
         }
         return NULL;
+    }
+
+    function grantWordList(){
+        $this->whereAnd('grantWord', '!=\'\'');
+        $this->whereAnd('id', '>10');
+        $rs = $this->groupBy(
+                array('grantWord')
+        );
+        return $rs;
     }
 
 }

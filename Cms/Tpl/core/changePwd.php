@@ -31,9 +31,9 @@
 </form>
 <script type="text/javascript">
 $(function(){
-	//var demo = $("#changePwd").Validform({
-		//tiptype:3,
-	//});
+	var demo = $("#changePwd").Validform({
+		tiptype:3,
+	});
 	demo.tipmsg.s="Error!";
 	demo.addRule([
 		{

@@ -20,7 +20,7 @@ class MenuAction extends AdminAction {
         foreach ($MenuList as $k => $v) {
             $MenuList[$k]['son'] = $Menu->find(
                     array(
-                        'whereAnd' => array(array('lmName', "='" . $v['lmName'] . "'"), array('id', 'not in(1,2,4)')),
+                        'whereAnd' => array(array('lmName', "='" . $v['lmName'] . "'"), array('id', 'not in(1,2,4,7)')),
                         'order' => array('orderNo' => 'asc'),
                     )
             );

@@ -134,8 +134,39 @@ class CoreAction extends AdminAction {
     }
 
     //用户列表
-    function userList(){
-        
+    function userList() {
+        $User = new UserTable();
+        $options = array();
+        $options['whereAnd'] = array(array('userID', '<>\'scloud\''));
+        $options['order'] = array('id' => 'asc');
+        $UserList = $User->find($options);
+        $view = new View('core/userList');
+        $view->set('userList', $UserList);
+
+        $view->renderHeaderFooterHtml($view);
+    }
+
+    //用户编辑(未完成)
+    function userEdit() {
+        $view = new View('core/userEdit');
+
+        $id = $_GET['id'];
+        $User = new UserTable();
+        $User->load($id);
+        $view->set('user', $User);
+
+        $Grant = new MenuTable();
+        $GrantList = $Grant->grantWordList();
+        $view->set('GrantList', $GrantList);
+
+        $view->renderHeaderFooterHtml($view);
+    }
+
+    //权限字管理
+    function grantWord() {
+        $Grant = new MenuTable();
+        $GrantList = $Grant->grantWordList();
+        print_r($GrantList);
     }
 
     /**
