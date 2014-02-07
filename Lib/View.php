@@ -128,7 +128,7 @@ class View {
         echo "{$content}";
     }
 
-    function renderHeaderFooterHtml($content, $runtimeObj = '') {
+    function renderHeaderFooterHtml($content, $runtimeObj = '', $counter = '') {
         $header = new View('header');
         $footer = new View('footer');
         //时间统计
@@ -136,6 +136,10 @@ class View {
             $runtimeObj->stop();
             $Runtime = '页面执行时间' . $runtimeObj->spent() . " 毫秒";
             $footer->set('runtime', $Runtime);
+        }
+        //数据库查询次数
+        if ($counter) {
+            $footer->set('counter', '/数据库查询次数：'.$counter);
         }
         echo "{$header}{$content}{$footer}";
     }

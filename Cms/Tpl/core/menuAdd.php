@@ -8,7 +8,7 @@
 		<tr>
 			<td>栏目名称</td>
 			<td class="textleft"><input type="text" name="lmName" value="<?php echo $datainfo->lmName;?>" size="18" />
-				<input type="hidden" name="id" value="<?php echo $datainfo->id;?>" />
+				<input type="hidden" name="id" value="<?php echo $datainfo->id;?>" /></td>
 			<td>项目标题</td>
 			<td class="textleft"><input type="text" name="menuName" value="<?php echo $datainfo->menuName;?>" size="18" /></td>
 			<td>是否可用</td>

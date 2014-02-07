@@ -21,7 +21,7 @@ class UserTable extends Data {
                 'creatTime' => 'creatTime',
                 'loginTime' => 'loginTime',
             ),
-            'saveNeeds' => array('id', 'userId'),
+            'saveNeeds' => array('id', 'userID'),
         );
         parent::init($options);
     }
