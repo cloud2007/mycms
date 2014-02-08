@@ -15,7 +15,7 @@ class NewsAction extends AdminAction {
 
     function index() {
         $News = new NewsTable();
-        $PageSize = 2;
+        $PageSize = 20;
         $PageNo = (int) @$_GET['PageNo'] ? (int) $_GET['PageNo'] : 1;
         $PageNum = ($PageNo - 1) * $PageSize;
         $Pager = new Pager();
@@ -27,9 +27,12 @@ class NewsAction extends AdminAction {
                     'limit' => "{$PageNum},{$PageSize}"
                 )
         );
+        $Menu = new MenuTable();
+        $Menu->load($_SESSION['col']);
         $view = new View('news/newsList');
         $view->set('NewsList', $res);
         $view->set('PagerData', $PagerData);
+        $view->set('Menu', $Menu);
         $view->renderHeaderFooterHtml($view);
     }
 

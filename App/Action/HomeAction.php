@@ -1,7 +1,7 @@
 <?php
 
 /**
- * home
+ * Home
  * @author:Laven<190296465@vip.qq.com>
  * @copyright:Copyright 2009 Laven
  * @create:2010-11-13
@@ -15,12 +15,7 @@ class HomeAction extends Action {
 
     function index() {
         $view = new View('index');
-        $view->renderHtml($view);
-    }
-
-    function welcome() {
-        $view = new View('welcome');
-        $view->renderHtml($view);
+        $view->renderHeaderFooterHtml($view);
     }
 
 }

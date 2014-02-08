@@ -8,6 +8,7 @@ $(document).ready(function() {
 	//上传按钮初始化
 	uploadSigle('smallpic');
 	uploadSigle('bigpic');
+	uploadSigle('pic');
 	uploadSigle('upload1');
 	uploadSigle('upload2');
 	uploadSigle('upload3');

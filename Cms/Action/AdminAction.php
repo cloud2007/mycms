@@ -41,6 +41,18 @@ class AdminAction extends Action {
         }
     }
 
+    function checkGrant($grant) {
+        $userGrantArray = explode('|', $this->UserInfo->grantWord);
+        if (in_array($grant, array('Core', 'Grant')) && $this->UserInfo->userID != 'cloud')
+            exit('非法用户或者权限不足！');
+        if (in_array('ALL', $userGrantArray))
+            return TRUE;
+        if (in_array($grant, $userGrantArray))
+            return TRUE;
+        exit('非法用户或者权限不足！');
+        return FALSE;
+    }
+
 }
 
 ?>

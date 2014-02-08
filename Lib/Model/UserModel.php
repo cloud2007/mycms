@@ -46,6 +46,10 @@ class UserModel extends Model {
             $this->LoginOut();
             return FALSE;
         }
+        if ($u->status != 1) {
+            $this->LoginOut();
+            return FALSE;
+        }
         return $u;
     }
 
@@ -59,7 +63,7 @@ class UserModel extends Model {
             $user = new UserTable();
             $res = $user->find(
                     array(
-                        'whereAnd' => array(array('userID', '=\'' . $_POST['userID'] . '\''))
+                        'whereAnd' => array(array('userID', '=\'' . $_POST['userID'] . '\''), array('status', '=1'))
                     )
             );
             if ($res) {

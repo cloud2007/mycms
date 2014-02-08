@@ -176,7 +176,25 @@ class MenuTable extends Data {
             $returnStr = '<tr><td>';
             $returnStr .= $this->$field;
             $returnStr .= '</td><td class="textleft">';
-            $returnStr .= '<input type="text" name="' . $field . '" value="' . date('Y-m-d H:i:s',$newsinfo->$field ? $newsinfo->$field : time()) . '" onClick="WdatePicker()" style="width:182px;" />';
+            $returnStr .= '<input type="text" name="' . $field . '" value="' . date('Y-m-d H:i:s', $newsinfo->$field ? $newsinfo->$field : time()) . '" onClick="WdatePicker()" style="width:182px;" />';
+            $returnStr .='</td></tr>';
+            return $returnStr;
+        }
+        return NULL;
+    }
+
+    /**
+     * input 回复时间字段
+     * @param type $field
+     * @return string|null
+     */
+    public function showReTime($field, $newsinfo) {
+        $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
+        if (in_array('huifu', $tcitFieldsArray)) {
+            $returnStr = '<tr><td>';
+            $returnStr .= '回复时间';
+            $returnStr .= '</td><td class="textleft">';
+            $returnStr .= '<input type="text" name="' . $field . '" value="' . date('Y-m-d H:i:s', $newsinfo->$field ? $newsinfo->$field : time()) . '" onClick="WdatePicker()" style="width:182px;" />';
             $returnStr .='</td></tr>';
             return $returnStr;
         }
@@ -313,13 +331,20 @@ class MenuTable extends Data {
         return NULL;
     }
 
-    function grantWordList(){
-        $this->whereAnd('grantWord', '!=\'\'');
-        $this->whereAnd('id', '>10');
-        $rs = $this->groupBy(
-                array('grantWord')
-        );
-        return $rs;
+    /**
+     * 回复字段
+     */
+    public function showHuifuContent($field, $newsinfo) {
+        $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
+        if (in_array('huifu', $tcitFieldsArray)) {
+            $returnStr = '<tr><td>';
+            $returnStr .= '回复';
+            $returnStr .= '</td><td class="textleft">';
+            $returnStr .= '<textarea cols="100" rows="3" name="' . $field . '">' . stripslashes($newsinfo->$field) . '</textarea>';
+            $returnStr .='</td></tr>';
+            return $returnStr;
+        }
+        return NULL;
     }
 
 }

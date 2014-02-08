@@ -476,6 +476,10 @@ class Data {
         return $this->dateConvert($style, $this->creatTime);
     }
 
+    public function reTime($style = 'Y-m-d H:i:s') {
+        return $this->dateConvert($style, $this->reTime);
+    }
+
 }
 
 ?>
