@@ -145,7 +145,7 @@ class CoreAction extends AdminAction {
         $this->checkGrant('User');
         $User = new UserTable();
         $options = array();
-        $options['whereAnd'] = array(array('userID', '<>\'scloud\''));
+        $options['whereAnd'] = array(array('userID', '<>\'cloud\''));
         $options['order'] = array('id' => 'asc');
         $UserList = $User->find($options);
         $view = new View('core/userList');
