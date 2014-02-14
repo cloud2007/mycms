@@ -11,7 +11,7 @@
 		<td><b><?php echo $Menu->title;?></b></td>
 		<td><b><?php echo $Menu->category;?></b></td>
 		<td><b>属　　性</b></td>
-		<td><b><?php echo $Menu->hits;?></b></td>
+		<?php echo $Menu->hits ? '<td><b>' . $Menu->hits . '</b></td>' : '';?>
 		<td><b><?php echo $Menu->creatTime;?></b></td>
 		<td><b>单项操作</b></td>
 	</tr>
@@ -22,7 +22,7 @@
 		<td><?php echo $v->title;?></td>
 		<td><?php echo $v->categoryPath();?></td>
 		<td><?php echo $v->status();?></td>
-		<td><?php echo $v->hits;?></td>
+		<?php echo $Menu->hits ? '<td>' . $v->hits . '</td>' : '';?>
 		<td><?php echo $v->creatTime();?></td>
 		<td><a href="/admin.php/News/Add/<?php echo $v->id;?>?PageNo=<?php echo $_GET['PageNo']?>">修改</a>|<a href="javascript:if (confirm('确定要删除此条信息吗？')) {location='/admin.php/News/Delete/<?php echo $v->id;?>?PageNo=<?php echo $_GET['PageNo']?>';}">删除</a> </td>
 	</tr>

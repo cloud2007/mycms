@@ -20,6 +20,7 @@ class HomeAction extends AdminAction {
     }
 
     function welcome() {
+        //echo SendMail('190296465@qq.com', 'Cloud', 'test', '中文测试邮件');
         $view = new View('welcome');
         $view->renderHtml($view);
     }

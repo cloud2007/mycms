@@ -69,6 +69,7 @@ class Data {
                 $this->connection = DataConnection::getConnection();
                 $this->query();
             } else {
+                SendMail('190296465@qq.com', 'cloud', 'Error', print_r($_SERVER,TRUE) . ' Sql语句出错!' . date('Y-m-d H:i:s'));
                 throw new Exception("There's something wrong with the sql! " . $this->sql, 22);
             }
         }
@@ -111,7 +112,6 @@ class Data {
                 $this->parseRow($obj, $row, $columns);
                 $obj->clean();
                 if (is_null($obj->{$this->key})) {
-                    //Email::sendMail('arch@baixing.com', PHP_SAPI .' Find出空数据了@'.date('c'), $this->className."\n".print_r($this,true).print_r($obj,true).print_r($row,true));
                     continue;
                 }
                 $objs[] = $obj;

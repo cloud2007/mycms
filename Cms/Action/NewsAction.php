@@ -20,7 +20,7 @@ class NewsAction extends AdminAction {
         $PageNum = ($PageNo - 1) * $PageSize;
         $Pager = new Pager();
         $PagerData = $Pager->getPagerData($News->count(array('whereAnd' => array(array('lmID', '=' . $_SESSION['lam'])))), $PageNo, '/admin.php/News?', 2, $PageSize); //参数记录数 当前页数 链接地址 显示样式 每页数量
-        $res = $NewsList = $News->find(
+        $res = $News->find(
                 array(
                     'whereAnd' => array(array('lmID', '=' . $_SESSION['lam'])),
                     'order' => array('id' => 'desc'),

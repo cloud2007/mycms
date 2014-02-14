@@ -32,7 +32,7 @@ class AdminAction extends Action {
         curl_setopt($url, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($url, CURLOPT_POST, 1);
         curl_setopt($url, CURLOPT_COOKIEJAR, $cookie);
-        curl_setopt($url, CURLOPT_POSTFIELDS, "Domain={$_SERVER['SERVER_NAME']}&Code=" . Config::item('Config.AuthorizeCode'));
+        curl_setopt($url, CURLOPT_POSTFIELDS, "Domain={$_SERVER['SERVER_NAME']}&Code=" . Config::item('Config.AUTHORIZECODE'));
         $Authorize = curl_exec($url);
         curl_close($url);
         $this->Authorize = json_decode($Authorize);

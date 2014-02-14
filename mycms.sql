@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: 127.0.0.1:3306
--- 生成日期: 2014 年 02 月 08 日 09:30
+-- 生成日期: 2014 年 02 月 14 日 09:45
 -- 服务器版本: 5.1.28
 -- PHP 版本: 5.2.6
 
@@ -107,27 +107,49 @@ INSERT INTO `tcit_grant` (`id`, `name`, `value`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tcit_member` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `id` int(5) unsigned NOT NULL AUTO_INCREMENT,
   `lmID` int(2) DEFAULT NULL,
   `userID` varchar(20) DEFAULT NULL,
-  `realName` varchar(20) DEFAULT NULL,
+  `realName` varchar(10) DEFAULT NULL,
   `passWord` varchar(50) DEFAULT NULL,
+  `sex` int(1) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `tel` varchar(20) DEFAULT NULL,
-  `addr` varchar(100) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `uname` varchar(10) DEFAULT NULL,
+  `addr` varchar(80) DEFAULT NULL,
+  `avatar` varchar(100) DEFAULT NULL,
+  `email` varchar(20) DEFAULT NULL,
   `youbian` int(6) DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
   `creatTime` int(10) DEFAULT NULL,
   `loginTime` int(10) DEFAULT NULL,
+  `attributeData` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- 导出表中的数据 `tcit_member`
 --
 
+INSERT INTO `tcit_member` (`id`, `lmID`, `userID`, `realName`, `passWord`, `sex`, `phone`, `tel`, `addr`, `avatar`, `email`, `youbian`, `status`, `creatTime`, `loginTime`, `attributeData`) VALUES
+(2, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370207, NULL, ''),
+(3, 4, '', NULL, 'd41d8cd98f00b204e9800998ecf8427e', NULL, NULL, NULL, NULL, NULL, '', NULL, 0, 1392370271, NULL, ''),
+(4, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370278, NULL, ''),
+(5, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370296, NULL, ''),
+(6, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370338, NULL, ''),
+(7, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370377, NULL, ''),
+(8, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370403, NULL, ''),
+(9, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370438, NULL, ''),
+(10, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370440, NULL, ''),
+(11, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370457, NULL, ''),
+(12, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370474, NULL, ''),
+(13, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370533, NULL, ''),
+(14, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370551, NULL, ''),
+(15, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370639, NULL, ''),
+(16, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370795, NULL, ''),
+(17, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370822, NULL, ''),
+(18, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370967, NULL, ''),
+(19, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392371000, NULL, ''),
+(20, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392371011, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -218,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `tcit_menu` (
   `title10_` varchar(255) DEFAULT NULL,
   `creatTime` varchar(10) DEFAULT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='MENU菜单表' AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='MENU菜单表' AUTO_INCREMENT=17 ;
 
 --
 -- 导出表中的数据 `tcit_menu`
@@ -239,7 +261,8 @@ INSERT INTO `tcit_menu` (`id`, `lmID`, `lmName`, `menuName`, `orderNo`, `doLink`
 (12, 1, '栏目名称', '类别管理', 1, 'Category', '', 'add', 'category', 1, 'creatTime|categoryTitle|categoryTitle1|categoryTitle2|categorySmallPic|categoryName1|categoryContent1|categoryMultiPic', '', '标题名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '详细内容', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '类别名称', '别名一', '别名二', '小图片一', 'categoryBi', 'categoryBr', '描述', '哪么2', '内容', 'con2', '多图', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '创建时间'),
 (13, 2, '栏目名称2', '添加', 2, 'News/add', 'News', 'LAM', 'news', 1, 'title|content|category|smallpic|is_tj|title1|multiPic|creatTime', '所属类别', '标题名称', 'title1', 'title2', '', '', '', '', '', '', '', '', '', '', '', '', '', '详细内容', 'content1', '', '', '', '', 'smallpic', 'bigpic', '', '', '', '', '', 'multiPic', 'is_tj', '', 'is_ab', '', '', '', '', '', '', '类别名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '添加时间'),
 (14, 2, '栏目名称2', '类别管理', 2, 'Category', '', 'LAM', 'category', 1, 'categoryTitle|noSonType', '', '标题名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '详细内容', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '类别名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '创建时间'),
-(15, 3, '留言板管理', '管理', 3, 'Message', '', 'add', 'message', 1, 'title|content|creatTime|huifu|uname|phone|pic|addr', '', '标题名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '详细内容', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '类别名称', '', '', '', '', '', '', '', '', '', '', '姓名', '手机号', '', '', '图片传一个', '', '', '地址', '', '', '', '', '', '', '', '', '', '', '创建时间');
+(15, 3, '留言板管理', '管理', 3, 'Message', '', 'add', 'message', 1, 'title|content|creatTime|huifu|uname|phone', '', '标题名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '详细内容', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '类别名称', '', '', '', '', '', '', '', '', '', '', '姓名', '手机号', '', '', '图片传一个', '', '', '地址', '', '', '', '', '', '', '', '', '', '', '创建时间'),
+(16, 4, '会员管理', '管理', 4, 'Member', '', 'add', 'member', 1, 'title|content', '', '标题名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '详细内容', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '类别名称', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '1392348370');
 
 -- --------------------------------------------------------
 
@@ -266,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `tcit_message` (
   `reContent` text,
   `reTime` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- 导出表中的数据 `tcit_message`
@@ -275,7 +298,9 @@ CREATE TABLE IF NOT EXISTS `tcit_message` (
 INSERT INTO `tcit_message` (`id`, `lmID`, `newsID`, `msgID`, `uname`, `phone`, `tel`, `fax`, `pic`, `email`, `youbian`, `addr`, `title`, `content`, `creatTime`, `reContent`, `reTime`) VALUES
 (5, 3, 0, 0, '11', '1', NULL, NULL, '', NULL, NULL, '', '11', '&lt;img src="/Uploads/kindEditor/201401/20140121_143839_7250.jpg" alt="" /&gt;', 1391846150, '1111', 1391505830),
 (6, 3, 0, 0, '姓名', '15982259902', NULL, NULL, NULL, NULL, NULL, '', '标题名称', 'asdddddddddddd', 1391850770, '1212', 1391850768),
-(7, 3, 0, 0, '姓名', '15982259902', NULL, NULL, '/201402/20140208_165152_2702.jpg', NULL, NULL, '11111111111', '标题名称', 'asdddddddddddd', 1391850762, '', 1391850762);
+(7, 3, 0, 0, '姓名', '15982259902', NULL, NULL, '/201402/20140208_165152_2702.jpg', NULL, NULL, '11111111111', '标题名称', 'asdddddddddddd', 1391850762, '', 1391850762),
+(8, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, NULL, NULL, NULL, 1392364384, NULL, 1392364384),
+(9, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, NULL, NULL, NULL, 1392364390, NULL, 1392364390);
 
 -- --------------------------------------------------------
 
@@ -358,13 +383,12 @@ CREATE TABLE IF NOT EXISTS `tcit_user` (
   `creatTime` int(10) DEFAULT NULL COMMENT '时间',
   `loginTime` int(10) DEFAULT NULL COMMENT '时间戳',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=17 ;
 
 --
 -- 导出表中的数据 `tcit_user`
 --
 
 INSERT INTO `tcit_user` (`id`, `userID`, `passWord`, `grantWord`, `status`, `creatTime`, `loginTime`) VALUES
-(2, 'cloud', '85b789dd35ccd43710c905d097732af1', 'add|Backup|Password|User|ALL', 1, 1391755671, 0),
-(7, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'add|Backup|Password|ALL', 1, 1391837264, NULL),
-(8, 'test', '098f6bcd4621d373cade4e832627b4f6', 'add|User', 0, 1391839608, NULL);
+(16, 'cloud', '85b789dd35ccd43710c905d097732af1', 'ALL', 1, 1391998314, NULL),
+(7, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'ALL', 1, 1391837264, NULL);

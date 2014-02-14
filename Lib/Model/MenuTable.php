@@ -347,6 +347,36 @@ class MenuTable extends Data {
         return NULL;
     }
 
+    /**
+     * 会员中心 input 字段
+     * @param type $field
+     * @return string|null
+     */
+    public function showMemberInput($field, $fieldText, $newsinfo, $type) {
+        $returnStr = '<tr><td>';
+        $returnStr .= $fieldText;
+        $returnStr .= '</td><td class="textleft">';
+        if ($type == 'radio') {
+            $S = $field . 'Text';
+            foreach (MemberTable::$$S as $k => $v) {
+                if ($newsinfo->$field == $k)
+                    $checked = 'checked';
+                else
+                    $checked = '';
+                $returnStr .= '<input type="radio" name="' . $field . '" value="' . $k . '" ' . $checked . ' /> ' . $v . '　';
+            }
+        }elseif ($type == 'avatar') {
+            $returnStr .= $newsinfo->$field ? '<a href="' . $newsinfo->$field . '" target="_blank">' . $newsinfo->$field . '</a>' : '无';
+        } elseif ($type == 'time') {
+            $returnStr .= date('Y-m-d H:i:s', $newsinfo->$field);
+        }else
+            $returnStr .= '<input type="text" name="' . $field . '" value="' . $newsinfo->$field . '" />';
+        $returnStr .='</td></tr>';
+        return $returnStr;
+
+        return NULL;
+    }
+
 }
 
 ?>
