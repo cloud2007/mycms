@@ -1,10 +1,6 @@
-<form name="form1" method="post" action="/Member">
 <div id="main">
-	<ul>
-		<li>登录用户名：<input type="text" name="userID" /></li>
-		<li>email：<input type="text" name="email" /></li>
-		<li>密码：<input type="text" name="passWord" /></li>
-		<li><input type="submit" name="Submit" class="btn blue" value="提交"></li>
-	</ul>
+	<h1>Member Center</h1>
+	<p><a href="/Member/loginOut">退出登陆</a></p>
+	<p><a href="/Member/myinfo">个人资料</a></p>
+	<p><a href="/Member/reset">重设密码</a></p>
 </div>
-</form>

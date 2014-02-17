@@ -55,10 +55,17 @@ class MemberModel extends Model {
         $Obj->status = 0;
         $Obj->passWord = md5($_POST['passWord']);
         if ($Obj->save()) {
-            echo '<a href="http://' . $_SERVER['SERVER_NAME'] . '/Member/active?active=' . Util::authcode($Obj->id, 'ENCODE') . '" target="_blank">' . $_SERVER['SERVER_NAME'] . '/Member/active?active=' . Util::authcode($Obj->id, 'ENCODE') . '</a>';
-            die;
-            if (SendMail($Obj->email, $Obj->realName, '激活邮件', '<a href="thhp://' . $_SERVER['SERVER_NAME'] . '/Member/active?c=' . Util::authcode($Obj->id) . '" target="_blank">' . $_SERVER['SERVER_NAME'] . '/Member/active?c=' . Util::authcode($Obj->id) . '</a>'))
-                return '注册成功,激活邮件已经发送到您的邮箱!'; else
+            $EmailHref = $_SERVER['SERVER_NAME'] . '/Member/active?active=' . urlencode(Util::authcode($Obj->id, 'ENCODE'));
+            $EmailBody = '';
+            $EmailBody .='<p>亲爱的' . $_POST['realName'] ? $_POST['realName'] : $_POST['userID'] . '：您好!</p>';
+            $EmailBody.='<p>　　感谢您注册 ' . APP_NAME . '，您的登录帐号是' . $_POST['userID'] . '</p>';
+            $EmailBody.='<p>　　点击下面的链接完成注册：</p>';
+            $EmailBody.='<p>　　<a href="http://' . $EmailHref . '" target="_blank">' . $EmailHref . '</a></p>';
+            $EmailBody.='<p>　　(如果点击链接无反应，请复制链接到浏览器里直接打开)</p>';
+            $EmailBody.='<br /><br /><p style="text-align: center;">温馨提示：此邮件由系统发送，请勿直接回复。</p>';
+            if (SendMail($Obj->email, $Obj->realName, '激活邮件', $EmailBody) === TRUE)
+                return '注册成功,激活邮件已经发送到您的邮箱!';
+            else
                 return '注册成功,请登录后台激活您的账户!';
         } else {
             return '注册发生错误,请重新注册!';
@@ -66,6 +73,25 @@ class MemberModel extends Model {
         return FALSE;
     }
 
-}
+    /**
+     * 激活用户
+     */
+    function active() {
+        $id = Util::authcode($_GET['active'], 'DECODE');
+        $Obj = new MemberTable();
+        try {
+            $Obj->load($id);
+        } catch (Exception $exc) {
+            echo '账户不存在，请检查链接！';
+            die;
+        }
+        if ($Obj->status == 0) {
+            $Obj->status = 1;
+            $Obj->save();
+            ShowNote('账户已激活!<br /><a href=/Member>点击登录</a>');
+        } else {
+            ShowNote('请勿重复激活!<br /><a href=/Member>点击登录</a>');
+        }
+    }
 
-?>
+}

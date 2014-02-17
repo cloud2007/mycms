@@ -217,7 +217,6 @@ class Tree {
                 $number++;
             }
         }
-
         return $this->ret;
     }
 

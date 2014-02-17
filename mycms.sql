@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: 127.0.0.1:3306
--- 生成日期: 2014 年 02 月 14 日 09:45
+-- 生成日期: 2014 年 02 月 17 日 08:25
 -- 服务器版本: 5.1.28
 -- PHP 版本: 5.2.6
 
@@ -112,6 +112,8 @@ CREATE TABLE IF NOT EXISTS `tcit_member` (
   `userID` varchar(20) DEFAULT NULL,
   `realName` varchar(10) DEFAULT NULL,
   `passWord` varchar(50) DEFAULT NULL,
+  `mailCode` varchar(4) DEFAULT NULL,
+  `grantWord` varchar(50) DEFAULT NULL COMMENT '权限 用“|”分隔多个权限',
   `sex` int(1) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `tel` varchar(20) DEFAULT NULL,
@@ -124,32 +126,16 @@ CREATE TABLE IF NOT EXISTS `tcit_member` (
   `loginTime` int(10) DEFAULT NULL,
   `attributeData` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- 导出表中的数据 `tcit_member`
 --
 
-INSERT INTO `tcit_member` (`id`, `lmID`, `userID`, `realName`, `passWord`, `sex`, `phone`, `tel`, `addr`, `avatar`, `email`, `youbian`, `status`, `creatTime`, `loginTime`, `attributeData`) VALUES
-(2, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370207, NULL, ''),
-(3, 4, '', NULL, 'd41d8cd98f00b204e9800998ecf8427e', NULL, NULL, NULL, NULL, NULL, '', NULL, 0, 1392370271, NULL, ''),
-(4, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370278, NULL, ''),
-(5, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370296, NULL, ''),
-(6, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370338, NULL, ''),
-(7, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370377, NULL, ''),
-(8, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370403, NULL, ''),
-(9, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370438, NULL, ''),
-(10, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370440, NULL, ''),
-(11, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370457, NULL, ''),
-(12, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370474, NULL, ''),
-(13, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370533, NULL, ''),
-(14, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370551, NULL, ''),
-(15, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370639, NULL, ''),
-(16, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370795, NULL, ''),
-(17, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370822, NULL, ''),
-(18, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392370967, NULL, ''),
-(19, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392371000, NULL, ''),
-(20, 4, 'cloud', NULL, '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 0, 1392371011, NULL, '');
+INSERT INTO `tcit_member` (`id`, `lmID`, `userID`, `realName`, `passWord`, `mailCode`, `grantWord`, `sex`, `phone`, `tel`, `addr`, `avatar`, `email`, `youbian`, `status`, `creatTime`, `loginTime`, `attributeData`) VALUES
+(6, 4, 'cloud123', '茴香豆儿', '85b789dd35ccd43710c905d097732af1', '2801', NULL, NULL, NULL, NULL, NULL, NULL, '2632414575@qq.com', NULL, 1, 1392609183, NULL, ''),
+(5, 4, 'cloud39', '茴香豆儿', '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 1, 1392607466, NULL, ''),
+(7, 4, 'cloud0274', '永恒梦魇', '85b789dd35ccd43710c905d097732af1', '4866', NULL, 0, '', '', '', NULL, '394440274@qq.com', 0, 1, 1392623174, NULL, '');
 
 -- --------------------------------------------------------
 

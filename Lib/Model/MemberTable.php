@@ -29,6 +29,7 @@ class MemberTable extends Data {
                 'userID' => 'userID',
                 'realName' => 'realName',
                 'passWord' => 'passWord',
+                'mailCode' => 'mailCode',
                 'sex' => 'sex',
                 'phone' => 'phone',
                 'tel' => 'tel',
@@ -49,8 +50,6 @@ class MemberTable extends Data {
     public function save() {
         if (!$this->creatTime)
             $this->creatTime = time();
-        else
-            $this->creatTime = strtotime($this->creatTime);
         parent::save();
         return $this;
     }

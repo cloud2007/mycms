@@ -5,5 +5,6 @@
 <title>TcitCms Core</title>
 <link type="text/css" href="/Public/style/reset.css" rel="stylesheet" />
 <link type="text/css" href="/Public/style/style.css" rel="stylesheet" />
+<script src="/Public/js/jquery-1.9.1.js"></script>
 </head>
 <body>

@@ -225,6 +225,29 @@ class MenuTable extends Data {
     }
 
     /**
+     * categoryID 字段
+     * @param type $field
+     * @return string|null
+     */
+    public function showCategoryIDSelectList($field, $newsinfo, $select) {
+        $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
+        if (in_array($field, $tcitFieldsArray)) {
+            $returnStr .= '<select name="categoryID" id="categoryID">';
+            $returnStr .='<option value="0">选择类别</option>';
+            foreach ($newsinfo as $v) {
+                if ($v['id'] == $select)
+                    $selectStr = 'selected = "selected"';
+                else
+                    $selectStr = '';
+                $returnStr .= '<option value="' . $v['id'] . '" ' . $selectStr . '>' . $v['categoryTitle'] . '</option>';
+            }
+            $returnStr .='</select>';
+            return $returnStr;
+        }
+        return NULL;
+    }
+
+    /**
      * 文本区域
      * @param type $field
      * @return string|null

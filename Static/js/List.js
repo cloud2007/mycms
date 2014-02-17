@@ -60,6 +60,17 @@ $(function(){
 		mouseout :function(){$(this).find('.btn').addClass('none');},
 	})
 	
+	$("input[name='search']").click(function(){
+		var wd = $('#wd').val();
+		var categoryID = $('#categoryID').val();
+		/*
+		if(wd==false && categoryID==false){
+			alert('没有检索条件');
+			return false;
+		}*/
+		self.location.href="/admin.php/News?wd=" + wd + "&categoryID=" + categoryID;
+	})
+	
 })
 
 //表单名ListForm 全选按钮name=checkAll checkbox name=checkID[]

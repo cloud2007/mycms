@@ -14,25 +14,47 @@ class NewsAction extends AdminAction {
     }
 
     function index() {
+
+        $cateobj = new CategoryTable();
+        $tree = new Tree($cateobj->formatArray());
+        $dataList = $tree->getArray();
+
+        $Menu = new MenuTable();
+        $Menu->load($_SESSION['col']);
+
         $News = new NewsTable();
         $PageSize = 20;
         $PageNo = (int) @$_GET['PageNo'] ? (int) $_GET['PageNo'] : 1;
         $PageNum = ($PageNo - 1) * $PageSize;
         $Pager = new Pager();
         $PagerData = $Pager->getPagerData($News->count(array('whereAnd' => array(array('lmID', '=' . $_SESSION['lam'])))), $PageNo, '/admin.php/News?', 2, $PageSize); //参数记录数 当前页数 链接地址 显示样式 每页数量
-        $res = $News->find(
-                array(
-                    'whereAnd' => array(array('lmID', '=' . $_SESSION['lam'])),
-                    'order' => array('id' => 'desc'),
-                    'limit' => "{$PageNum},{$PageSize}"
-                )
-        );
-        $Menu = new MenuTable();
-        $Menu->load($_SESSION['col']);
+
+        $Options = array();
+        $Options['order'] = array('id' => 'desc');
+        $Options['whereAnd'][] = array('lmID', '=' . $_SESSION['lam']);
+        if ($_GET['wd'])
+            $Options['whereAnd'][] = array('title', "like '%{$_GET['wd']}%' or content like '%{$_GET['wd']}%'");
+
+        if ($_GET['categoryID']) {
+            $searchCateidArrays = array();
+            $searchCateidArrays[] = $_GET['categoryID'];
+            $treeSearch = new Tree($cateobj->formatArray());
+            $searchCateidArray = $treeSearch->getArray($_GET['categoryID']);
+            foreach ($searchCateidArray as $v) {
+                $searchCateidArrays[] = $v['id'];
+            };
+            $searchCateidStrint = implode(',', $searchCateidArrays);
+            $Options['whereAnd'][] = array('categoryID', 'in(' . $searchCateidStrint . ')');
+        }
+        $Options['limit'] = "{$PageNum},{$PageSize}";
+
+        $res = $News->find($Options);
+
         $view = new View('news/newsList');
         $view->set('NewsList', $res);
         $view->set('PagerData', $PagerData);
         $view->set('Menu', $Menu);
+        $view->set('dataList', $dataList);
         $view->renderHeaderFooterHtml($view);
     }
 
