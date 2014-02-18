@@ -69,11 +69,25 @@ class CoreAction extends AdminAction {
         /*
          * 设置系统默认菜单
          */
-        $data->tcitFields = 'title|content|creattime';
+        $data->tcitFields = 'title|content|creatTime';
         $data->usable = TRUE;
         $data->title = '标题名称';
+        $data->category = '所属类别';
+        $data->smallpic = '上传图片';
+        $data->bigpic = '上传大图';
+        $data->hits = '浏览次数';
         $data->content = '详细内容';
-        $data->creattime = '创建时间';
+        $data->creatTime = '创建时间';
+
+        $data->uname = '姓名';
+        $data->company = '公司名称';
+        $data->phone = '手机号';
+        $data->tel = '电话号码';
+        $data->fax = '传真号码';
+        $data->pic = '附加图片';
+        $data->email = '电子邮件';
+        $data->youbian = '邮编';
+        $data->addr = '地址';
 
         $view = new View('core/menuAdd');
         $view->set('datainfo', $data);

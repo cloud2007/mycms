@@ -79,6 +79,7 @@ class MenuTable extends Data {
                 'categoryMultiPic' => 'categoryMultiPic',
                 //留言字段
                 'uname' => 'uname',
+                'company' => 'company',
                 'phone' => 'phone',
                 'tel' => 'tel',
                 'fax' => 'fax',

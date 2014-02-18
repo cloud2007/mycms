@@ -19,13 +19,13 @@
 		</tr>
 		<tr>
 			<td>功能链接</td>
-			<td colspan="3" class="textleft"><input type="text" name="doLink" value="<?php echo $datainfo->doLink;?>" size="50" /></td>
+			<td colspan="3" class="textleft"><input type="text" name="doLink" value="<?php echo $datainfo->doLink;?>" size="20" /> <a href="javascript:;" class="addLink">News/add</a> <a href="javascript:;" class="addLink">Category</a> <a href="javascript:;" class="addLink">Message</a> <a href="javascript:;" class="addLink">Member</a></td>
 			<td>栏 目 ID</td>
 			<td class="textleft"><input name="lmID" type="text" value="<?php echo $datainfo->lmID;?>" size="8" /></td>
 		</tr>
 		<tr>
 			<td>管理链接</td>
-			<td colspan="3" class="textleft"><input name="adminLink" type="text" value="<?php echo $datainfo->adminLink;?>" size="50" /></td>
+			<td colspan="3" class="textleft"><input name="adminLink" type="text" value="<?php echo $datainfo->adminLink;?>" size="20" /></td>
 			<td>排序位置</td>
 			<td class="textleft"><input name="orderNo" type="text" value="<?php echo $datainfo->orderNo;?>" size="6" /></td>
 		</tr>
@@ -190,7 +190,7 @@
 			<td></td>
 		</tr>
 		<?php
-			$fieldlist = array('uname','phone','tel','fax','pic','email','youbian','addr');
+			$fieldlist = array('uname','company','phone','tel','fax','pic','email','youbian','addr');
 			foreach($fieldlist as $k => $field){
 				if(!$field){
 					echo '<td></td>';
@@ -213,6 +213,12 @@
 	</table>
 </form>
 <script type="text/javascript">
+$(function(){
+	$('.addLink').click(function(){
+		$('input[name="doLink"]').val($(this).text());
+	})
+})
+/*
 $(function(){
 	var demo = $("#menuAdd").Validform({
 		tiptype:3,
@@ -241,5 +247,5 @@ $(function(){
 			ignore:"ignore",
 		},
 	]);
-})
+})*/
 </script>
