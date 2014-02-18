@@ -14,7 +14,7 @@ class DatabaseModel extends Model {
     }
 
     function backup() {
-        $dataArray = array('category', 'menu', 'news');
+        $dataArray = array('category', 'grant', 'member', 'menu', 'message', 'news', 'user');
         $mysql = '';
         foreach ($dataArray as $v) {
             $table = TABLE_PREFIX . '_' . $v;

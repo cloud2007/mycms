@@ -114,7 +114,7 @@ form {
 	clear: both;
 }
 .topnav .menuact {
-	width: 168px;
+	width: 250px;
 	float: left;
 	padding-left: 10px;
 	overflow: hidden;
@@ -171,20 +171,15 @@ form {
 	overflow: hidden;
 	line-height: 27px;
 	padding-right: 10px;
-	float: right;
-	color: #999;
-	width: 500px;
-}
-.sysmsg h3 {
-	font-size: 12px;
 	float: left;
-	padding-right: 6px;
-	font-weight: normal;
 	color: #FC0;
-	display: none;
+}
+
+.sysmsg a:hover {
+	color: #FC0;
 }
 .scroll {
-	padding-top: 1px;
+	line-height:25px;
 	float: right;
 	overflow: hidden;
 	height: 25px;
@@ -192,7 +187,7 @@ form {
 .scroll ul {
 	}
 .scroll ul li,.sysmsg ul li a {
-	color: #BBB;
+	color: #FFF;
 	text-decoration: none;
 }
 .scroll ul li {
