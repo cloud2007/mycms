@@ -14,7 +14,7 @@ class View {
     protected $data = array();
     private $render = null;
 
-    public function __construct($name, $data = NULL, $type = NULL) {
+    public function __construct($name, $data = NULL) {
         $this->view_filename = VIEW_PATH . "{$name}.php";
         $this->name = $name;
 
@@ -123,24 +123,38 @@ class View {
     }
 
     function renderHtml($content) {
-        //$header = new View('header');
-        //$footer = new View('footer');
         echo "{$content}";
     }
 
-    function renderHeaderFooterHtml($content, $runtimeObj = '', $counter = '') {
+    //后台
+    function renderHeaderFooterHtml($content) {
         $header = new View('header');
         $footer = new View('footer');
-        //时间统计
-        if ($runtimeObj) {
-            $runtimeObj->stop();
-            $Runtime = '页面执行时间' . $runtimeObj->spent() . " 毫秒";
-            $footer->set('runtime', $Runtime);
-        }
+        global $RuntimeObj;
+        $RuntimeObj->stop();
+        $Runtime = '页面执行时间' . $RuntimeObj->spent() . " 毫秒";
+        $footer->set('runtime', $Runtime);
         //数据库查询次数
-        if ($counter) {
-            $footer->set('counter', '/数据库查询次数：'.$counter);
-        }
+        $counter = Data::$counter;
+        $footer->set('counter', '/数据库查询次数：' . $counter);
+        echo "{$header}{$content}{$footer}";
+    }
+
+    //前台
+    function renderWebHtml($content) {
+        $header = new View('header');
+        $cateObj = new CategoryTable();
+        $cateList = $cateObj->getSon(1, 0);
+        $header->set('cateList', $cateList);
+
+        $footer = new View('footer');
+        global $RuntimeObj;
+        $RuntimeObj->stop();
+        $Runtime = '页面执行时间' . $RuntimeObj->spent() . " 毫秒";
+        $footer->set('runtime', $Runtime);
+        //数据库查询次数
+        $counter = Data::$counter;
+        $footer->set('counter', '/数据库查询次数：' . $counter);
         echo "{$header}{$content}{$footer}";
     }
 

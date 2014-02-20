@@ -12,6 +12,9 @@
  *      其他参数为数字序号  从1开始
  * )
  */
+$RuntimeObj = new Runtime();
+$RuntimeObj->start();
+
 $requestArray = array_filter(explode('/', @$_SERVER['PATH_INFO']));
 
 $Controller = isset($requestArray[1]) ? ucfirst($requestArray[1]) . 'Action' : $Default['DefaultAction'];

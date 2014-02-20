@@ -113,7 +113,7 @@ class CoreAction extends AdminAction {
         $view = new View('core/system');
         $view->set('Authorize', $this->Authorize);
         $counter = Data::$counter;
-        $view->renderHeaderFooterHtml($view, $this->RuntimeObj, $counter);
+        $view->renderHeaderFooterHtml($view);
     }
 
     //数据库备份
@@ -121,8 +121,9 @@ class CoreAction extends AdminAction {
         $this->checkGrant('ALL');
         $Data = new DatabaseModel();
         $File = $Data->backup();
-        $this->RuntimeObj->stop();
-        ShowNote("数据备份成功,耗时" . $this->RuntimeObj->spent() . "毫秒<br /><a href='/{$File}' style='color:red' target='_blank'>下载(点击右键另存)</a>");
+        global $RuntimeObj;
+        $RuntimeObj->stop();
+        ShowNote("数据备份成功,耗时" . $RuntimeObj->spent() . "毫秒<br /><a href='/{$File}' style='color:red' target='_blank'>下载(点击右键另存)</a>");
     }
 
     //修改用户密码

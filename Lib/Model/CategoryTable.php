@@ -62,6 +62,25 @@ class CategoryTable extends Data {
         return $res;
     }
 
+    /*
+     * 获取子级栏目
+     */
+
+    function getSon($lmID = '', $parendID = 0) {
+        $lmID = $lmID ? $lmID : $_SESSION['lam'];
+        $array = $this->find(
+                array(
+                    'whereAnd' => array(array('lmID', '=' . $lmID), array('parentID', '=' . $parendID)),
+                    'order' => array('orderNo' => 'asc')
+                )
+        );
+        $res = array();
+        foreach ($array as $v) {
+            $res[] = array('id' => $v->id, 'parentID' => $v->parentID, 'categoryTitle' => $v->categoryTitle);
+        }
+        return $res;
+    }
+
 }
 
 ?>

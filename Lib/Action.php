@@ -9,12 +9,8 @@
  */
 class Action {
 
-    protected $RuntimeObj;
-    public $Runtime;
-
     function __construct() {
-        $this->RuntimeObj = new Runtime();
-        $this->RuntimeObj->start();
+        ;
     }
 
     function error($error_id) {
@@ -22,9 +18,7 @@ class Action {
     }
 
     function __destruct() {
-        //$this->RuntimeObj->stop();
-        //$this->Runtime = $this->RuntimeObj->spent() . " 毫秒";
-        //echo "页面执行时间: " . $this->Runtime;
+        ;
     }
 
 }
