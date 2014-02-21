@@ -26,6 +26,12 @@ class Util {
         return self::$instance;
     }
 
+    /**
+     * 字符串切割成数组
+     * @param type $str
+     * @return type
+     * @example strSplit('abc') => array('a','b','c')
+     */
     public function strSplit($str) {
         $count = mb_strlen($str, 'UTF-8');
         $result = array();
@@ -35,6 +41,11 @@ class Util {
         return $result;
     }
 
+    /**
+     * 取首字母
+     * @param type $s0
+     * @return string
+     */
     public function get_letter($s0) {
         $firstchar_ord = ord(strtoupper($s0{0}));
         if (($firstchar_ord >= 65 and $firstchar_ord <= 91) or ($firstchar_ord >= 48 and $firstchar_ord <= 57))
@@ -90,14 +101,20 @@ class Util {
         return $s;
     }
 
+    /**
+     * 取首字母缩写
+     * @param type $str
+     * @return type
+     */
     public function getletter($str) {
-        $str = $this->strSplit($str);
+        $str = self::strSplit($str);
         $res = '';
         foreach ($str as $k) {
-            $res .= $this->get_letter($k);
+            $res .= self::get_letter($k);
         }
         return $res;
     }
+
 
     public function getpicthumb($pic, $type) {
         if (is_file(ROOTPATH . str_replace('.', '_' . $type . '.', $pic)))
@@ -107,14 +124,15 @@ class Util {
         return 'http://img.haoloubang.com//default_house.jpg';
     }
 
-    /*
-      public function getpicthumb($pic,$type){
-      if( is_file( ROOTPATH .str_replace('.', '_'.$type.'.',$pic)) ) return str_replace('.', '_'.$type.'.',$pic);
-      if( is_file( ROOTPATH . $pic ) ) return $pic;
-      return '/uploadfiles/default_house.jpg';
-      }
+    /**
+     * 截取字符串
+     * @param type $str
+     * @param type $start
+     * @param type $length
+     * @param type $charset
+     * @param type $suffix
+     * @return type
      */
-
     public function csubstr($str, $start = 0, $length, $charset = "utf-8", $suffix = '...') {
         if (function_exists("mb_substr")) {
             if (mb_strlen($str, $charset) <= $length)
@@ -135,17 +153,12 @@ class Util {
         return $slice;
     }
 
-    //取得当前页面对应的搜索action
-    public function get_search_action($pageurl) {
-        if (strpos($pageurl, 'rent') > 0)
-            return 1;
-        if (strpos($pageurl, 'sale') > 0)
-            return 2;
-        if (strpos($pageurl, 'borough') > 0)
-            return 3;
-        return 1;
-    }
 
+    /**
+     * 替换
+     * @param type $map
+     * @return type
+     */
     public function maping($map) {
         $mapping = array(
             ':' => ',',
@@ -167,12 +180,7 @@ class Util {
         return '?';
     }
 
-    public function my_preg_replace($o) {
-        $o = preg_replace("/{cut_title}(.*){\/cut_title}/", "", $o);
-        $o = preg_replace("/{content_code_(.*)}/", "", $o);
-        $o = str_replace('{nextpage}', "", $o);
-        return $o;
-    }
+
 
     public function switch_val_en_all($number) {//传入编码GB2312编码的中文值，返回对应的拼音“全拼”
         $en_full = array(
@@ -627,6 +635,12 @@ class Util {
         }
     }
 
+    /**
+     * 中文 to 拼音
+     * @param type $string
+     * @param type $top
+     * @return type
+     */
     public function zh_to_en($string, $top = false) {//传入需要处理的字符串，后获得对应的字符编码，最后传入到获得拼音的函数
         $return_str = "";
         $string = mb_convert_encoding($string, 'GB2312', 'UTF-8'); //转换编码：utf-8->gbk

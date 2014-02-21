@@ -118,6 +118,56 @@ class NewsTable extends Data {
         return implode('', $statusArray);
     }
 
+    /**
+     * 格式化返回字段
+     * @param type $columnName
+     * @param type $length
+     * @return type
+     */
+    function fomartColumn($columnName, $length) {
+        $str = preg_replace('/<pre class=([\s\S]*)<\/pre>/U', '', $this->$columnName);
+        return Util::csubstr(strip_tags($str, '<p>'), 0, $length);
+    }
+
+    /**
+     * 格式化返回第一大段内容
+     */
+    function fomartColumnFirstP($columnName) {
+        if (mb_substr($this->$columnName, 0, 2) == '<p') {
+            preg_match('/<p>([\s\S]*)<\/p>/U', $this->$columnName, $str);
+            return $str[0];
+        } else {
+            preg_match('/([\s\S]*)<br \/>/U', $this->$columnName, $str);
+            return $str[0];
+        }
+        //return Util::csubstr(strip_tags($str,'<p>'), 0, $length);
+    }
+
+    function load($value = null) {
+        $thisObj = parent::load($value);
+        $PrewObj = new self();
+        $Prew = $PrewObj->find(
+                array(
+                    'whereAnd' => array(array('id', '<' . $thisObj->id)),
+                    'order' => array('id' => 'desc'),
+                    'limit' => '1'
+                )
+        );
+        if ($Prew)
+            $this->prew = $Prew[0];
+
+        $NextObj = new self();
+        $Next = $NextObj->find(
+                array(
+                    'whereAnd' => array(array('id', '>' . $thisObj->id)),
+                    'order' => array('id' => 'asc'),
+                    'limit' => '1'
+                )
+        );
+        if ($Next)
+            $this->next = $Next[0];
+    }
+
 }
 
 ?>

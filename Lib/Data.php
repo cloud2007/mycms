@@ -78,7 +78,9 @@ class Data {
     public function parseRow($_obj, $row, $columns) {
         foreach ($columns as $objcol => $dbcol) {
             if ($objcol != 'attributeData') {
-                $_obj->$objcol = $row[$dbcol];
+                if (strpos($objcol, 'content') !== false)
+                    $_obj->$objcol = htmlspecialchars_decode($row[$dbcol]); else
+                    $_obj->$objcol = $row[$dbcol];
                 continue;
             }
 
@@ -366,10 +368,10 @@ class Data {
 
     public function htmlspecialchars() {
         foreach ($this->columns as $objcol => $dbcol) {
-            $this->$objcol = isset($this->$objcol) && !is_null($this->$objcol) ? htmlspecialchars($this->$objcol, ENT_NOQUOTES, 'ISO-8859-1', false) : NULL;
+            $this->$objcol = isset($this->$objcol) && !is_null($this->$objcol) ? htmlspecialchars($this->$objcol) : NULL;
         }
         foreach ($this->attris as $key => $value) {
-            $this->attris[$key] = is_null($value) ? null : htmlspecialchars($value, ENT_NOQUOTES, 'ISO-8859-1', false);
+            $this->attris[$key] = is_null($value) ? null : htmlspecialchars($value);
         }
     }
 
