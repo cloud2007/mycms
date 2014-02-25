@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: 127.0.0.1:3306
--- 生成日期: 2014 年 02 月 18 日 06:49
+-- 生成日期: 2014 年 02 月 25 日 01:12
 -- 服务器版本: 5.1.28
 -- PHP 版本: 5.2.6
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 数据库: `mycms`
+-- 数据库: `photo`
 --
 
 -- --------------------------------------------------------
@@ -43,32 +43,12 @@ CREATE TABLE IF NOT EXISTS `tcit_category` (
   `multiPic` text,
   `creatTime` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='类别表' AUTO_INCREMENT=26 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='类别表' AUTO_INCREMENT=1 ;
 
 --
 -- 导出表中的数据 `tcit_category`
 --
 
-INSERT INTO `tcit_category` (`id`, `lmID`, `parentID`, `orderNo`, `categoryTitle`, `categoryTitle1`, `categoryTitle2`, `categoryBremark`, `categoryName1`, `categoryName2`, `categorySmallPic`, `categoryBigPic`, `categoryContent1`, `categoryContent2`, `multiPic`, `creatTime`) VALUES
-(1, 1, 0, 1, '建站技术', '', '', '', '', '', '', '', '', '', '', 1390555696),
-(2, 1, 0, 3, '基本知识', '', '', '', '', '', '', '', '', '', '', 1362645030),
-(3, 1, 0, 2, '行业动态', '', '', '', '', '', '', '', '', '', '', 1362645030),
-(4, 1, 1, 4, '前端技术', '别名一', '别名二', '', '描述', '', '/201401/20140123_120102_6390.jpg', '', '&lt;span style=\\"color:#666666;font-family:\\''Courier New\\'', \\''Microsoft Yahei\\'', 宋体;line-height:24px;background-color:#FFFFFF;\\"&gt;内容&lt;/span&gt;', '', '|/mutli/201401/20140123_132854_4702.jpg||0\n|/mutli/201401/20140123_132855_6326.jpg||0\n|/mutli/201401/20140123_132856_5457.jpg||0', 1390555716),
-(5, 1, 1, 14, '后台服务', '', '', '', '', '', '', '', '', '', '', 1390701651),
-(6, 1, 2, 6, 'HTML/XML', '', '', '', '', '', '', '', '', '', '', 1390701672),
-(7, 1, 2, 8, 'ASP/JSP/PHP', '', '', '', '', '', '', '', '', '', '', 0),
-(8, 1, 2, 7, 'AJAX/JS/JQUERY', '', '', '', '', '', '', '', '', '', '', 0),
-(9, 1, 3, 11, '艾特业界', '', '', '', '', '', '', '', '', '', '', 0),
-(10, 1, 3, 9, '新技术', '', '', '', '', '', '', '', '', '', '', 0),
-(11, 1, 3, 10, '新产品', '', '', '', '', '', '', '', '', '', '|/mutli/201401/20140123_135823_6009.jpg||0\n|/mutli/201401/20140123_135824_1455.jpg||0', 0),
-(12, 1, 9, 0, '360VSQQ', '', '', '', '', '', '', '', '', '', '', 0),
-(13, 1, 1, 0, '系统OP', '', '', '', '', '', '', '', '', '', '', 1390555714),
-(14, 1, 1, 13, '系统开发', '', '', '', '', '', '', '', '', '', '', 0),
-(16, 1, 9, 12, '腾讯技术', '', '', '', '', '', '', '', '', '', '', 0),
-(21, 1, 1, 5, '办公系统开发', '', '', '', '', '', '', '', '', '', '', 0),
-(23, 2, 0, 16, '栏目类别一', '', '', '', '', '', '', '', '', '', '', 1390697162),
-(24, 2, 0, 17, '栏目类别二', '', '', '', '', '', '', '', '', '', '', 1390697175),
-(25, 2, 0, 18, '栏目类别三', '', '', '', '', '', '', '', '', '', '', 1390697182);
 
 -- --------------------------------------------------------
 
@@ -121,16 +101,12 @@ CREATE TABLE IF NOT EXISTS `tcit_member` (
   `loginTime` int(10) DEFAULT NULL,
   `attributeData` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 导出表中的数据 `tcit_member`
 --
 
-INSERT INTO `tcit_member` (`id`, `lmID`, `userID`, `realName`, `passWord`, `mailCode`, `grantWord`, `sex`, `phone`, `tel`, `addr`, `avatar`, `email`, `youbian`, `status`, `creatTime`, `loginTime`, `attributeData`) VALUES
-(6, 4, 'cloud123', '茴香豆儿', '85b789dd35ccd43710c905d097732af1', '2801', NULL, NULL, NULL, NULL, NULL, NULL, '2632414575@qq.com', NULL, 1, 1392609183, NULL, ''),
-(5, 4, 'cloud39', '茴香豆儿', '85b789dd35ccd43710c905d097732af1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, 1, 1392607466, NULL, ''),
-(7, 4, 'cloud0274', '永恒梦魇', '85b789dd35ccd43710c905d097732af1', '4866', NULL, 0, '15982259902', '028-87426658', '', NULL, '394440274@qq.com', 0, 1, 1392623174, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -272,18 +248,12 @@ CREATE TABLE IF NOT EXISTS `tcit_message` (
   `reContent` text,
   `reTime` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 导出表中的数据 `tcit_message`
 --
 
-INSERT INTO `tcit_message` (`id`, `lmID`, `newsID`, `msgID`, `uname`, `company`, `phone`, `tel`, `fax`, `pic`, `email`, `youbian`, `addr`, `title`, `content`, `creatTime`, `reContent`, `reTime`) VALUES
-(5, 3, 0, 0, '11', NULL, '1', NULL, NULL, '', NULL, NULL, '', '11', '&lt;img src="/Uploads/kindEditor/201401/20140121_143839_7250.jpg" alt="" /&gt;', 1391846150, '', 1391505830),
-(6, 3, 0, 0, '姓名', NULL, '15982259902', NULL, NULL, NULL, NULL, NULL, '', '标题名称', 'asdddddddddddd', 1391850770, '1212', 1391850768),
-(7, 3, 0, 0, '姓名', NULL, '15982259902', NULL, NULL, '/201402/20140208_165152_2702.jpg', NULL, NULL, '11111111111', '标题名称', 'asdddddddddddd', 1391850762, '1111', 1391850762),
-(8, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, NULL, NULL, NULL, 1392364384, NULL, 1392364384),
-(9, 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, '190296465@qq.com', NULL, NULL, NULL, NULL, 1392364390, NULL, 1392364390);
 
 -- --------------------------------------------------------
 
@@ -340,16 +310,12 @@ CREATE TABLE IF NOT EXISTS `tcit_news` (
   `likeNews` int(5) DEFAULT NULL,
   `creatTime` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 导出表中的数据 `tcit_news`
 --
 
-INSERT INTO `tcit_news` (`id`, `lmID`, `categoryID`, `categorysID`, `title`, `title1`, `title2`, `title3`, `title4`, `title5`, `title6`, `title7`, `title8`, `title9`, `title10`, `name1`, `name2`, `name3`, `name4`, `name5`, `content`, `content1`, `content2`, `content3`, `content4`, `content5`, `smallpic`, `bigpic`, `upload1`, `upload2`, `upload3`, `upload4`, `upload5`, `multiPic`, `is_tj`, `is_gd`, `is_ab`, `is_cd`, `is_ef`, `is_gh`, `is_jk`, `is_mn`, `hits`, `city`, `area`, `likeNews`, `creatTime`) VALUES
-(2, 1, 10, 0, 'title', 'Title', 'Keywords', 'Descriptio', '英国', '中国|美国|英国|韩国', '', '', '', '', '', '111', '2', '3', '4', '5', '系统', '1212', '1212', '1212', '1212', '1212', '', '', '', '', '', '', '', '/Uploads/a/201401/20140121_091018_4537.jpg|||0', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, 1390703036),
-(11, 2, 23, 0, '1', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, 0),
-(5, 1, 4, 0, '系统OprationSystem', 'Title', 'Keywords', 'Descriptio', '英国', '美国', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 1, 1, 1, 0, 0, 0, 0, 111, '', '', 0, 1391753291);
 
 -- --------------------------------------------------------
 
@@ -366,12 +332,11 @@ CREATE TABLE IF NOT EXISTS `tcit_user` (
   `creatTime` int(10) DEFAULT NULL COMMENT '时间',
   `loginTime` int(10) DEFAULT NULL COMMENT '时间戳',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=2 ;
 
 --
 -- 导出表中的数据 `tcit_user`
 --
 
 INSERT INTO `tcit_user` (`id`, `userID`, `passWord`, `grantWord`, `status`, `creatTime`, `loginTime`) VALUES
-(16, 'cloud', '85b789dd35ccd43710c905d097732af1', 'ALL', 1, 1391998314, NULL),
-(7, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'ALL', 1, 1391837264, NULL);
+(1, 'cloud', '85b789dd35ccd43710c905d097732af1', 'ALL', 1, 1391998314, 1391998314);
