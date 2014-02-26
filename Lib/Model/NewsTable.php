@@ -143,6 +143,22 @@ class NewsTable extends Data {
         //return Util::csubstr(strip_tags($str,'<p>'), 0, $length);
     }
 
+    /**
+     * 获取缩略图 原图$type留空
+     * @param type $columnName
+     * @param type $type
+     * @return type
+     */
+    function getPic($columnName, $type) {
+        if (!$type)
+            return UPLOAD_PATH . $this->$columnName;
+        if (is_file(ROOT_PATH . 'Uploads' . str_replace('.', '_' . $type . '.', $this->$columnName)))
+            return UPLOAD_PATH . str_replace('.', '_' . $type . '.', $this->$columnName);
+        if (is_file(ROOT_PATH . 'Uploads' . $this->$columnName))
+            return UPLOAD_PATH . $this->$columnName;
+        return UPLOAD_PATH . 'default_house.jpg';
+    }
+
     function load($value = null) {
         $thisObj = parent::load($value);
         $PrewObj = new self();

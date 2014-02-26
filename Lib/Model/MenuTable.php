@@ -137,7 +137,7 @@ class MenuTable extends Data {
         $tcitFieldsArray = array_filter(explode('|', $this->tcitFields));
         $selectCheckArray = array_filter(explode('|', $this->{$field . '_'}));
         if (in_array($field, $tcitFieldsArray)) {
-            $returnStr = '<tr><td>';
+            $returnStr = '<tr><td width="100">';
             $returnStr .= $this->$field;
             $returnStr .= '</td><td class="textleft">';
             if (in_array($field . '_select', $tcitFieldsArray)) {

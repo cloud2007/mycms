@@ -115,13 +115,12 @@ class Util {
         return $res;
     }
 
-
-    public function getpicthumb($pic, $type) {
-        if (is_file(ROOTPATH . str_replace('.', '_' . $type . '.', $pic)))
-            return 'http://img.haoloubang.com/' . str_replace('/uploadfiles/', '', str_replace('.', '_' . $type . '.', $pic));
-        if (is_file(ROOTPATH . $pic))
-            return 'http://img.haoloubang.com/' . str_replace('/uploadfiles/', '', $pic);
-        return 'http://img.haoloubang.com//default_house.jpg';
+    public function getThumb($pic, $type) {
+        if (is_file(ROOT_PATH . UPLOAD_PATH . str_replace('.', '_' . $type . '.', $pic)))
+            return UPLOAD_PATH . str_replace('.', '_' . $type . '.', $pic);
+        if (is_file(ROOT_PATH . UPLOAD_PATH . $pic))
+            return UPLOAD_PATH . $pic;
+        return UPLOAD_PATH . 'default_house.jpg';
     }
 
     /**
@@ -153,7 +152,6 @@ class Util {
         return $slice;
     }
 
-
     /**
      * 替换
      * @param type $map
@@ -179,8 +177,6 @@ class Util {
             return '?' . $htmlquery . '&';
         return '?';
     }
-
-
 
     public function switch_val_en_all($number) {//传入编码GB2312编码的中文值，返回对应的拼音“全拼”
         $en_full = array(

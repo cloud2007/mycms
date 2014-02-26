@@ -121,7 +121,6 @@ class NewsAction extends AdminAction {
         $News = new NewsTable();
         $News->load($id);
         $News->$op = $value;
-        echo $News->creatTime; //die;
         $News->save();
         ShowMsg('保存成功', '/admin.php/News/?PageNo=' . $PageNo, 0, 1);
     }
