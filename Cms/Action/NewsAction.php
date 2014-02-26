@@ -70,7 +70,8 @@ class NewsAction extends AdminAction {
         $data = new MenuTable();
         $data->load($_SESSION['col']);
         $view->set('datainfo', $data);
-
+        if (in_array('noadd', explode('|', $data->tcitFields)) && !$_GET[1])
+            ShowMsg('本栏目不允许添加', '-1');
         $cateobj = new CategoryTable();
         $tree = new Tree($cateobj->formatArray());
 
@@ -129,6 +130,10 @@ class NewsAction extends AdminAction {
      * 删除一条记录
      */
     function delete() {
+        $data = new MenuTable();
+        $data->load($_SESSION['col']);
+        if (in_array('nodel', explode('|', $data->tcitFields)))
+            ShowMsg('本栏目不允许删除', '-1');
         $id = $_GET[1];
         $PageNo = $_GET['PageNo'];
         if ($id && is_numeric($id)) {

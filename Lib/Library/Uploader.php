@@ -126,30 +126,31 @@ class Uploader {
                     if ($this->needResize == true) {//需要生成缩略图
                         foreach ($this->enableSize as $size => $val) {
                             $resize = $this->resize($this->rootdir . $target, $size);
-                            /* if ($val['watermark']) {
-                              $this->waterMarkText($resize);
-                              } */
-                            switch ($val['watermark'] && stripos($this->fileList['image'], $extension)) {
-                                case self::WATER_MARK_IMAGE:
-                                    $this->waterMarkImage($resize);
-                                    break;
-                                case self::WATER_MARK_TEXT:
-                                    $this->waterMarkText($resize);
-                                    break;
-                                default:
-                                    break;
+                            if (stripos($this->fileList['image'], $extension)) {
+                                switch ($val['watermark']) {
+                                    case self::WATER_MARK_IMAGE:
+                                        $this->waterMarkImage($resize);
+                                        break;
+                                    case self::WATER_MARK_TEXT:
+                                        $this->waterMarkText($resize);
+                                        break;
+                                    default:
+                                        break;
+                                }
                             }
                         }
                     }
-                    switch ($this->needWaterMark && stripos($this->fileList['image'], $extension)) {
-                        case self::WATER_MARK_IMAGE:
-                            $this->waterMarkImage($this->rootdir . $target);
-                            break;
-                        case self::WATER_MARK_TEXT:
-                            $this->waterMarkText($this->rootdir . $target);
-                            break;
-                        default:
-                            break;
+                    if (stripos($this->fileList['image'], $extension)) {
+                        switch ($this->needWaterMark) {
+                            case self::WATER_MARK_IMAGE:
+                                $this->waterMarkImage($this->rootdir . $target);
+                                break;
+                            case self::WATER_MARK_TEXT:
+                                $this->waterMarkText($this->rootdir . $target);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }
