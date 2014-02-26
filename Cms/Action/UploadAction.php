@@ -9,6 +9,25 @@
  */
 class UploadAction extends AdminAction {
 
+    protected static $config = array(
+        'uploadPath' => '',
+        'watermark' => '', //1 text 2 image
+            /*
+              'allowFile' => Uploader::ALLOWFILE_IMAGE,
+              'thumbSize' => array(
+              'small' => array(
+              'width' => '200',
+              'height' => '200',
+              'watermark' => 'image',
+              ),
+              'middle' => array(
+              'width' => '400',
+              'height' => '400',
+              'watermark' => 'text',
+              )
+              ) */
+    );
+
     function __construct() {
         parent::__construct();
     }
@@ -17,10 +36,25 @@ class UploadAction extends AdminAction {
      * 默认文件上传配置
      */
     public function sigleUpload() {
-        $config = array(
-            'uploadPath' => '',
-            'watermark' => 'image', //1 text 2 image
-        );
+        if ($_SESSION['lam'] == 3) {
+            $config = array(
+                'uploadPath' => '/photo',
+                'watermark' => '',
+                'allowFile' => Uploader::ALLOWFILE_IMAGE,
+                'thumbSize' => array(
+                    'small' => array(
+                        'width' => '216',
+                        'height' => '292',
+                        'watermark' => ''
+                    ),
+                )
+            );
+        } else {
+            $config = array(
+                'uploadPath' => '',
+                'watermark' => '',
+            );
+        }
         $uploader = new Uploader($config);
         echo $uploader->save();
     }
