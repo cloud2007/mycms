@@ -14,6 +14,10 @@ class HomeAction extends Action {
     }
 
     function index() {
+        $Obj = new MenuTable();
+        $Obj->load(1);
+        echo '<pre>';
+        print_r($Obj);
         $view = new View('index');
         $view->renderHeaderFooterHtml($view);
     }

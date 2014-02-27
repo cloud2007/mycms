@@ -8,12 +8,19 @@
  * @modify:2014-01-03
  */
 return array(
-    'master' => array(
+    'local' => array(
         'host' => 'localhost',
         'user' => 'root',
         'pwd' => '',
         'dbname' => 'mycms',
         'charset' => 'utf8',
     ),
+    'server' => array(
+        'host' => 'localhost',
+        'user' => 'qincheng',
+        'pwd' => 'pkfkvsq6',
+        'dbname' => 'qincheng',
+        'charset' => 'utf8',
+    )
         )
 ?>

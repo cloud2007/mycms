@@ -13,7 +13,7 @@ class DataConnection {
 
     public static function getConnection() {
         try {
-            $config = Config::item("Mysql.master");
+            $config = Config::item('Mysql.' . self::checkDomain());
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
@@ -24,6 +24,15 @@ class DataConnection {
             mysql_query('set names utf8') or die(mysql_error());
         }
         return self::$connection;
+    }
+
+    private static function checkDomain() {
+        $DomainArray = array('chofn', 'test');
+        foreach ($DomainArray as $v) {
+            if (strpos($_SERVER['HTTP_HOST'], $v) !== FALSE)
+                return 'local';
+        }
+        return 'server';
     }
 
 }
