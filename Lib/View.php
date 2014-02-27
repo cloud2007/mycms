@@ -141,20 +141,25 @@ class View {
     }
 
     //前台
-    function renderWebHtml($content) {
+    function renderIndexHtml($content) {
+        $Obj = new NewsTable();
+
+        $Obj->load(1);
         $header = new View('header');
+        $header->set('WebConfig', $Obj);
+
         $cateObj = new CategoryTable();
         $cateList = $cateObj->getSon(1, 0);
         $header->set('cateList', $cateList);
 
         $footer = new View('footer');
-        global $RuntimeObj;
-        $RuntimeObj->stop();
-        $Runtime = '页面执行时间' . $RuntimeObj->spent() . " 毫秒";
-        $footer->set('runtime', $Runtime);
-        //数据库查询次数
-        $counter = Data::$counter;
-        $footer->set('counter', '/数据库查询次数：' . $counter);
+        $FriendObj = new NewsTable();
+        $FriendList = $FriendObj->find(
+                array(
+                    'whereAnd' => array(array('lmID', '=9'))
+                )
+        );
+        $footer->set('FriendList', $FriendList);
         echo "{$header}{$content}{$footer}";
     }
 

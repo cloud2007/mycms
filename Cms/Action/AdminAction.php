@@ -15,7 +15,7 @@ class AdminAction extends Action {
 
     function __construct() {
         parent::__construct();
-        $this->checkAuthorize();
+        //$this->checkAuthorize();
         $UserAdmin = new UserModel();
         $this->UserInfo = $UserAdmin->CheckLogin();
         $this->header = new View('header');

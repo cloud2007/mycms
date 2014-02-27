@@ -69,7 +69,7 @@ class Data {
                 $this->connection = DataConnection::getConnection();
                 $this->query();
             } else {
-                SendMail('190296465@qq.com', 'cloud', 'Error', print_r($_SERVER, TRUE) . ' Sql语句{' . $this->sql . '}出错!' . date('Y-m-d H:i:s'));
+                //SendMail('190296465@qq.com', 'cloud', 'Error', print_r($_SERVER, TRUE) . ' Sql语句{' . $this->sql . '}出错!' . date('Y-m-d H:i:s'));
                 throw new Exception("There's something wrong with the sql! " . $this->sql, 22);
             }
         }
