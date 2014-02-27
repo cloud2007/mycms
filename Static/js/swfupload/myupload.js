@@ -1,7 +1,7 @@
 var flash_buttonImg = "/Static/js/swfupload/images/upload_bigbottom.gif";
 var flash_buttonImg_small = "/Static/js/swfupload/images/upload_smallbottom.gif";
 var upload_list = $('#multiPicDiv');//图片群根节点
-var upload_path = '/uploads'
+var upload_path = '/Uploads'
 var z_index=99;
 $(document).ready(function() {
 

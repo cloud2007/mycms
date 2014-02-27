@@ -14,7 +14,9 @@ class DatabaseModel extends Model {
     }
 
     function backup() {
-        $dataArray = array('category', 'grant', 'member', 'menu', 'message', 'news', 'user');
+        //$dataArray = array('category', 'grant', 'member', 'menu', 'message', 'news', 'user');
+        $dataArray = $_POST['table'];
+        $filename = $_POST['filename'] ? $_POST['filename'] : 'Backup' . date('Y-m-d-H');
         $mysql = '';
         foreach ($dataArray as $v) {
             $table = TABLE_PREFIX . '_' . $v;
@@ -34,9 +36,9 @@ class DatabaseModel extends Model {
                 $mysql .= "insert into `$table`($keys) values($vals);\r\n";
             }
         }
-        $filename = 'Backup/' . 'Backup' . date('Y-m-d-H') . ".sql";
+        $filename = 'Backup/' . iconv('UTF-8', 'GBK', $filename) . ".sql";
         file_put_contents(ROOT_PATH . $filename, $mysql);
-        return $filename;
+        return iconv('GBK', 'UTF-8', $filename);
     }
 
 }

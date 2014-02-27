@@ -117,13 +117,19 @@ class CoreAction extends AdminAction {
     }
 
     //数据库备份
-    function databasebackup() {
-        $this->checkGrant('ALL');
-        $Data = new DatabaseModel();
-        $File = $Data->backup();
-        global $RuntimeObj;
-        $RuntimeObj->stop();
-        ShowNote("数据备份成功,耗时" . $RuntimeObj->spent() . "毫秒<br /><a href='/{$File}' style='color:red' target='_blank'>下载(点击右键另存)</a>");
+    function databaseBackup() {
+        if ($_POST) {
+            if (!isset($_POST['table']))
+                ShowMsg('未选择备份数据', '/admin.php/Core/databaseBackup');
+            $this->checkGrant('ALL');
+            $Data = new DatabaseModel();
+            $File = $Data->backup();
+            global $RuntimeObj;
+            $RuntimeObj->stop();
+            ShowNote("数据备份成功,耗时" . $RuntimeObj->spent() . "毫秒<br /><a href='/{$File}' style='color:red' target='_blank'>下载(点击右键另存)</a>");
+        }
+        $view = new View('core/databaseBackup');
+        $view->renderHeaderFooterHtml($view);
     }
 
     //修改用户密码
@@ -263,13 +269,14 @@ class CoreAction extends AdminAction {
     }
 
     //几个删除页面
-    function userDelete(){
+    function userDelete() {
         $this->checkGrant('User');
         $obj = new UserTable();
         $obj->delete($_GET[1]);
         ShowMsg('已删除', '/admin.php/Core/userList');
     }
-    function grantDelete(){
+
+    function grantDelete() {
         $this->checkGrant('Grant');
         $obj = new UserTable();
         $obj->delete($_GET[1]);

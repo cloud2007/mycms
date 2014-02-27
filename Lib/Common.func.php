@@ -104,6 +104,7 @@ function ShowNote($msg) {
     $rmsg .= str_replace("\"", "“", $msg);
     $msg = $htmlhead . $rmsg . $htmlfoot;
     echo $msg;
+    die;
 }
 
 /**
