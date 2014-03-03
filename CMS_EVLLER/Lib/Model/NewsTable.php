@@ -74,9 +74,16 @@ class NewsTable extends Data {
     private function getCategoryTitle($cateID) {
         if ($cateID != 0) {
             $obj = new CategoryTable;
-            $obj->load($cateID);
-            $this->categoryArray[] = $obj->categoryTitle;
-            $this->getCategoryTitle($obj->parentID);
+            try {
+                $obj->load($cateID);
+            } catch (Exception $exc) {
+                //echo $exc->getMessage();
+                $obj->categoryTitle = 'None';
+            }
+            if ($obj) {
+                $this->categoryArray[] = $obj->categoryTitle;
+                $this->getCategoryTitle($obj->parentID);
+            }
         }
         arsort($this->categoryArray);
         return implode('<font color="red"> -> </font>', $this->categoryArray);
