@@ -90,7 +90,7 @@ class NewsTable extends Data {
         if (!$this->creatTime)
             $this->creatTime = time();
         else
-            $this->creatTime = strtotime($this->creatTime);
+            $this->creatTime = strtotime($this->creatTime) ? strtotime($this->creatTime) : $this->creatTime;
         parent::save();
         return $this;
     }
