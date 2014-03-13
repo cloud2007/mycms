@@ -17,6 +17,18 @@
 		所有信息同步国家商标数据库。</span>
 	</ul>
 </div>
+
+<div class="footer">
+    <a href="#" target="_blank" title="关于我们">关于我们</a>&nbsp;|
+    <a href="#" target="_blank" title="联系我们">联系我们</a>&nbsp;|
+    <a href="#" target="_blank" title="友情链接">友情链接</a>&nbsp;|
+    <a href="#" target="_blank" title="版权声明">版权声明</a>&nbsp;|
+    <a href="#" target="_blank" title="超凡招聘">超凡招聘</a>&nbsp;|
+    <a href="#" target="_blank" title="帮助中心">帮助中心</a>
+    <br>
+    Copyright © 2002 - 2013  北京超凡知识产权代理有限公司  京ICP备13010625号
+</div>
+
 <script type="text/javascript">
 $(document).ready(function () {
 	$(".login_btn").click(function () {
