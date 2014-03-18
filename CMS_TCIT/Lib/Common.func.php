@@ -211,4 +211,13 @@ function SendMail($to, $name, $subject = '', $body = '', $attachment = null) {
     return $mail->Send() ? true : $mail->ErrorInfo;
 }
 
+/**
+ * 读取后台全局配置数据
+ */
+function GetConfig($value) {
+    $ConfigObj = new NewsTable();
+    $ConfigObj->load(1);
+    return $ConfigObj->$value;
+}
+
 ?>

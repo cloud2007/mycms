@@ -11,51 +11,70 @@ class UploadAction extends AdminAction {
 
     protected static $config = array(
         'uploadPath' => '',
-        'watermark' => '', //1 text 2 image
-            /*
-              'allowFile' => Uploader::ALLOWFILE_IMAGE,
-              'thumbSize' => array(
-              'small' => array(
-              'width' => '200',
-              'height' => '200',
-              'watermark' => 'image',
-              ),
-              'middle' => array(
-              'width' => '400',
-              'height' => '400',
-              'watermark' => 'text',
-              )
-              ) */
+        'watermark' => '',
     );
 
     function __construct() {
         parent::__construct();
     }
 
-    /**
-     * 默认文件上传配置
-     */
-    public function sigleUpload() {
-        if ($_SESSION['lam'] == 3) {
+    private function getConfig() {
+        if ($_SESSION['lam'] == 4) {
             $config = array(
-                'uploadPath' => '/photo',
+                'uploadPath' => '/wedding',
                 'watermark' => '',
                 'allowFile' => Uploader::ALLOWFILE_IMAGE,
                 'thumbSize' => array(
                     'small' => array(
-                        'width' => '216',
-                        'height' => '292',
+                        'width' => '229',
+                        'height' => '352',
+                        'watermark' => ''
+                    ),
+                )
+            );
+        } elseif ($_SESSION['lam'] == 5) {
+            $config = array(
+                'uploadPath' => '/customer',
+                'watermark' => '',
+                'allowFile' => Uploader::ALLOWFILE_IMAGE,
+                'thumbSize' => array(
+                    'small' => array(
+                        'width' => '229',
+                        'height' => '352',
                         'watermark' => ''
                     ),
                 )
             );
         } else {
-            $config = array(
-                'uploadPath' => '',
-                'watermark' => '',
-            );
+            $config = self::$config;
         }
-        $uploader = new Uploader($config);
+        return $config;
+    }
+
+    private function getMutilConfig() {
+        if ($_SESSION['lam'] == 4) {
+            $config = array(
+                'uploadPath' => '/wedding',
+                'watermark' => '',
+                'allowFile' => Uploader::ALLOWFILE_IMAGE,
+            );
+        } elseif ($_SESSION['lam'] == 5) {
+            $config = array(
+                'uploadPath' => '/customer',
+                'watermark' => '',
+                'allowFile' => Uploader::ALLOWFILE_IMAGE,
+            );
+        } else {
+            $config = self::$config;
+        }
+        return $config;
+    }
+
+    /**
+     * 默认文件上传配置
+     */
+    public function sigleUpload() {
+        $uploader = new Uploader($this->getConfig());
         echo $uploader->save();
     }
 
@@ -63,24 +82,7 @@ class UploadAction extends AdminAction {
      * 图片上传配置2
      */
     public function mutliUpload() {
-        $config = array(
-            'uploadPath' => '/mutli',
-            'watermark' => '', //1 text 2 image
-            'allowFile' => Uploader::ALLOWFILE_IMAGE,
-            'thumbSize' => array(
-                'small' => array(
-                    'width' => '200',
-                    'height' => '200',
-                    'watermark' => 'image',
-                ),
-                'middle' => array(
-                    'width' => '400',
-                    'height' => '400',
-                    'watermark' => 'text',
-                )
-            )
-        );
-        $uploader = new Uploader($config);
+        $uploader = new Uploader($this->getMutilConfig());
         echo $uploader->save();
     }
 

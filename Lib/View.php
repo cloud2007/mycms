@@ -15,7 +15,8 @@ class View {
     private $render = null;
 
     public function __construct($name, $data = NULL) {
-        $this->view_filename = VIEW_PATH . "{$name}.php";
+        $tplname = $name ? $name : $_GET['m'] . '/' . $_GET['c'];
+        $this->view_filename = VIEW_PATH . $tplname . '.php';
         $this->name = $name;
 
         if (is_array($data) AND !empty($data)) {
@@ -141,26 +142,10 @@ class View {
     }
 
     //前台
-    function renderIndexHtml($content) {
-        $Obj = new NewsTable();
-
-        $Obj->load(1);
-        $header = new View('header');
-        $header->set('WebConfig', $Obj);
-
-        $cateObj = new CategoryTable();
-        $cateList = $cateObj->getSon(1, 0);
-        $header->set('cateList', $cateList);
-
-        $footer = new View('footer');
-        $FriendObj = new NewsTable();
-        $FriendList = $FriendObj->find(
-                array(
-                    'whereAnd' => array(array('lmID', '=9'))
-                )
-        );
-        $footer->set('FriendList', $FriendList);
-        echo "{$header}{$content}{$footer}";
+    function display() {
+        $header = new self('header');
+        $footer = new self('footer');
+        echo "{$header}{$this}{$footer}";
     }
 
 }

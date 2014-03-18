@@ -7,18 +7,14 @@
  * @create:2010-11-13
  * @modify:2014-01-03
  */
-class Action {
+class Action extends View {
 
     function __construct() {
-        ;
+        parent::__construct();
     }
 
     function error($error_id) {
         echo $error_id;
-    }
-
-    function __destruct() {
-        ;
     }
 
 }
