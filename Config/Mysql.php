@@ -9,14 +9,14 @@
  */
 return array(
     'local' => array(
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'user' => 'root',
         'pwd' => '',
         'dbname' => 'mycms',
         'charset' => 'utf8',
     ),
     'server' => array(
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'user' => 'qincheng',
         'pwd' => 'pkfkvsq6',
         'dbname' => 'qincheng',
