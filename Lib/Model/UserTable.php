@@ -20,6 +20,7 @@ class UserTable extends Data {
                 'userID' => 'userID',
                 'passWord' => 'passWord',
                 'grantWord' => 'grantWord',
+                'tel' => 'tel',
                 'status' => 'status',
                 'creatTime' => 'creatTime',
                 'loginTime' => 'loginTime',

@@ -89,22 +89,6 @@ class NewsTable extends Data {
         return implode('<font color="red"> -> </font>', $this->categoryArray);
     }
 
-    public function categoryPathUrl() {
-        $cateID = $this->categoryID;
-        return $res = $this->getCategoryTitleUrl($cateID);
-    }
-
-    private function getCategoryTitleUrl($cateID) {
-        if ($cateID != 0) {
-            $obj = new CategoryTable;
-            $obj->load($cateID);
-            $this->categoryArray[] = '<a href="/' . $obj->categoryTitle1 . '.html" target="_blank">' . $obj->categoryTitle . '</a>';
-            $this->getCategoryTitleUrl($obj->parentID);
-        }
-        arsort($this->categoryArray);
-        return implode(' , ', $this->categoryArray);
-    }
-
     /**
      * 覆盖save方法，写入creattime
      * @return \NewsTable

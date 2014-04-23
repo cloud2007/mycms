@@ -7,7 +7,7 @@
  * @create:2010-11-13
  * @modify:2014-01-03
  */
-class UploadAction extends AdminAction {
+class UploadAction extends Action {
 
     protected static $config = array(
         'uploadPath' => '',
@@ -19,22 +19,9 @@ class UploadAction extends AdminAction {
     }
 
     private function getConfig() {
-        if ($_SESSION['lam'] == 4) {
+        if ($_SESSION['lam'] == 9999) {
             $config = array(
                 'uploadPath' => '/wedding',
-                'watermark' => '',
-                'allowFile' => Uploader::ALLOWFILE_IMAGE,
-                'thumbSize' => array(
-                    'small' => array(
-                        'width' => '229',
-                        'height' => '352',
-                        'watermark' => ''
-                    ),
-                )
-            );
-        } elseif ($_SESSION['lam'] == 5) {
-            $config = array(
-                'uploadPath' => '/customer',
                 'watermark' => '',
                 'allowFile' => Uploader::ALLOWFILE_IMAGE,
                 'thumbSize' => array(
@@ -52,15 +39,9 @@ class UploadAction extends AdminAction {
     }
 
     private function getMutilConfig() {
-        if ($_SESSION['lam'] == 4) {
+        if ($_SESSION['lam'] == 9999) {
             $config = array(
                 'uploadPath' => '/wedding',
-                'watermark' => '',
-                'allowFile' => Uploader::ALLOWFILE_IMAGE,
-            );
-        } elseif ($_SESSION['lam'] == 5) {
-            $config = array(
-                'uploadPath' => '/customer',
                 'watermark' => '',
                 'allowFile' => Uploader::ALLOWFILE_IMAGE,
             );

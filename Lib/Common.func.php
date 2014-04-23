@@ -10,6 +10,7 @@
 //自动加载类库
 function __autoload($classname) {
     $classname = preg_replace("/[^0-9a-z_]/i", '', $classname);
+	if(!stristr($classname, 'PHPExcel')){
     $classfile = $classname . '.php';
     if (file_exists(LIB_PATH . '/' . $classfile)) {
         require LIB_PATH . '/' . $classfile;
@@ -25,6 +26,7 @@ function __autoload($classname) {
         echo '</pre>';
         exit();
     }
+	}
 }
 
 /**

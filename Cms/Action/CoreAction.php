@@ -190,6 +190,7 @@ class CoreAction extends AdminAction {
                     $User->passWord = md5($_POST['pwd1']);
                 $User->grantWord = implode('|', $_POST['grantWord']);
                 $User->status = $_POST['status'];
+                $User->tel = $_POST['tel'];
                 $User->save();
                 ShowMsg('修改成功', '/admin.php/Core/userList');
                 die;
@@ -205,6 +206,7 @@ class CoreAction extends AdminAction {
                 $User->userID = $_POST['userID'];
                 $User->grantWord = implode('|', $_POST['grantWord']);
                 $User->status = $_POST['status'];
+                $User->tel = $_POST['tel'];
                 $User->save();
                 ShowMsg('添加成功', '/admin.php/Core/userList');
                 die;
